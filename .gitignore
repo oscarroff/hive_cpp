@@ -1,0 +1,16 @@
+# Gitignore
+
+# The followin lines will ignore all files without extensions, e.g. binaries
+# Ignore all
+*
+# Unignore all with extensions
+!*.*
+# Unignore all dirs
+!*/
+# Unignore Makfeile
+!Makefile
+
+# Unnecessary files for git repo
+*.pdf
+*.json
+*obj/
