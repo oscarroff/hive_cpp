@@ -13,4 +13,6 @@
 # Unnecessary files for git repo
 *.pdf
 *.json
+*.idx
 *obj/
+*.cache/

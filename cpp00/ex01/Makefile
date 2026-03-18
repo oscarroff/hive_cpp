@@ -6,7 +6,7 @@
 #    By: thblack- <thblack-@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/09 11:30:32 by thblack-          #+#    #+#              #
-#    Updated: 2026/02/09 11:53:08 by thblack-         ###   ########.fr        #
+#    Updated: 2026/03/18 16:41:29 by thblack-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,15 +19,13 @@ CPP			= c++
 CFLAGS		= -Wall -Wextra -Werror
 
 # Sources
-SRCS_FILES	=
-SRCS_DEV	= $(shell find -name "*.cpp")
-SRCS		= $(SRCS_DEV)
+SRCS		= main.cpp PhoneBook.cpp Contact.cpp Utils.cpp
 
 # Objects
 OBJS		= $(SRCS:.cpp=.o)
 
 # Includes
-HEADER		= 
+HEADER		= Awesome.hpp
 INC			= -I.
 
 all: $(NAME)
