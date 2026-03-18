@@ -19,9 +19,7 @@ CPP			= c++
 CFLAGS		= -Wall -Wextra -Werror
 
 # Sources
-SRCS_FILES	=
-SRCS_DEV	= $(shell find -name "*.cpp")
-SRCS		= $(SRCS_DEV)
+SRCS		= tests.cpp Account.cpp
 
 # Objects
 OBJS		= $(SRCS:.cpp=.o)
