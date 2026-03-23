@@ -16,7 +16,7 @@ NAME		= PhoneBook
 
 # Tools
 CPP			= c++
-CFLAGS		= -Wall -Wextra -Werror -std=c++20
+CFLAGS		= -Wall -Wextra -Werror -std=c++98
 
 # Sources
 SRCS		= main.cpp PhoneBook.cpp Contact.cpp Utils.cpp

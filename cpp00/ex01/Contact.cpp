@@ -58,5 +58,8 @@ void	Contact::setContact(std::string first, std::string last,
 // Display contact member data
 void	Contact::display()
 {
-	std::cout << _index << _first << _last << _nickname << std::endl;
+	std::cout << std::right << std::setw(10) << _index << "|";
+	std::cout << std::right << std::setw(10) << truncate(_first) << "|";
+	std::cout << std::right << std::setw(10) << truncate(_last) << "|";
+	std::cout << std::right << std::setw(10) << truncate(_nickname) << "\n";
 }

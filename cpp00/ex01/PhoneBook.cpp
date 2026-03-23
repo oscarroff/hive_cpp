@@ -35,18 +35,12 @@ void	PhoneBook::add(Contact contact) {
 
 // Display
 void	PhoneBook::display() {
+	std::cout << std::setw(10) << "index" << "|" << std::setw(10) << "first"
+		<< "|" << std::setw(10) << "last" << "|" << std::setw(10)
+		<< "nickname" << "\n";
+	std::cout << std::string(43, '-') << "\n";
 	for (int i = 0; i < _size; i++) {
-		std::cout << std::setw(10) << "index" << "|" << std::setw(10) << "first"
-			<< "|" << std::setw(10) << "last" << "|" << std::setw(10)
-			<< "nickname" << std::endl;
-		std::cout << std::string(43, '-') << std::endl;
-		std::cout << std::right << std::setw(10) << _contacts[i].getIndex() << "|";
-		std::cout << std::right << std::setw(10)
-				<< truncate(_contacts[i].getFirst()) << "|";
-		std::cout << std::right << std::setw(10)
-				<< truncate(_contacts[i].getLast()) << "|";
-		std::cout << std::right << std::setw(10)
-				<< truncate(_contacts[i].getNickname()) << std::endl;
+		_contacts[i].display();
 	}
 }
 int	PhoneBook::getContact(int index) {
