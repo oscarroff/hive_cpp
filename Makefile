@@ -16,7 +16,7 @@ NAME		= cpp_template
 
 # Tools
 CPP			= c++
-CFLAGS		= -Wall -Wextra -Werror
+CFLAGS		= -Wall -Wextra -Werror -std=c++20
 
 # Sources
 SRCS_FILES	=
