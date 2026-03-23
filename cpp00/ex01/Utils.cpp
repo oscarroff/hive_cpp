@@ -41,3 +41,13 @@ void	clearConsole(void)
 		std::system("clear");
 	}
 }
+
+bool	streamError(void)
+{
+	if (std::cin.eof()) {
+		std::cin.clear();
+		ignoreLine();
+		return false;
+	}
+	return true;
+}

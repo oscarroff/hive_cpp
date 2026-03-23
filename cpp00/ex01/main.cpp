@@ -25,7 +25,12 @@ int	main(void)
 	{
 		std::cout << "O _ R O F F  FoneBuk\n";
 		std::cout << "Input 'ADD', 'SEARCH' or 'EXIT'\n";
-		std::cin >> input;
+		if (!std::getline(std::cin, input)) {
+			if (streamError())
+				break ;
+			else
+				continue ;
+		}
 		std::transform(input.begin(), input.end(), input.begin(), ::toupper);
 		clearConsole();
 		if (input.compare("ADD") == 0)

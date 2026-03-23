@@ -12,7 +12,7 @@
 
 #include "Account.hpp"
 #include <iostream>
-#include <chrono>
+#include <ctime>
 #include <iomanip>
 
 static void	displayTime( void );
@@ -32,7 +32,7 @@ Account::Account( int initial_deposit )
 	_nbAccounts++;
 	this->_amount = initial_deposit;
 	_totalAmount += initial_deposit;
-	this->_nbDeposits = 1;
+	this->_nbDeposits = 0;
 	this->_nbWithdrawals = 0;
 	displayTime();
 	std::cout << "index:" << this->_accountIndex
@@ -69,7 +69,7 @@ void	Account::displayAccountsInfos( void )
 	std::cout << "accounts:" << getNbAccounts()
 		<< ";total:" << getTotalAmount()
 		<< ";deposits:" << getNbDeposits()
-		<< ";withdrawals;" << getNbWithdrawals() << "\n";
+		<< ";withdrawals:" << getNbWithdrawals() << "\n";
 }
 
 // Public functions
@@ -115,14 +115,14 @@ void	Account::displayStatus( void ) const
 	std::cout << "index:" << this->_accountIndex
 		<< ";amount:" << this->_amount
 		<< ";deposits:" << this->_nbDeposits
-		<< ";withdrawals;" << this->_nbWithdrawals << "\n";
+		<< ";withdrawals:" << this->_nbWithdrawals << "\n";
 }
 
 static void	displayTime( void )
 {
-	auto	now = std::chrono::system_clock::now();
-	auto	time = std::chrono::system_clock::to_time_t(now);
-	std::stringstream	ss;
-	ss << std::put_time(std::localtime(&time), "[%Y%m%d_%H%M%S]");
-	std::cout << ss.str() << " ";
+	std::time_t	now = std::time(0);
+	std::tm*	timeinfo = std::localtime(&now);
+	char		timestamp[19];
+	std::strftime(timestamp, sizeof(timestamp), "[%Y%m%d_%H%M%S] ", timeinfo);
+	std::cout << timestamp;
 }

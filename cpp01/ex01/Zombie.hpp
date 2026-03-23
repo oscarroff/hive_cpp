@@ -1,39 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Awesome.hpp                                        :+:      :+:    :+:   */
+/*   Zombie.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thblack- <thblack-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/18 13:50:42 by thblack-          #+#    #+#             */
-/*   Updated: 2026/03/18 16:47:33 by thblack-         ###   ########.fr       */
+/*   Created: 2026/03/19 17:51:34 by thblack-          #+#    #+#             */
+/*   Updated: 2026/03/23 11:26:40 by thblack-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
-
-#ifndef AWESOME_H
-# define AWESOME_H
+#ifndef ZOMBIE_H
+# define ZOMBIE_H
 
 # include <iostream>
-# include <iomanip>
-# include <stdexcept>
-# include <string>
-# include <cstring>
-# include <limits>
-# include <cmath>
-# include <algorithm>
 
-# include "Contact.hpp"
-# include "PhoneBook.hpp"
-
-# define FAIL 1
-# define SUCCESS 0
-
-void		ignoreLine();
-bool		isNumber(const std::string &s);
-std::string	truncate(std::string str);
-void		clearConsole(void);
-bool		streamError(void);
+class	Zombie {
+private:
+	std::string	_name;
+public:
+	// Constructors & Deconstructors
+	Zombie( std::string name );
+	~Zombie( void );
+	// Getters
+	std::string	getName( void );
+	void		announce( void );
+	// Setters
+	void	setName( std::string name );
+};
 
 #endif
