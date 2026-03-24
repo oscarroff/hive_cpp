@@ -19,15 +19,12 @@ CPP			= c++
 CFLAGS		= -Wall -Wextra -Werror
 
 # Sources
-SRCS_FILES	=
-SRCS_DEV	= $(shell find -name "*.cpp")
-SRCS		= $(SRCS_DEV)
+SRCS		= main.cpp
 
 # Objects
 OBJS		= $(SRCS:.cpp=.o)
 
 # Includes
-HEADER		= 
 INC			= -I.
 
 all: $(NAME)
@@ -35,7 +32,7 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	$(CPP) $(CFLAGS) $(INC) -o $(NAME) $(OBJS)
 
-%.o: %.cpp $(HEADER)
+%.o: %.cpp
 	$(CPP) $(CFLAGS) $(INC) -c $< -o $@
 
 clean:
