@@ -6,11 +6,12 @@
 /*   By: thblack- <thblack-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/25 14:51:18 by thblack-          #+#    #+#             */
-/*   Updated: 2026/03/25 15:21:39 by thblack-         ###   ########.fr       */
+/*   Updated: 2026/03/25 16:46:39 by thblack-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "HumanB.hpp"
+# include <iostream>
 
 HumanB::HumanB( std::string name ) : _name(name), _weapon(nullptr) {};
 HumanB::~HumanB() {};

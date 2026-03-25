@@ -1,34 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.hpp                                         :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thblack- <thblack-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/19 17:51:34 by thblack-          #+#    #+#             */
-/*   Updated: 2026/03/25 16:47:07 by thblack-         ###   ########.fr       */
+/*   Created: 2026/03/25 17:06:14 by thblack-          #+#    #+#             */
+/*   Updated: 2026/03/25 17:07:14 by thblack-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#include "Harl.hpp"
 
-#ifndef ZOMBIE_H
-# define ZOMBIE_H
-
-# include <string>
-
-class	Zombie {
-private:
-	std::string	_name;
-public:
-	// Constructors & Deconstructors
-	Zombie( std::string name );
-	~Zombie( void );
-	// Getters
-	std::string	getName( void );
-	void		announce( void );
-	// Setters
-	void	setName( std::string name );
-};
-
-#endif
+int	main( void )
+{
+	Harl	harl;
+	harl.complain("DEBUG");
+	harl.complain("INFO");
+	harl.complain("WARNING");
+	harl.complain("ERROR");
+	harl.complain("FEEDBACK");
+}

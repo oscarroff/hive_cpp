@@ -6,7 +6,7 @@
 /*   By: thblack- <thblack-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/25 14:32:40 by thblack-          #+#    #+#             */
-/*   Updated: 2026/03/25 15:21:44 by thblack-         ###   ########.fr       */
+/*   Updated: 2026/03/25 16:46:34 by thblack-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #ifndef HUMANB_H
 # define HUMANB_H
 
-# include <iostream>
+# include <string>
 # include "Weapon.hpp"
 
 class	HumanB {

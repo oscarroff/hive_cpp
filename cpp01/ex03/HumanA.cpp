@@ -6,12 +6,13 @@
 /*   By: thblack- <thblack-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/25 14:45:54 by thblack-          #+#    #+#             */
-/*   Updated: 2026/03/25 15:21:02 by thblack-         ###   ########.fr       */
+/*   Updated: 2026/03/25 16:46:53 by thblack-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "HumanA.hpp"
 #include "Weapon.hpp"
+# include <iostream>
 
 // Construtor taking its weapon as a reference
 // Weapon needs to initialize weapon in order to work (code after thhe single
