@@ -16,6 +16,4 @@
 *.idx
 *obj/
 *.cache/
-*.sh
-*.log
 evaluations/
