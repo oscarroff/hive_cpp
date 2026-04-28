@@ -6,13 +6,11 @@
 /*   By: thblack- <thblack-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/08 12:43:24 by thblack-          #+#    #+#             */
-/*   Updated: 2026/04/08 14:41:04 by thblack-         ###   ########.fr       */
+/*   Updated: 2026/04/28 16:54:48 by thblack-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
-#include <iostream>
-#include <cmath>
 
 // Creates a Fixed object and initialised the value to 0
 Fixed::Fixed() : _value(0) {
@@ -55,7 +53,7 @@ Fixed::~Fixed() {
 	std::cout << "Destructor called\n";
 };
 
-int		Fixed::getRawBits( void ) const {
+int	Fixed::getRawBits( void ) const {
 	std::cout << "getRawBits member function called\n";
 	return this->_value;
 };
@@ -65,7 +63,7 @@ void	Fixed::setRawBits( const int raw ) {
 	this->_value = raw;
 };
 
-int		Fixed::toInt( void ) const {
+int	Fixed::toInt( void ) const {
 	return this->_value >> this->_fractionalBits;
 };
 

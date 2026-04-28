@@ -6,13 +6,14 @@
 /*   By: thblack- <thblack-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/08 12:43:27 by thblack-          #+#    #+#             */
-/*   Updated: 2026/04/08 14:20:16 by thblack-         ###   ########.fr       */
+/*   Updated: 2026/04/28 16:54:39 by thblack-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 # include <iostream>
+# include <cmath>
 
 # define FRACTIONAL_BITS 8
 
