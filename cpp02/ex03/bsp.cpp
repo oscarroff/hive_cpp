@@ -6,7 +6,7 @@
 /*   By: thblack- <thblack-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 17:21:34 by thblack-          #+#    #+#             */
-/*   Updated: 2026/04/28 18:04:43 by thblack-         ###   ########.fr       */
+/*   Updated: 2026/04/28 18:11:43 by thblack-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,21 +29,10 @@ bool	bsp( Point const a, Point const b, Point const c, Point const point) {
 	// - if all cross products have the same sign then the point is inside
 	// - if a cross product is zero then the point is on the line
 	// - if signs of cross products differ then the point is outside
-	std::cout << "crossAB " << crossAB << "\n";
-	std::cout << "crossBC " << crossBC << "\n";
-	std::cout << "crossCA " << crossCA << "\n";
 	bool	has_neg = (crossAB < 0) || (crossBC < 0) || (crossCA < 0);
 	bool	has_pos = (crossAB > 0) || (crossBC > 0) || (crossCA > 0);
 	bool	has_zero = (crossAB == 0) || (crossBC == 0) || (crossCA == 0);
-	if (has_zero)
-	{
-		std::cout << "zeero\n";
+	if (has_zero || (has_neg && has_pos))
 		return false;
-	}
-	if (has_neg != has_pos)
-	{
-		std::cout << "disagree\n";
-		return false;
-	}
 	return true;
 };
