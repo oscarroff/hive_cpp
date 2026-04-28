@@ -6,12 +6,12 @@
 #    By: thblack- <thblack-@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/08 12:34:32 by thblack-          #+#    #+#              #
-#    Updated: 2026/04/08 12:36:31 by thblack-         ###   ########.fr        #
+#    Updated: 2026/04/28 17:54:20 by thblack-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-PROJECT		= myfirstcanon
-NAME		= myfirstcanon
+PROJECT		= BSP
+NAME		= BSP
 
 CPP			= c++ -std=c++20
 CFLAGS		= -Wall -Wextra -Werror

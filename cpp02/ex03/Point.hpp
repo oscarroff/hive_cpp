@@ -6,7 +6,7 @@
 /*   By: thblack- <thblack-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 16:53:53 by thblack-          #+#    #+#             */
-/*   Updated: 2026/04/28 17:03:09 by thblack-         ###   ########.fr       */
+/*   Updated: 2026/04/28 17:36:42 by thblack-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@ private:
 public:
 	Point();
 	Point( const Point& other );
-	Point&	operator=( const Point& other );
+	Point&	operator=( const Point& ) = delete; // Copy assignment forbidden
+	// because the member variables are const
 	~Point();
 	Point( const float x, const float y );
+	Fixed	getX( void ) const;
+	Fixed	getY( void ) const;
 };
