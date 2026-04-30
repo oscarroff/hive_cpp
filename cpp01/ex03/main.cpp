@@ -6,7 +6,7 @@
 /*   By: thblack- <thblack-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 15:55:14 by thblack-          #+#    #+#             */
-/*   Updated: 2026/03/25 15:22:42 by thblack-         ###   ########.fr       */
+/*   Updated: 2026/04/29 14:08:05 by thblack-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,7 @@ int	main( void )
 	jim.attack();
 	club2.setType("some other type of club");
 	jim.attack();
+	HumanB jerry("Jerry");
+	jerry.attack();
 	return 0;
 }

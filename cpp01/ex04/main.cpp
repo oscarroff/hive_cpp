@@ -6,7 +6,7 @@
 /*   By: thblack- <thblack-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/25 15:25:38 by thblack-          #+#    #+#             */
-/*   Updated: 2026/03/25 16:45:55 by thblack-         ###   ########.fr       */
+/*   Updated: 2026/04/29 14:03:37 by thblack-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,11 @@ int	main(int argc, char **argv)
 	std::string		output_filename = argv[1];
 	output_filename.append(".replace");
 	std::ofstream	output(output_filename);
+	if (!output.is_open())
+	{
+		std::cerr << "loserSed: error opening the file.\n";
+		return (EXIT_FAILURE);
+	}
 	std::string		s2 = argv[3];
 	size_t			position;
 	std::string		line;
