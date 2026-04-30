@@ -43,8 +43,7 @@ int	main(int argc, char **argv)
 	std::string		s2 = argv[3];
 	size_t			position;
 	std::string		line;
-	std::getline(input, line);
-	while (!line.empty())
+	while (std::getline(input, line))
 	{
 		position = line.find(s1);
 		while (position != std::string::npos)
@@ -53,9 +52,7 @@ int	main(int argc, char **argv)
 			line.insert(position, s2);
 			position = line.find(s1);
 		}
-		output << line;
-		if (std::getline(input, line))
-			output << "\n";
+		output << line << "\n";
 	}
 	input.close();
 	output.close();
