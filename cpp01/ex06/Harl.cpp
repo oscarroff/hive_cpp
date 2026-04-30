@@ -16,7 +16,7 @@
 Harl::Harl () {};
 Harl::~Harl () {};
 
-void	Harl::complain( std::string level )
+void	Harl::complain( const std::string level )
 {
 	std::string	levels[4] = {
 		"DEBUG", "INFO", "WARNING", "ERROR"
@@ -57,7 +57,7 @@ void	Harl::error()
 	std::cerr << "This is unacceptable! I want to speak to the manager now.\n";
 }
 
-int	hashString( std::string& str ) {
+int	hashString( const std::string& str ) {
 	if (str == "DEBUG") return 0;
 	if (str == "INFO") return 1;
 	if (str == "WARNING") return 2;
@@ -65,7 +65,7 @@ int	hashString( std::string& str ) {
 	return -1;
 }
 
-std::string	unhashString( int index ) {
+std::string	unhashString( const int index ) {
 	if (index == 0)	return "DEBUG";
 	if (index == 1)	return "INFO";
 	if (index == 2)	return "WARNING";
@@ -73,7 +73,7 @@ std::string	unhashString( int index ) {
 	return "";
 }
 
-void	Harl::message( int index )
+void	Harl::message( const int index )
 {
 	std::string	level = unhashString(index);
 	void (Harl::*functions[4])() = {
@@ -87,31 +87,16 @@ void	Harl::message( int index )
 	std::cout << "\n";
 }
 
-void	Harl::filter( std::string level )
+void	Harl::filter( const std::string level )
 {
 	int	index = hashString(level);
-	if (index < 0) {
-		std::cout << "[ Probably complaining about insignificant problems ]\n";
-		return ;
-	}
 	switch (index) {
-		case 0:
-			message(0);
-			message(1);
-			message(2);
-			message(3);
-			break ;
-		case 1:
-			message(1);
-			message(2);
-			message(3);
-			break ;
-		case 2:
-			message(2);
-			message(3);
-			break ;
-		case 3:
-			message(3);
-			break ;
+		case 0: message(0);
+		case 1: message(1);
+		case 2: message(2);
+		case 3: message(3);
+			return;
+		default	: 
+			std::cout << "[ Probably complaining about insignificant problems ]\n";
 	}
 }

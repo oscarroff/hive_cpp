@@ -18,11 +18,11 @@ Weapon::Weapon( std::string type )
 }
 Weapon::~Weapon( void ) {};
 
-const std::string	Weapon::getType( void )
+const std::string&	Weapon::getType( void )
 {
 	return this->_type;
 }
-void	Weapon::setType( std::string type )
+void	Weapon::setType( const std::string type )
 {
 	this->_type = type;
 }

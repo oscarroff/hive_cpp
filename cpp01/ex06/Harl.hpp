@@ -26,9 +26,9 @@ private:
 public:
 	Harl();
 	~Harl();
-	void	complain( std::string level );
-	void	filter( std::string level );
-	void	message( int index );
+	void	complain( const std::string level );
+	void	filter( const std::string level );
+	void	message( const int index );
 };
 
 #endif

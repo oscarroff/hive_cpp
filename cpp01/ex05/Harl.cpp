@@ -16,7 +16,7 @@
 Harl::Harl () {};
 Harl::~Harl () {};
 
-void	Harl::complain( std::string level )
+void	Harl::complain( const std::string level )
 {
 	std::string	levels[4] = {
 		"DEBUG", "INFO", "WARNING", "ERROR"

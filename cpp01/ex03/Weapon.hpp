@@ -23,8 +23,8 @@ private:
 public:
 	Weapon( std::string type );
 	~Weapon();
-	const std::string	getType();
-	void				setType( std::string type );
+	const std::string&	getType();
+	void				setType( const std::string type );
 };
 
 #endif
