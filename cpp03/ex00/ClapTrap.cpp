@@ -15,6 +15,10 @@
 #include <iostream>
 
 // Constructors & Destructors
+ClapTrap::ClapTrap()
+: _hp(10), _energy(10), _damage(0) {
+	std::cout << "Default constructor called\n";
+};
 ClapTrap::ClapTrap( const std::string name )
 : _name(name), _hp(10), _energy(10), _damage(0) {
 	std::cout << "Default constructor called\n";

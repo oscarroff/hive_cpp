@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScavTrap.cpp                                       :+:      :+:    :+:   */
+/*   DiamondTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thblack- <thblack-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,30 +10,30 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScavTrap.hpp"
+#include "DiamondTrap.hpp"
 #include "ClapTrap.hpp"
 #include <iostream>
 
 // Constructors & Destructors
-ScavTrap::ScavTrap() : ClapTrap() {
+DiamondTrap::DiamondTrap() : ScavTrap(), FragTrap() {
 	this->setHp(100);
 	this->setEnergy(50);
 	this->setDamage(20);
-	std::cout << "Scavvy default constructor called\n";
+	std::cout << "Sparkly default constructor called\n";
 };
-ScavTrap::ScavTrap( const std::string name ) : ClapTrap(name) {
+DiamondTrap::DiamondTrap( const std::string name ) : ScavTrap(name) {
 	this->setHp(100);
 	this->setEnergy(50);
 	this->setDamage(20);
-	std::cout << "Scavvy named constructor called\n";
+	std::cout << "Sparkly named constructor called\n";
 };
-ScavTrap::ScavTrap( const ScavTrap& other ) : ClapTrap(other) {
+DiamondTrap::DiamondTrap( const DiamondTrap& other ) : ClapTrap(other) {
 	this->setHp(other.getHp());
 	this->setEnergy(other.getEnergy());
 	this->setDamage(other.getDamage());
-	std::cout << "Scavvy copy constructor called\n";
+	std::cout << "Sparkly copy constructor called\n";
 };
-ScavTrap&	ScavTrap::operator=( const ScavTrap& other ) {
+DiamondTrap&	DiamondTrap::operator=( const DiamondTrap& other ) {
 	if (this != &other)
 	{
 		ClapTrap::operator=(other);
@@ -41,14 +41,14 @@ ScavTrap&	ScavTrap::operator=( const ScavTrap& other ) {
 		this->setEnergy(other.getEnergy());
 		this->setDamage(other.getDamage());
 	}
-	std::cout << "Scavvy copy assignment constructor called\n";
+	std::cout << "Sparkly copy assignment constructor called\n";
 	return *this;
 };
-ScavTrap::~ScavTrap() {
-	std::cout << "Scavvy destructor called\n";
+DiamondTrap::~DiamondTrap() {
+	std::cout << "Sparkly destructor called\n";
 };
 
 // Public Member Functions
-void	ScavTrap::guardGate() {
+void	DiamondTrap::guardGate() {
 	std::cout << this->getName() << " is now in gate keeper mode!\n";
 };

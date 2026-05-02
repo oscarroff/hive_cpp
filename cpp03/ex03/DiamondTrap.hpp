@@ -1,42 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ClapTrap.hpp                                       :+:      :+:    :+:   */
+/*   DiamondTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thblack- <thblack-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 12:55:15 by thblack-          #+#    #+#             */
-/*   Updated: 2026/04/29 13:33:18 by thblack-         ###   ########.fr       */
+/*   Updated: 2026/04/29 14:27:47 by thblack-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include <string>
+#include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
-class	ClapTrap {
+class	DiamondTrap : public ScavTrap , public FragTrap {
 private:
 	std::string	_name;
-	int			_hp;
-	int			_energy;
-	int			_damage;
 public:
 	// Constructors & Destructors
-	ClapTrap();
-	ClapTrap( std::string name );
-	ClapTrap( const ClapTrap& other );
-	ClapTrap& operator=( const ClapTrap& other );
-	~ClapTrap();
+	DiamondTrap();
+	DiamondTrap( std::string name );
+	DiamondTrap( const DiamondTrap& other );
+	DiamondTrap& operator=( const DiamondTrap& other );
+	~DiamondTrap();
 	// Public Member Functions
-	void	attack( const std::string& target );
-	void	takeDamage( unsigned int amount );
-	void	beRepaired( unsigned int amount );
-	void	setName( const std::string name );
-	void	setHp( const int amount );
-	void	setEnergy( const int amount );
-	void	setDamage( const int amount );
-	std::string		getName( void ) const;
-	int		getHp( void ) const;
-	int		getEnergy( void ) const;
-	int		getDamage( void ) const;
+	void	whoAmI();
 };

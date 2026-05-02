@@ -10,12 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
 
 int	main( void ) {
-	ClapTrap	Finn("Finn"), Jake("Jake"), Bmo("BMO"), \
+	ScavTrap	NamelessHero;
+	ScavTrap	Finn("Finn"), Jake("Jake"), Bmo("BMO"), \
 		Bubblegum("Princess Bubblegum"), IceKing("IceKing");
-	ClapTrap	Changeling(Finn);
+	ScavTrap	Changeling(Finn);
 	Changeling = Jake;
 	Finn.attack("Jake");
 	Jake.takeDamage(0);
@@ -33,5 +34,6 @@ int	main( void ) {
 	Bmo.attack("IceKing");
 	Bmo.attack("IceKing");
 	Bmo.attack("IceKing");
+	Jake.guardGate();
 	Changeling.beRepaired(100);
 };

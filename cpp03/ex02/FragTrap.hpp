@@ -1,42 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ClapTrap.hpp                                       :+:      :+:    :+:   */
+/*   FragTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thblack- <thblack-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 12:55:15 by thblack-          #+#    #+#             */
-/*   Updated: 2026/04/29 13:33:18 by thblack-         ###   ########.fr       */
+/*   Updated: 2026/04/29 14:27:47 by thblack-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include <string>
+#include "ClapTrap.hpp"
 
-class	ClapTrap {
-private:
-	std::string	_name;
-	int			_hp;
-	int			_energy;
-	int			_damage;
+class	FragTrap : public ClapTrap {
 public:
 	// Constructors & Destructors
-	ClapTrap();
-	ClapTrap( std::string name );
-	ClapTrap( const ClapTrap& other );
-	ClapTrap& operator=( const ClapTrap& other );
-	~ClapTrap();
+	FragTrap();
+	FragTrap( std::string name );
+	FragTrap( const FragTrap& other );
+	FragTrap& operator=( const FragTrap& other );
+	~FragTrap();
 	// Public Member Functions
-	void	attack( const std::string& target );
-	void	takeDamage( unsigned int amount );
-	void	beRepaired( unsigned int amount );
-	void	setName( const std::string name );
-	void	setHp( const int amount );
-	void	setEnergy( const int amount );
-	void	setDamage( const int amount );
-	std::string		getName( void ) const;
-	int		getHp( void ) const;
-	int		getEnergy( void ) const;
-	int		getDamage( void ) const;
+	void	highFivesGuys( void );
 };
