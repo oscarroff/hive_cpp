@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   DiamondTrap.hpp                                       :+:      :+:    :+:   */
+/*   DiamondTrap.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thblack- <thblack-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 12:55:15 by thblack-          #+#    #+#             */
-/*   Updated: 2026/04/29 14:27:47 by thblack-         ###   ########.fr       */
+/*   Updated: 2026/05/03 13:17:46 by thblack-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,5 @@ public:
 	~DiamondTrap();
 	// Public Member Functions
 	void	whoAmI();
+	void	attack( const std::string& target );
 };

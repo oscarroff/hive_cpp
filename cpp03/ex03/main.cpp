@@ -6,17 +6,17 @@
 /*   By: thblack- <thblack-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 13:33:23 by thblack-          #+#    #+#             */
-/*   Updated: 2026/04/29 13:53:21 by thblack-         ###   ########.fr       */
+/*   Updated: 2026/05/03 13:22:11 by thblack-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "FragTrap.hpp"
+#include "DiamondTrap.hpp"
 
 int	main( void ) {
-	FragTrap	NamelessHero;
-	FragTrap	Finn("Finn"), Jake("Jake"), Bmo("BMO"), \
+	DiamondTrap	NamelessHero;
+	DiamondTrap	Finn("Finn"), Jake("Jake"), Bmo("BMO"), \
 		Bubblegum("Princess Bubblegum"), IceKing("IceKing");
-	FragTrap	Changeling(Finn);
+	DiamondTrap	Changeling(Finn);
 	Changeling = Jake;
 	Finn.attack("Jake");
 	Jake.takeDamage(0);

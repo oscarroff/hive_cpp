@@ -6,7 +6,7 @@
 /*   By: thblack- <thblack-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 12:55:15 by thblack-          #+#    #+#             */
-/*   Updated: 2026/04/29 14:27:47 by thblack-         ###   ########.fr       */
+/*   Updated: 2026/05/03 13:13:51 by thblack-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,5 @@ public:
 	~ScavTrap();
 	// Public Member Functions
 	void	guardGate();
+	void	attack();
 };

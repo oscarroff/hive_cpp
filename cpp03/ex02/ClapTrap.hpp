@@ -20,6 +20,16 @@ private:
 	int			_hp;
 	int			_energy;
 	int			_damage;
+protected:
+	// Setters & Getters
+	void	setName( const std::string name );
+	void	setHp( const int amount );
+	void	setEnergy( const int amount );
+	void	setDamage( const int amount );
+	std::string		getName( void ) const;
+	int		getHp( void ) const;
+	int		getEnergy( void ) const;
+	int		getDamage( void ) const;
 public:
 	// Constructors & Destructors
 	ClapTrap();
@@ -31,12 +41,4 @@ public:
 	void	attack( const std::string& target );
 	void	takeDamage( unsigned int amount );
 	void	beRepaired( unsigned int amount );
-	void	setName( const std::string name );
-	void	setHp( const int amount );
-	void	setEnergy( const int amount );
-	void	setDamage( const int amount );
-	std::string		getName( void ) const;
-	int		getHp( void ) const;
-	int		getEnergy( void ) const;
-	int		getDamage( void ) const;
 };

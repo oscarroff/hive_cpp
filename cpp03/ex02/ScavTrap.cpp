@@ -6,7 +6,7 @@
 /*   By: thblack- <thblack-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 12:55:33 by thblack-          #+#    #+#             */
-/*   Updated: 2026/04/29 14:31:54 by thblack-         ###   ########.fr       */
+/*   Updated: 2026/05/03 13:14:09 by thblack-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,18 @@ ScavTrap::~ScavTrap() {
 };
 
 // Public Member Functions
+void	ClapTrap::attack( const std::string& target ) {
+	if (this->_hp < 1)
+		std::cout << _name << " is whacked out, attack failed!\n";
+	else if (this->_energy < 1)
+		std::cout << _name << " is out of beans, attack failed!\n";
+	else
+	{
+		std::cout << _name << " spanks " << target << "'s hams causing "
+			<< _damage << " points of damage!\n";
+		this->_energy--;
+	}
+};
 void	ScavTrap::guardGate() {
 	std::cout << this->getName() << " is now in gate keeper mode!\n";
 };
