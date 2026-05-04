@@ -6,7 +6,7 @@
 /*   By: thblack- <thblack-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 14:13:37 by thblack-          #+#    #+#             */
-/*   Updated: 2026/05/04 17:08:54 by thblack-         ###   ########.fr       */
+/*   Updated: 2026/05/04 17:19:54 by thblack-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int main( void ) {
 	for (size_t i = 5; i < 10; i++)
 		herd[i] = new Dog();
 	Cat* cat1 = dynamic_cast<Cat*>(herd[0]);
-	Cat* cat2 = dynamic_cast<Cat*>(herd[0]);
+	Cat* cat2 = dynamic_cast<Cat*>(herd[1]);
 	if (cat1) {
 		cat1->mindMeld()->eureka("I like fish\n");
 		cat1->mindMeld()->eureka("Humans are stoopid\n");

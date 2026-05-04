@@ -6,7 +6,7 @@
 /*   By: thblack- <thblack-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 14:07:59 by thblack-          #+#    #+#             */
-/*   Updated: 2026/05/04 17:12:47 by thblack-         ###   ########.fr       */
+/*   Updated: 2026/05/04 17:17:42 by thblack-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ Cat& Cat::operator=( const Cat& other ) {
 	if (this != &other)
 	{
 		this->_type = other._type;
+		delete this->_brain;
 		this->_brain = new Brain;
 		*this->_brain = *other._brain;
 	}
