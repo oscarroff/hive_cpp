@@ -31,8 +31,8 @@ DiamondTrap::DiamondTrap( const std::string name ) : ScavTrap(name), FragTrap(na
 	std::cout << "Sparkly named constructor called\n";
 };
 DiamondTrap::DiamondTrap( const DiamondTrap& other ) : ScavTrap(other), FragTrap(other) {
-	this->_name = other.getName();
-	ClapTrap::setName(other.getName() + "_clap_name");
+	this->_name = other._name;
+	ClapTrap::setName(other.getName());
 	this->setHp(FragTrap::getHp());
 	this->setEnergy(ScavTrap::getEnergy());
 	this->setDamage(FragTrap::getDamage());
@@ -42,8 +42,7 @@ DiamondTrap&	DiamondTrap::operator=( const DiamondTrap& other ) {
 	if (this != &other)
 	{
 		ClapTrap::operator=(other);
-		this->_name = other.getName();
-		ClapTrap::setName(other.getName() + "_clap_name");
+		this->_name = other._name;
 		this->setHp(FragTrap::getHp());
 		this->setEnergy(ScavTrap::getEnergy());
 		this->setDamage(FragTrap::getDamage());
@@ -57,7 +56,7 @@ DiamondTrap::~DiamondTrap() {
 
 // Public Member Functions
 void	DiamondTrap::whoAmI() {
-	std::cout << this->getName() << " is now in gate keeper mode!\n";
+	std::cout << "Oh my Glob, " << this->_name << " is here!\n";
 };
 void	DiamondTrap::attack( const std::string& target ) {
 	ScavTrap::attack(target);

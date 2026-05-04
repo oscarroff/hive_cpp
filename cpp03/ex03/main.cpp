@@ -16,14 +16,17 @@ int	main( void ) {
 	DiamondTrap	NamelessHero;
 	DiamondTrap	Finn("Finn"), Jake("Jake"), Bmo("BMO"), \
 		Bubblegum("Princess Bubblegum"), IceKing("IceKing");
-	DiamondTrap	Changeling(Finn);
-	Changeling = Jake;
 	Finn.attack("Jake");
+	Finn.whoAmI();
 	Jake.takeDamage(0);
+	Jake.whoAmI();
 	Bmo.attack("IceKing");
+	Bmo.whoAmI();
 	IceKing.takeDamage(0);
 	IceKing.attack("Princess Bubblegum");
+	IceKing.whoAmI();
 	Bubblegum.takeDamage(0);
+	Bubblegum.whoAmI();
 	Bmo.beRepaired(1);
 	Bmo.attack("IceKing");
 	Bmo.attack("IceKing");
@@ -35,5 +38,10 @@ int	main( void ) {
 	Bmo.attack("IceKing");
 	Bmo.attack("IceKing");
 	Jake.highFivesGuys();
+	DiamondTrap	Changeling(Finn);
 	Changeling.beRepaired(100);
+	Changeling.whoAmI();
+	Changeling = Jake;
+	Changeling.beRepaired(100);
+	Changeling.whoAmI();
 };
