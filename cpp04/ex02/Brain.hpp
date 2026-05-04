@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.hpp                                            :+:      :+:    :+:   */
+/*   Brain.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thblack- <thblack-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/04 14:10:24 by thblack-          #+#    #+#             */
-/*   Updated: 2026/05/04 17:53:29 by thblack-         ###   ########.fr       */
+/*   Created: 2026/05/04 15:14:16 by thblack-          #+#    #+#             */
+/*   Updated: 2026/05/04 16:49:33 by thblack-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include "Animal.hpp"
-#include "Brain.hpp"
+#include <string>
 
-class	Dog : public Animal {
+class	Brain {
 private:
-	Brain*			_brain;
+	std::string	_ideas[100];
+	unsigned int	_lastThought;
 public:
-	// Constructors & Destructors
-	Dog();
-	Dog( const Dog& other );
-	Dog& operator=( const Dog& other );
-	~Dog();
-	// Public Member Functions
-	void	makeSound() const override ;
-	Brain*	mindMeld() const ;
+	Brain();
+	Brain( const Brain& other );
+	Brain& operator=( const Brain& other );
+	~Brain();
+	void	eureka( const std::string& idea );
+	const std::string	mindPalace( const unsigned int& memoryBank );
 };

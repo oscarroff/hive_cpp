@@ -1,47 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.cpp                                            :+:      :+:    :+:   */
+/*   Cat.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thblack- <thblack-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 14:07:59 by thblack-          #+#    #+#             */
-/*   Updated: 2026/05/04 17:53:24 by thblack-         ###   ########.fr       */
+/*   Updated: 2026/05/04 17:52:25 by thblack-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Dog.hpp"
+#include "Cat.hpp"
 
 #include <iostream>
 #include <cstring>
 
 // Constructors
-Dog::Dog() : Animal("Dog"), _brain(new Brain) {
-	std::cout << "Default Dog constructor called\n";
+Cat::Cat() : Animal(), _brain(new Brain) {
+	this->setType("Cat");
+	std::cout << "Default Cat constructor called\n";
 };
-Dog::Dog( const Dog& other )
-: Animal(other._type), _brain(new Brain) {
+Cat::Cat( const Cat& other ) : Animal(), _brain(new Brain) {
+	this->setType(other.getType());
 	*this->_brain = *other._brain;
-	std::cout << "Dog copy constructor called\n";
+	std::cout << "Cat copy constructor called\n";
 };
-Dog& Dog::operator=( const Dog& other ) {
+Cat& Cat::operator=( const Cat& other ) {
 	if (this != &other)
 	{
-		this->_type = other._type;
+		this->setType(other.getType());
 		delete this->_brain;
 		this->_brain = new Brain;
 		*this->_brain = *other._brain;
 	}
-	std::cout << "Dog copy assignment constructor called\n";
+	std::cout << "Cat copy assignment constructor called\n";
 	return *this;
 };
-Dog::~Dog() {
+Cat::~Cat() {
 	delete this->_brain;
-	std::cout << "Dog destructor called\n";
+	std::cout << "Cat destructor called\n";
 };
-void	Dog::makeSound() const {
+void	Cat::makeSound() const {
 	std::cout << "Meow\n";
 };
-Brain*	Dog::mindMeld() const {
+Brain*	Cat::mindMeld() const {
 	return this->_brain;
 };

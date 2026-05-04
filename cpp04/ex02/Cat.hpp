@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.hpp                                            :+:      :+:    :+:   */
+/*   Cat.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thblack- <thblack-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 14:10:24 by thblack-          #+#    #+#             */
-/*   Updated: 2026/05/04 17:53:29 by thblack-         ###   ########.fr       */
+/*   Updated: 2026/05/04 16:57:17 by thblack-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,15 @@
 #include "Animal.hpp"
 #include "Brain.hpp"
 
-class	Dog : public Animal {
+class	Cat : public Animal {
 private:
 	Brain*			_brain;
 public:
 	// Constructors & Destructors
-	Dog();
-	Dog( const Dog& other );
-	Dog& operator=( const Dog& other );
-	~Dog();
+	Cat();
+	Cat( const Cat& other );
+	Cat& operator=( const Cat& other );
+	~Cat();
 	// Public Member Functions
 	void	makeSound() const override ;
 	Brain*	mindMeld() const ;

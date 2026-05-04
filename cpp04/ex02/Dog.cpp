@@ -6,7 +6,7 @@
 /*   By: thblack- <thblack-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 14:07:59 by thblack-          #+#    #+#             */
-/*   Updated: 2026/05/04 17:53:24 by thblack-         ###   ########.fr       */
+/*   Updated: 2026/05/04 17:54:27 by thblack-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,19 @@
 #include <cstring>
 
 // Constructors
-Dog::Dog() : Animal("Dog"), _brain(new Brain) {
+Dog::Dog() : Animal(), _brain(new Brain) {
+	this->setType("Dog");
 	std::cout << "Default Dog constructor called\n";
 };
-Dog::Dog( const Dog& other )
-: Animal(other._type), _brain(new Brain) {
+Dog::Dog( const Dog& other ) : Animal(), _brain(new Brain) {
+	this->setType("Dog");
 	*this->_brain = *other._brain;
 	std::cout << "Dog copy constructor called\n";
 };
 Dog& Dog::operator=( const Dog& other ) {
 	if (this != &other)
 	{
-		this->_type = other._type;
+		this->setType(other.getType());
 		delete this->_brain;
 		this->_brain = new Brain;
 		*this->_brain = *other._brain;
