@@ -6,7 +6,7 @@
 #    By: thblack- <thblack-@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/08 12:34:32 by thblack-          #+#    #+#              #
-#    Updated: 2026/04/28 17:54:20 by thblack-         ###   ########.fr        #
+#    Updated: 2026/05/04 17:59:02 by thblack-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ NAME		= BSP
 CPP			= c++ -std=c++20
 CFLAGS		= -Wall -Wextra -Werror
 
-SRCS		= $(shell find . -name "*.cpp")
+SRCS		= main.cpp bsp.cpp Fixed.cpp Point.cpp
 
 OBJS		= $(SRCS:.cpp=.o)
 
