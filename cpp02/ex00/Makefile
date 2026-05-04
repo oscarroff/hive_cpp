@@ -6,12 +6,12 @@
 #    By: thblack- <thblack-@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/08 12:34:32 by thblack-          #+#    #+#              #
-#    Updated: 2026/05/04 17:57:58 by thblack-         ###   ########.fr        #
+#    Updated: 2026/05/04 18:06:53 by thblack-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-PROJECT		= myfirstcanon
-NAME		= myfirstcanon
+PROJECT		= myfirstcanon_good
+NAME		= myfirstcanon_good
 
 CPP			= c++ -std=c++20
 CFLAGS		= -Wall -Wextra -Werror
