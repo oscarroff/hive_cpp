@@ -15,16 +15,18 @@
 #include <iostream>
 
 // Constructors
-Brain::Brain() {
+Brain::Brain() : _lastThought(0) {
 	std::cout << "Default Brain constructor called\n";
 };
-Brain::Brain( const Brain& other ) {
+Brain::Brain( const Brain& other ) : _lastThought(other._lastThought) {
 	std::copy(other._ideas, other._ideas + 100, this->_ideas);
 	std::cout << "Brain copy constructor called\n";
 };
 Brain& Brain::operator=( const Brain& other ) {
-	if (this != &other)
+	if (this != &other) {
 		std::copy(other._ideas, other._ideas + 100, this->_ideas);
+		this->_lastThought = other._lastThought;
+	}
 	std::cout << "Brain copy assignment constructor called\n";
 	return *this;
 };
