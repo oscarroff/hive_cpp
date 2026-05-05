@@ -16,7 +16,7 @@ NAME		= ScavTrap
 CPP			= c++ -std=c++20
 CFLAGS		= -Wall -Wextra -Werror
 
-SRCS		= main.cpp ClappTrapp.cpp ScavTrapp.cpp
+SRCS		= main.cpp ClapTrap.cpp ScavTrap.cpp
 
 OBJS		= $(SRCS:.cpp=.o)
 

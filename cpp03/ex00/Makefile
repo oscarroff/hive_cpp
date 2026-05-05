@@ -16,7 +16,7 @@ NAME		= ClapTrap
 CPP			= c++ -std=c++20
 CFLAGS		= -Wall -Wextra -Werror
 
-SRCS		= main.cpp ClappTrapp.cpp
+SRCS		= main.cpp ClapTrap.cpp
 
 OBJS		= $(SRCS:.cpp=.o)
 
