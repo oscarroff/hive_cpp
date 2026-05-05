@@ -49,6 +49,18 @@ ScavTrap::~ScavTrap() {
 };
 
 // Public Member Functions
+void	ScavTrap::attack( const std::string& target ) {
+	if (this->getHp() < 1)
+		std::cout << this->getName() << " is whacked out, attack failed!\n";
+	else if (this->getEnergy() < 1)
+		std::cout << this->getName() << " is out of beans, attack failed!\n";
+	else
+	{
+		std::cout << this->getName() << " spanks " << target << "'s hams causing "
+			<< this->getDamage() << " points of damage!\n";
+		this->setEnergy(this->getEnergy() - 1);
+	}
+};
 void	ScavTrap::guardGate() {
 	std::cout << this->getName() << " is now in gate keeper mode!\n";
 };

@@ -18,11 +18,11 @@ class	ScavTrap : public ClapTrap {
 public:
 	// Constructors & Destructors
 	ScavTrap();
-	ScavTrap( std::string name );
+	ScavTrap( const std::string& name );
 	ScavTrap( const ScavTrap& other );
 	ScavTrap& operator=( const ScavTrap& other );
 	~ScavTrap();
 	// Public Member Functions
 	void	guardGate();
-	void	attack();
+	void	attack( const std::string& target );
 };

@@ -24,4 +24,5 @@ public:
 	~ScavTrap();
 	// Public Member Functions
 	void	guardGate();
+	void	attack( const std::string& target );
 };

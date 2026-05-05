@@ -13,13 +13,14 @@
 #include "ClapTrap.hpp"
 
 #include <iostream>
+#include <climits>
 
 // Constructors & Destructors
 ClapTrap::ClapTrap()
 : _hp(10), _energy(10), _damage(0) {
 	std::cout << "Default constructor called\n";
 };
-ClapTrap::ClapTrap( const std::string name )
+ClapTrap::ClapTrap( const std::string& name )
 : _name(name), _hp(10), _energy(10), _damage(0) {
 	std::cout << "Named constructor called\n";
 };
@@ -64,7 +65,9 @@ void	ClapTrap::takeDamage( unsigned int amount ) {
 			std::cout << _name << " is attacked, receiving 1 point of damage\n";
 		std::cout << _name << " is attacked, receiving "
 			<< amount << " points of damage!\n";
-		this->_hp--;
+		if ((long)this->_hp - (long)amount < INT_MIN)
+			this->_hp = INT_MIN;
+		this->_hp -= amount;
 	}
 };
 void	ClapTrap::beRepaired( unsigned int amount ) {
@@ -78,6 +81,8 @@ void	ClapTrap::beRepaired( unsigned int amount ) {
 			std::cout << _name << " repairs itself, regaining " << amount
 				<< " hit points\n";
 		this->_energy--;
+		if ((long)this->_hp + (long)amount > INT_MAX)
+			this->_hp = INT_MAX;
 		this->_hp += amount;
 	}
 };

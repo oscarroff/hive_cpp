@@ -49,16 +49,16 @@ ScavTrap::~ScavTrap() {
 };
 
 // Public Member Functions
-void	ClapTrap::attack( const std::string& target ) {
-	if (this->_hp < 1)
-		std::cout << _name << " is whacked out, attack failed!\n";
-	else if (this->_energy < 1)
-		std::cout << _name << " is out of beans, attack failed!\n";
+void	ScavTrap::attack( const std::string& target ) {
+	if (this->getHp() < 1)
+		std::cout << this->getName() << " is whacked out, attack failed!\n";
+	else if (this->getEnergy() < 1)
+		std::cout << this->getName() << " is out of beans, attack failed!\n";
 	else
 	{
-		std::cout << _name << " spanks " << target << "'s hams causing "
-			<< _damage << " points of damage!\n";
-		this->_energy--;
+		std::cout << this->getName() << " spanks " << target << "'s hams causing "
+			<< this->getDamage() << " points of damage!\n";
+		this->setEnergy(this->getEnergy() - 1);
 	}
 };
 void	ScavTrap::guardGate() {
