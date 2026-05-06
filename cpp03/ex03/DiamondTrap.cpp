@@ -15,13 +15,15 @@
 #include <iostream>
 
 // Constructors & Destructors
-DiamondTrap::DiamondTrap() : ScavTrap(), FragTrap() {
+DiamondTrap::DiamondTrap()
+: ScavTrap(), FragTrap() {
 	this->setHp(100);
 	this->setEnergy(50);
 	this->setDamage(30);
 	std::cout << "Sparkly default constructor called\n";
 };
-DiamondTrap::DiamondTrap( const std::string name ) : ScavTrap(name), FragTrap(name) {
+DiamondTrap::DiamondTrap( const std::string name )
+: ClapTrap(name), ScavTrap(name), FragTrap(name) {
 	this->_name = name;
 	ClapTrap::setName(name + "_clap_name");
 	this->setHp(100);
@@ -29,7 +31,8 @@ DiamondTrap::DiamondTrap( const std::string name ) : ScavTrap(name), FragTrap(na
 	this->setDamage(30);
 	std::cout << "Sparkly named constructor called\n";
 };
-DiamondTrap::DiamondTrap( const DiamondTrap& other ) : ScavTrap(other), FragTrap(other) {
+DiamondTrap::DiamondTrap( const DiamondTrap& other )
+: ClapTrap(other), ScavTrap(other), FragTrap(other) {
 	this->_name = other._name;
 	ClapTrap::setName(other.getName());
 	this->setHp(FragTrap::getHp());
