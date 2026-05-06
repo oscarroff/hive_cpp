@@ -25,7 +25,7 @@ Fixed::Fixed( const Fixed& other ) : _value(other._value) {};
 // parameter. The integer is multiplied by 256 (our "resolution" with 8
 // fractional bits) and thus places to the left of the decimal. We avoid using
 // bit shifting as negative values result in undefined behaviour.
-Fixed::Fixed( const int& integer ) {
+Fixed::Fixed( const int integer ) {
 	this->_value = integer * (1 << this->_fractionalBits);
 };
 
@@ -34,7 +34,7 @@ Fixed::Fixed( const int& integer ) {
 // and thus places to the left of the decimal. Rounding is used to make the
 // calculation more accurate. We avoid using bit shifting as negative values
 // result in undefined behaviour.
-Fixed::Fixed( const float& floatingPoint ) {
+Fixed::Fixed( const float floatingPoint ) {
 	this->_value = roundf(floatingPoint * (1 << this->_fractionalBits));
 };
 
@@ -85,11 +85,11 @@ bool	Fixed::operator<=( const Fixed& other) const {
 bool	Fixed::operator==( const Fixed& other) const {
 	return this->_value == other._value;
 };
-
-// Overloaded arithmetic operators
 bool	Fixed::operator!=( const Fixed& other) const {
 	return this->_value != other._value;
 };
+
+// Overloaded arithmetic operators
 Fixed	Fixed::operator+( const Fixed& other ) const {
 	Fixed	result;
 	result._value = this->_value + other._value;
@@ -136,6 +136,35 @@ Fixed	Fixed::operator--(int) {
 	Fixed	old = *this;
 	operator--();
 	return old;
+};
+
+Fixed&	Fixed::min( Fixed& a, Fixed& b ) {
+	std::cout << "Minimum member (non const) function called\n";
+	if (a <= b)
+		return a;
+	else
+		return b;
+};
+const Fixed&	Fixed::min( const Fixed& a, const Fixed& b ) {
+	std::cout << "Minimum member (const) function called\n";
+	if (a <= b)
+		return a;
+	else
+		return b;
+};
+Fixed&	Fixed::max( Fixed& a, Fixed& b ) {
+	std::cout << "Maximum member (non const) function called\n";
+	if (a >= b)
+		return a;
+	else
+		return b;
+};
+const Fixed&	Fixed::max( const Fixed& a, const Fixed& b ) {
+	std::cout << "Maximum member (const) function called\n";
+	if (a >= b)
+		return a;
+	else
+		return b;
 };
 
 std::ostream& operator<<(std::ostream& out, const Fixed& in)

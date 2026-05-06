@@ -17,21 +17,21 @@ bool	bsp( Point const a, Point const b, Point const c, Point const point);
 
 int	main(void)
 {
-	Point	a(0, 0);
-	Point	b(5, 0);
-	Point	c(0, 5);
+	Point	cornerA(0, 0);
+	Point	cornerB(5, 0);
+	Point	concerC(0, 5);
 	Point	point1(1, 1);
 	Point	point2(5, 5);
-	Point	point3(2.5, 0);
-	if (bsp(a, b, c, point1))
+	Point	point3(2.5, 2.5);
+	if (bsp(cornerA, cornerB, concerC, point1))
 		std::cout << "Point 1 is inside the triangle\n";
 	else
 		std::cout << "Point 1 is outside the triangle\n";
-	if (bsp(a, b, c, point2))
+	if (bsp(cornerA, cornerB, concerC, point2))
 		std::cout << "Point 2 is inside the triangle\n";
 	else
 		std::cout << "Point 2 is outside the triangle\n";
-	if (bsp(a, b, c, point3))
+	if (bsp(cornerA, cornerB, concerC, point3))
 		std::cout << "Point 3 is inside the triangle\n";
 	else
 		std::cout << "Point 3 is outside the triangle\n";

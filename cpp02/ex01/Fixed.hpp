@@ -24,8 +24,8 @@ private:
 public:
 	Fixed();
 	Fixed( const Fixed& other );
-	Fixed( const int& integer );
-	Fixed( const float& floatingPoint );
+	Fixed( const int integer );
+	Fixed( const float floatingPoint );
 	Fixed&	operator=( const Fixed& other );
 	~Fixed();
 	int		getRawBits( void ) const;

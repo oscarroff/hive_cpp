@@ -26,7 +26,7 @@ Fixed::Fixed( const Fixed& other ) : _value(other._value) {
 // Creates a Fixed object and sets the value to a whole integer passed as a
 // parameter. The integer is multiplied by 256 (our "resolution" with 8
 // fractional bits) and thus places to the left of the decimal.
-Fixed::Fixed( const int& integer ) {
+Fixed::Fixed( const int integer ) {
 	std::cout << "Int constructor called\n";
 	this->_value = integer << this->_fractionalBits;
 };
@@ -35,7 +35,7 @@ Fixed::Fixed( const int& integer ) {
 // The integer is multiplied by 256 (our "resolution" with 8 fractional bits)
 // and thus places to the left of the decimal. Rounding is used to make the
 // calculation more accurate.
-Fixed::Fixed( const float& floatingPoint ) {
+Fixed::Fixed( const float floatingPoint ) {
 	std::cout << "Float constructor called\n";
 	this->_value = roundf(floatingPoint * (1 << this->_fractionalBits));
 };

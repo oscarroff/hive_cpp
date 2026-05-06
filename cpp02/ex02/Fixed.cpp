@@ -27,7 +27,7 @@ Fixed::Fixed( const Fixed& other ) : _value(other._value) {
 // parameter. The integer is multiplied by 256 (our "resolution" with 8
 // fractional bits) and thus places to the left of the decimal. We avoid using
 // bit shifting as negative values result in undefined behaviour.
-Fixed::Fixed( const int& integer ) {
+Fixed::Fixed( const int integer ) {
 	std::cout << "Int constructor called\n";
 	this->_value = integer * (1 << this->_fractionalBits);
 };
@@ -37,7 +37,7 @@ Fixed::Fixed( const int& integer ) {
 // and thus places to the left of the decimal. Rounding is used to make the
 // calculation more accurate. We avoid using bit shifting as negative values
 // result in undefined behaviour.
-Fixed::Fixed( const float& floatingPoint ) {
+Fixed::Fixed( const float floatingPoint ) {
 	std::cout << "Float constructor called\n";
 	this->_value = roundf(floatingPoint * (1 << this->_fractionalBits));
 };
@@ -98,12 +98,12 @@ bool	Fixed::operator==( const Fixed& other) const {
 	std::cout << "Equal operator called\n";
 	return this->_value == other._value;
 };
-
-// Overloaded arithmetic operators
 bool	Fixed::operator!=( const Fixed& other) const {
 	std::cout << "Not equal operator called\n";
 	return this->_value != other._value;
 };
+
+// Overloaded arithmetic operators
 Fixed	Fixed::operator+( const Fixed& other ) const {
 	std::cout << "Addition operator called\n";
 	Fixed	result;
@@ -158,6 +158,35 @@ Fixed	Fixed::operator--(int) {
 	Fixed	old = *this;
 	operator--();
 	return old;
+};
+
+Fixed&	Fixed::min( Fixed& a, Fixed& b ) {
+	std::cout << "Minimum member (non const) function called\n";
+	if (a <= b)
+		return a;
+	else
+		return b;
+};
+const Fixed&	Fixed::min( const Fixed& a, const Fixed& b ) {
+	std::cout << "Minimum member (const) function called\n";
+	if (a <= b)
+		return a;
+	else
+		return b;
+};
+Fixed&	Fixed::max( Fixed& a, Fixed& b ) {
+	std::cout << "Maximum member (non const) function called\n";
+	if (a >= b)
+		return a;
+	else
+		return b;
+};
+const Fixed&	Fixed::max( const Fixed& a, const Fixed& b ) {
+	std::cout << "Maximum member (const) function called\n";
+	if (a >= b)
+		return a;
+	else
+		return b;
 };
 
 std::ostream& operator<<(std::ostream& out, const Fixed& in)

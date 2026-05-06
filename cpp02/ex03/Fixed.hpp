@@ -27,8 +27,8 @@ public:
 	Fixed&	operator=( const Fixed& other );
 	~Fixed();
 	// Overloaded copy functions
-	Fixed( const int& integer );
-	Fixed( const float& floatingPoint );
+	Fixed( const int integer );
+	Fixed( const float floatingPoint );
 	// Utility Functions
 	int		getRawBits( void ) const;
 	void	setRawBits( int const raw );
@@ -52,40 +52,11 @@ public:
 	Fixed&	operator--();
 	Fixed	operator--( int );
 	// Overloaded comparison functions that return references
-	// static Fixed&	min( Fixed& a, Fixed& b );
-	// static const Fixed&	min( const Fixed& a, const Fixed& b );
-	// static Fixed&	max( Fixed& a, Fixed& b );
-	// static const Fixed&	max( const Fixed& a, const Fixed& b );
-	static Fixed&	min( Fixed& a, Fixed& b ) {
-		std::cout << "Minimum member (non const) function called\n";
-		if (a <= b)
-			return a;
-		else
-			return b;
-	};
-	static const Fixed&	min( const Fixed& a, const Fixed& b ) {
-		std::cout << "Minimum member (const) function called\n";
-		if (a <= b)
-			return a;
-		else
-			return b;
-	};
-	static Fixed&	max( Fixed& a, Fixed& b ) {
-		std::cout << "Maximum member (non const) function called\n";
-		if (a >= b)
-			return a;
-		else
-			return b;
-	};
-	static const Fixed&	max( const Fixed& a, const Fixed& b ) {
-		std::cout << "Maximum member (const) function called\n";
-		if (a >= b)
-			return a;
-		else
-			return b;
-	};
+	static Fixed&	min( Fixed& a, Fixed& b );
+	static const Fixed&	min( const Fixed& a, const Fixed& b );
+	static Fixed&	max( Fixed& a, Fixed& b );
+	static const Fixed&	max( const Fixed& a, const Fixed& b);
+	// Notes: const after function indicates no change to *this
 };
-
-// Notes: const after function indicates no change to *this
 
 std::ostream& operator<<(std::ostream& out, const Fixed& in);
