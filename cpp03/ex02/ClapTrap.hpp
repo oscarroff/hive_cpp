@@ -37,8 +37,8 @@ public:
 	ClapTrap( const ClapTrap& other );
 	ClapTrap& operator=( const ClapTrap& other );
 	~ClapTrap();
-	// Public Member Functions
-	void	attack( const std::string& target );
+	// Public Member Functions (virtual allows overriding in child class)
+	virtual void	attack( const std::string& target );
 	void	takeDamage( unsigned int amount );
 	void	beRepaired( unsigned int amount );
 };

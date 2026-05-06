@@ -15,6 +15,9 @@
 #include <iostream>
 
 // Constructors & Destructors
+// For inheritance we again use the colon syntax in constructors i.e.
+// Child() : Parent()
+// Setters and getters are used to access private members from the parent class
 ScavTrap::ScavTrap() : ClapTrap() {
 	this->setHp(100);
 	this->setEnergy(50);

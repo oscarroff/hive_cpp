@@ -24,5 +24,6 @@ public:
 	~ScavTrap();
 	// Public Member Functions
 	void	guardGate();
-	void	attack( const std::string& target );
+	// Override of virtual function in the parent class
+	void	attack( const std::string& target ) override ;
 };

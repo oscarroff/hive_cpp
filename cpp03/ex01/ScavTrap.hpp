@@ -14,6 +14,10 @@
 
 #include "ClapTrap.hpp"
 
+// Child class ScavTrap inheriting from parent base class ClapTrap
+// The syntax:
+// class Child : public Parent
+// inherits public and protected members
 class	ScavTrap : public ClapTrap {
 public:
 	// Constructors & Destructors
@@ -24,5 +28,6 @@ public:
 	~ScavTrap();
 	// Public Member Functions
 	void	guardGate();
-	void	attack( const std::string& target );
+	// Override of virtual function in the parent class
+	void	attack( const std::string& target ) override ;
 };

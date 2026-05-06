@@ -14,7 +14,8 @@ PROJECT		= DiamondTrap
 NAME		= DiamondTrap
 
 CPP			= c++ -std=c++20
-CFLAGS		= -Wall -Wextra -Werror
+CFLAGS		= -Wall -Wextra -Werror -Wshadow
+# -Wshadow warns if a variable declarations hides a previous declaration
 
 SRCS		= main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp DiamondTrap.cpp
 
