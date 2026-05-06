@@ -44,6 +44,8 @@ ClapTrap::~ClapTrap() {
 };
 
 // Public Member Functions
+// attack()
+// if no HP or Energy, attack fails
 void	ClapTrap::attack( const std::string& target ) {
 	if (this->_hp < 1)
 		std::cout << _name << " is out of hit points, attack failed!\n";
@@ -56,6 +58,9 @@ void	ClapTrap::attack( const std::string& target ) {
 		this->_energy--;
 	}
 };
+// takeDamage()
+// if no HP then damage not applied
+// casting to (long) allows safe arithmetic with unsigned and signed integers and a bounds check
 void	ClapTrap::takeDamage( unsigned int amount ) {
 	if (this->_hp < 1)
 		std::cout << _name << "is already dead!\n";
@@ -70,6 +75,9 @@ void	ClapTrap::takeDamage( unsigned int amount ) {
 		this->_hp -= amount;
 	}
 };
+// beRepaired()
+// if no energy then repair fails
+// casting to (long) allows safe arithmetic with unsigned and signed integers and a bounds check
 void	ClapTrap::beRepaired( unsigned int amount ) {
 	if (this->_energy < 1)
 		std::cout << _name << " is out of energy, repair failed!\n";

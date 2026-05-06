@@ -14,6 +14,8 @@
 
 #include "ClapTrap.hpp"
 
+// ScavTrap now inherits from ClapTrap virtually which ensures a sngle shared
+// instance of the base class regardless of how many times it is inherited
 class	ScavTrap : virtual public ClapTrap {
 public:
 	// Constructors & Destructors

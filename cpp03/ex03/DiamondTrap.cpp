@@ -22,6 +22,9 @@ DiamondTrap::DiamondTrap()
 	this->setDamage(30);
 	std::cout << "Sparkly default constructor called\n";
 };
+// Name constructor explicity lists ClapTrap name in initializer list
+// Without ClapTrap(name) the compiler may default to the default constructor
+// ClapTrap()
 DiamondTrap::DiamondTrap( const std::string name )
 : ClapTrap(name), ScavTrap(name), FragTrap(name) {
 	this->_name = name;
@@ -31,6 +34,8 @@ DiamondTrap::DiamondTrap( const std::string name )
 	this->setDamage(30);
 	std::cout << "Sparkly named constructor called\n";
 };
+// Copy constructor explicity lists ClapTrap name in initializer list
+// Without ClapTrap(other) the compiler may default to the default constructor
 DiamondTrap::DiamondTrap( const DiamondTrap& other )
 : ClapTrap(other), ScavTrap(other), FragTrap(other) {
 	this->_name = other._name;
@@ -40,6 +45,8 @@ DiamondTrap::DiamondTrap( const DiamondTrap& other )
 	this->setDamage(FragTrap::getDamage());
 	std::cout << "Sparkly copy constructor called\n";
 };
+// Use of the scope resoultion operator '::' resolves ambiguity about
+// which base class member should be accessed i.e. ClapTrap::operator=()
 DiamondTrap&	DiamondTrap::operator=( const DiamondTrap& other ) {
 	if (this != &other)
 	{
@@ -60,6 +67,8 @@ DiamondTrap::~DiamondTrap() {
 void	DiamondTrap::whoAmI() {
 	std::cout << "Oh my Glob, " << this->_name << " is here!\n";
 };
+// Use of the scope resoultion operator '::' resolves ambiguity about
+// which base class member should be accessed i.e. ScavTrap::attack()
 void	DiamondTrap::attack( const std::string& target ) {
 	ScavTrap::attack(target);
 }

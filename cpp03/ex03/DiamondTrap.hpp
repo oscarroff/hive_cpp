@@ -15,6 +15,13 @@
 #include "ScavTrap.hpp"
 #include "FragTrap.hpp"
 
+// Diamond inheritance from two classes that share a common parent class
+// To work it requires the parent classes to inherit themselves with virtual
+// inheritance, in this case:
+// ScavTrap : virtual public ClapTrap
+// FragTrap : virtual public ClapTrap
+// then compiler is prevented from making double copies of the base and avoids
+// ambiguous calls
 class	DiamondTrap : public ScavTrap , public FragTrap {
 private:
 	std::string	_name;
