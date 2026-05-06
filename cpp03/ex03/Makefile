@@ -10,8 +10,8 @@
 #                                                                              #
 # **************************************************************************** #
 
-PROJECT		= ScavTrap
-NAME		= ScavTrap
+PROJECT		= DiamondTrap
+NAME		= DiamondTrap
 
 CPP			= c++ -std=c++20
 CFLAGS		= -Wall -Wextra -Werror

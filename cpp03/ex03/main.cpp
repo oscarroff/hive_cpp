@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "DiamondTrap.hpp"
+#include <climits>
 
 int	main( void ) {
 	DiamondTrap	NamelessHero;
@@ -44,4 +45,5 @@ int	main( void ) {
 	Changeling = Jake;
 	Changeling.beRepaired(100);
 	Changeling.whoAmI();
+	Changeling.takeDamage(INT_MAX);
 };
