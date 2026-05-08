@@ -6,7 +6,7 @@
 /*   By: thblack- <thblack-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 13:35:25 by thblack-          #+#    #+#             */
-/*   Updated: 2026/05/07 14:48:08 by thblack-         ###   ########.fr       */
+/*   Updated: 2026/05/08 14:11:05 by thblack-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #include "AMateria.hpp"
 
-class	Ice : AMateria {
+class	Ice : public AMateria {
 public:
 	Ice();
 	Ice( const Ice& other);
@@ -22,4 +22,5 @@ public:
 	~Ice();
 	void	use(ICharacter& target) override;
 	Ice*	clone() const override; 
+	const std::string&	getType() const; // Returns the materia type
 };

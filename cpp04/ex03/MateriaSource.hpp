@@ -6,7 +6,7 @@
 /*   By: thblack- <thblack-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/07 14:58:09 by thblack-          #+#    #+#             */
-/*   Updated: 2026/05/08 11:22:10 by thblack-         ###   ########.fr       */
+/*   Updated: 2026/05/08 13:52:43 by thblack-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #include "IMateriaSource.hpp"
 
-class	MateriaSource : IMateriaSource {
+class	MateriaSource : public IMateriaSource {
 private:
 	AMateria*	_skills[4] = {};
 public:

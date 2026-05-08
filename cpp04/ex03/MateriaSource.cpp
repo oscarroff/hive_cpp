@@ -6,11 +6,13 @@
 /*   By: thblack- <thblack-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/07 14:58:09 by thblack-          #+#    #+#             */
-/*   Updated: 2026/05/08 11:28:51 by thblack-         ###   ########.fr       */
+/*   Updated: 2026/05/08 14:09:46 by thblack-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MateriaSource.hpp"
+#include "AMateria.hpp"
+#include "Ice.hpp"
 
 MateriaSource::MateriaSource() {};
 MateriaSource::MateriaSource( const MateriaSource& other) {
@@ -36,7 +38,11 @@ void		MateriaSource::learnMateria(AMateria *m) {
 }
 AMateria*	MateriaSource::createMateria(std::string const &type) {
 	for (int i = 0; this->_skills[i]; i++)
-		if (this->_skills[i]->getType() == type)
-			return this->_skills[i];
+		if (this->_skills[i]->getType() == type) {
+			if (type == "ice") {
+				AMateria* ice = new Ice();
+				return ice;
+			}
+		}
 	return 0;
 }

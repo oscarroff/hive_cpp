@@ -6,7 +6,7 @@
 /*   By: thblack- <thblack-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 13:03:13 by thblack-          #+#    #+#             */
-/*   Updated: 2026/05/07 14:57:00 by thblack-         ###   ########.fr       */
+/*   Updated: 2026/05/08 14:13:25 by thblack-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ class	AMateria;
 class ICharacter
 {
 public:
-	virtual ~ICharacter();
+	virtual ~ICharacter() {};
 	virtual std::string const &getName() const = 0;
 	virtual void equip(AMateria *m) = 0;
 	virtual void unequip(int idx) = 0;

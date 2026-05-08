@@ -6,7 +6,7 @@
 /*   By: thblack- <thblack-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 13:37:39 by thblack-          #+#    #+#             */
-/*   Updated: 2026/05/07 15:01:19 by thblack-         ###   ########.fr       */
+/*   Updated: 2026/05/08 13:54:48 by thblack-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void Character::unequip(int idx) {
 		}
 	}
 };
-void Character::use(int idx, Character &target) {
+void Character::use(int idx, ICharacter &target) {
 	if (this->_items[idx])
 		this->_items[idx]->use(target);
 };
