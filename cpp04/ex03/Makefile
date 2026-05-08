@@ -6,12 +6,12 @@
 #    By: thblack- <thblack-@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/08 12:34:32 by thblack-          #+#    #+#              #
-#    Updated: 2026/05/04 15:14:07 by thblack-         ###   ########.fr        #
+#    Updated: 2026/05/08 14:51:48 by thblack-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-PROJECT		= Brain
-NAME		= Brain
+PROJECT		= D+D
+NAME		= D+D
 
 CPP			= c++ -std=c++20
 CFLAGS		= -Wall -Wextra -Werror

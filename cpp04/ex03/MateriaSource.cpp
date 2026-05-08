@@ -6,7 +6,7 @@
 /*   By: thblack- <thblack-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/07 14:58:09 by thblack-          #+#    #+#             */
-/*   Updated: 2026/05/08 14:09:46 by thblack-         ###   ########.fr       */
+/*   Updated: 2026/05/08 14:45:06 by thblack-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,10 @@ MateriaSource&	MateriaSource::operator=( const MateriaSource& other ) {
 };
 MateriaSource::~MateriaSource() {};
 void		MateriaSource::learnMateria(AMateria *m) {
-	for (int size = 0; this->_skills[size]; size++) {
-		if (size < 4) {
-			this->_skills[size] = m->clone();
+	for (int i = 0; i < 4; i++) {
+		if (!this->_skills[i]) {
+			this->_skills[i] = m->clone();
+			break ;
 		}
 	}
 }

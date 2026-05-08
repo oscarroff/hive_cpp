@@ -6,7 +6,7 @@
 /*   By: thblack- <thblack-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 13:37:39 by thblack-          #+#    #+#             */
-/*   Updated: 2026/05/08 14:15:04 by thblack-         ###   ########.fr       */
+/*   Updated: 2026/05/08 14:47:21 by thblack-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,7 @@ Ice&	Ice::operator=( const Ice& other ) {
 };
 Ice::~Ice() {};
 void	Ice::use(ICharacter& target) {
-	std::cout << "* shoots an ice bolt at <name> *\n";
-	(void)target;
-	// std::cout << "* shoots an ice bolt at " << target << " *\n";
+	std::cout << "* shoots an ice bolt at " << target.getName() << " *\n";
 };
 Ice*	Ice::clone() const {
 	return new Ice(*this);

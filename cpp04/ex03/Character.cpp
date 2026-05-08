@@ -6,7 +6,7 @@
 /*   By: thblack- <thblack-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 13:37:39 by thblack-          #+#    #+#             */
-/*   Updated: 2026/05/08 13:54:48 by thblack-         ###   ########.fr       */
+/*   Updated: 2026/05/08 14:49:34 by thblack-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,11 @@ const std::string& Character::getName() const {
 	return this->_name;
 };
 void Character::equip(AMateria *m) {
-	for (int i = 0; this->_items[i]; i++)
-		if (i < 4)
-			this->_items[i] = m;
+	for (int i = 0; i < 4; i++)
+		if (!this->_items[i]) {
+			this->_items[i] = m->clone();
+			break ;
+		}
 };
 void Character::unequip(int idx) {
 	if (idx < 0 || idx > 3)
