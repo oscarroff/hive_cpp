@@ -6,14 +6,14 @@
 /*   By: thblack- <thblack-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 13:37:39 by thblack-          #+#    #+#             */
-/*   Updated: 2026/05/08 15:14:14 by thblack-         ###   ########.fr       */
+/*   Updated: 2026/05/08 15:21:59 by thblack-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cure.hpp"
 #include <iostream>
 
-Cure::Cure() : AMateria("ice") {};
+Cure::Cure() : AMateria("cure") {};
 Cure::Cure( const Cure& other) : AMateria(other._type) {};
 Cure&	Cure::operator=( const Cure& other ) {
 	if (this != &other) {
