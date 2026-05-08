@@ -6,7 +6,7 @@
 /*   By: thblack- <thblack-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 13:37:39 by thblack-          #+#    #+#             */
-/*   Updated: 2026/05/08 14:49:34 by thblack-         ###   ########.fr       */
+/*   Updated: 2026/05/08 15:44:11 by thblack-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,13 @@ Character&	Character::operator=( const Character& other ) {
 	}
 	return *this;
 };
+#include <iostream>
 Character::~Character() {
 	for (int i = 0; i < 4; i++)
-		if (this->_items[i])
+		if (this->_items[i] != nullptr) {
+			std::cout << "delete " << i << "\n";
 			delete this->_items[i];
+		}
 };
 
 // Public member functions
@@ -49,23 +52,25 @@ const std::string& Character::getName() const {
 void Character::equip(AMateria *m) {
 	for (int i = 0; i < 4; i++)
 		if (!this->_items[i]) {
-			this->_items[i] = m->clone();
-			break ;
+			this->_items[i] = m;
+			return ;
 		}
+	delete m;
 };
 void Character::unequip(int idx) {
 	if (idx < 0 || idx > 3)
 		return ;
-	for (int size = 0; this->_items[size]; size++)
+	int	size = 0;
+	while (this->_items[size])
+		size++;
+	std::cout << size << "\n";
+	if (idx == size - 1)
+		this->_items[idx] = nullptr;
+	if (idx < size - 1)
 	{
-		if (idx < size)
-			this->_items[idx] = nullptr;
-		if (idx < size - 1)
-		{
-			for (int i = idx; i < size - 1; i++)
-				this->_items[i] = this->_items[i + 1];
-			this->_items[size - 1] = nullptr;
-		}
+		for (int i = idx; i < size - 1; i++)
+			this->_items[i] = this->_items[i + 1];
+		this->_items[size - 1] = nullptr;
 	}
 };
 void Character::use(int idx, ICharacter &target) {
