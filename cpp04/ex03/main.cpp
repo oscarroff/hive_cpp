@@ -6,7 +6,7 @@
 /*   By: thblack- <thblack-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/08 13:42:45 by thblack-          #+#    #+#             */
-/*   Updated: 2026/05/08 14:53:05 by thblack-         ###   ########.fr       */
+/*   Updated: 2026/05/08 15:02:33 by thblack-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	main(void)
 	ICharacter* bob = new Character("bob");
 
 	me->use(0, *bob);
-	me->use(1, *bob);
+	// me->use(1, *bob);
 
 	delete			bob;
 	delete			me;

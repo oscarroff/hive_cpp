@@ -6,13 +6,12 @@
 /*   By: thblack- <thblack-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/07 14:58:09 by thblack-          #+#    #+#             */
-/*   Updated: 2026/05/08 14:45:06 by thblack-         ###   ########.fr       */
+/*   Updated: 2026/05/08 15:00:56 by thblack-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MateriaSource.hpp"
 #include "AMateria.hpp"
-#include "Ice.hpp"
 
 MateriaSource::MateriaSource() {};
 MateriaSource::MateriaSource( const MateriaSource& other) {
@@ -28,22 +27,24 @@ MateriaSource&	MateriaSource::operator=( const MateriaSource& other ) {
 	}
 	return *this;
 };
-MateriaSource::~MateriaSource() {};
+MateriaSource::~MateriaSource() {
+	for (int i = 0; i < 4; i++) {
+		if (this->_skills[i])
+			delete this->_skills[i] ;
+	}
+};
 void		MateriaSource::learnMateria(AMateria *m) {
 	for (int i = 0; i < 4; i++) {
 		if (!this->_skills[i]) {
-			this->_skills[i] = m->clone();
+			this->_skills[i] = m;
 			break ;
 		}
 	}
+	delete m;
 }
 AMateria*	MateriaSource::createMateria(std::string const &type) {
 	for (int i = 0; this->_skills[i]; i++)
-		if (this->_skills[i]->getType() == type) {
-			if (type == "ice") {
-				AMateria* ice = new Ice();
-				return ice;
-			}
-		}
+		if (this->_skills[i]->getType() == type)
+				return this->_skills[i]->clone();
 	return 0;
 }

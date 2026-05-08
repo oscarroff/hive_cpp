@@ -6,7 +6,7 @@
 #    By: thblack- <thblack-@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/08 12:34:32 by thblack-          #+#    #+#              #
-#    Updated: 2026/05/08 14:51:48 by thblack-         ###   ########.fr        #
+#    Updated: 2026/05/08 15:01:13 by thblack-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ PROJECT		= D+D
 NAME		= D+D
 
 CPP			= c++ -std=c++20
-CFLAGS		= -Wall -Wextra -Werror
+CFLAGS		= -Wall -Wextra -Werror -g
 
 SRCS		= $(shell find . -name "*.cpp")
 
