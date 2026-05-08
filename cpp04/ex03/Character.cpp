@@ -6,7 +6,7 @@
 /*   By: thblack- <thblack-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 13:37:39 by thblack-          #+#    #+#             */
-/*   Updated: 2026/05/08 15:44:11 by thblack-         ###   ########.fr       */
+/*   Updated: 2026/05/08 15:49:09 by thblack-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,20 +60,23 @@ void Character::equip(AMateria *m) {
 void Character::unequip(int idx) {
 	if (idx < 0 || idx > 3)
 		return ;
-	int	size = 0;
-	while (this->_items[size])
-		size++;
-	std::cout << size << "\n";
-	if (idx == size - 1)
-		this->_items[idx] = nullptr;
-	if (idx < size - 1)
-	{
-		for (int i = idx; i < size - 1; i++)
-			this->_items[i] = this->_items[i + 1];
-		this->_items[size - 1] = nullptr;
-	}
+	this->_items[idx] = nullptr;
+	// int	size = 0;
+	// while (this->_items[size])
+	// 	size++;
+	// std::cout << size << "\n";
+	// if (idx == size - 1)
+	// 	this->_items[idx] = nullptr;
+	// if (idx < size - 1)
+	// {
+	// 	for (int i = idx; i < size - 1; i++)
+	// 		this->_items[i] = this->_items[i + 1];
+	// 	this->_items[size - 1] = nullptr;
+	// }
 };
 void Character::use(int idx, ICharacter &target) {
+	if (idx < 0 || idx > 3)
+		return ;
 	if (this->_items[idx])
 		this->_items[idx]->use(target);
 };
