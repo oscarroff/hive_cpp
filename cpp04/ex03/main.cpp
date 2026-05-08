@@ -6,32 +6,33 @@
 /*   By: thblack- <thblack-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/08 13:42:45 by thblack-          #+#    #+#             */
-/*   Updated: 2026/05/08 15:02:33 by thblack-         ###   ########.fr       */
+/*   Updated: 2026/05/08 15:11:22 by thblack-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Character.hpp"
 #include "MateriaSource.hpp"
 #include "Ice.hpp"
+#include "Cure.hpp"
 
 int	main(void)
 {
 	IMateriaSource* src = new MateriaSource();
 	src->learnMateria(new Ice());
-	// src->learnMateria(new Cure());
+	src->learnMateria(new Cure());
 
 	ICharacter*	me = new Character("me");
 
 	AMateria		*tmp;
 	tmp = src->createMateria("ice");
 	me->equip(tmp);
-	// tmp = src->createMateria("cure");
-	// me->equip(tmp);
+	tmp = src->createMateria("cure");
+	me->equip(tmp);
 
 	ICharacter* bob = new Character("bob");
 
 	me->use(0, *bob);
-	// me->use(1, *bob);
+	me->use(1, *bob);
 
 	delete			bob;
 	delete			me;

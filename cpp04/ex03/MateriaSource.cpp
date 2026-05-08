@@ -6,7 +6,7 @@
 /*   By: thblack- <thblack-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/07 14:58:09 by thblack-          #+#    #+#             */
-/*   Updated: 2026/05/08 15:00:56 by thblack-         ###   ########.fr       */
+/*   Updated: 2026/05/08 15:20:05 by thblack-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void		MateriaSource::learnMateria(AMateria *m) {
 	for (int i = 0; i < 4; i++) {
 		if (!this->_skills[i]) {
 			this->_skills[i] = m;
-			break ;
+			return ;
 		}
 	}
 	delete m;
