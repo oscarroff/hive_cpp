@@ -31,5 +31,5 @@ WrongCat::~WrongCat() {
 	std::cout << "WrongCat destructor called\n";
 };
 void	WrongCat::makeSound() const {
-	std::cout << "Meow\n";
+	std::cout << "* blurp! *\n";
 };

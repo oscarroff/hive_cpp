@@ -40,5 +40,5 @@ const std::string	Animal::getType( void ) const {
 	return this->_type;
 };
 void	Animal::makeSound() const {
-	std::cout << "Animal tries to make sound but can't decide what\n";
+	std::cout << "* animal looks confused (no sound) *\n";
 };

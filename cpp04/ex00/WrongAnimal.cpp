@@ -40,5 +40,5 @@ const std::string	WrongAnimal::getType( void ) const {
 	return this->_type;
 };
 void	WrongAnimal::makeSound() const {
-	std::cout << "WrongAnimal tries to make sound but can't decide what\n";
+	std::cout << "* wrongAnimal looks confused (no sound) *\n";
 };
