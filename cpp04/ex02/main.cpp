@@ -30,6 +30,7 @@ int main( void ) {
 	Cat* cat1 = static_cast<Cat*>(herd[0]);
 	Cat* cat2 = static_cast<Cat*>(herd[1]);
 	if (cat1) {
+		cat1->makeSound();
 		cat1->mindMeld()->eureka("I like fish\n");
 		cat1->mindMeld()->eureka("Humans are stoopid\n");
 		cat1->mindMeld()->eureka("I will claw your face clean off\n");
@@ -46,6 +47,7 @@ int main( void ) {
 	if (cat1 && cat2) {
 		*cat2 = *cat1;
 		std::cout << "\n";
+		cat2->makeSound();
 		std::cout << cat2->mindMeld()->mindPalace(0);
 		std::cout << cat2->mindMeld()->mindPalace(1);
 		std::cout << cat2->mindMeld()->mindPalace(2);
