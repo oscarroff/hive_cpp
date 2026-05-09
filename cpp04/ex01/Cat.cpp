@@ -20,14 +20,14 @@ Cat::Cat() : Animal("Cat"), _brain(new Brain) {
 	std::cout << "Default Cat constructor called\n";
 };
 Cat::Cat( const Cat& other )
-: Animal(other._type), _brain(new Brain) {
+: Animal("Cat"), _brain(new Brain) {
 	*this->_brain = *other._brain;
 	std::cout << "Cat copy constructor called\n";
 };
 Cat& Cat::operator=( const Cat& other ) {
 	if (this != &other)
 	{
-		this->_type = other._type;
+		this->_type = "Cat";
 		delete this->_brain;
 		this->_brain = new Brain;
 		*this->_brain = *other._brain;

@@ -20,14 +20,14 @@ Dog::Dog() : Animal("Dog"), _brain(new Brain) {
 	std::cout << "Default Dog constructor called\n";
 };
 Dog::Dog( const Dog& other )
-: Animal(other._type), _brain(new Brain) {
+: Animal("Dog"), _brain(new Brain) {
 	*this->_brain = *other._brain;
 	std::cout << "Dog copy constructor called\n";
 };
 Dog& Dog::operator=( const Dog& other ) {
 	if (this != &other)
 	{
-		this->_type = other._type;
+		this->_type = "Dog";
 		delete this->_brain;
 		this->_brain = new Brain;
 		*this->_brain = *other._brain;

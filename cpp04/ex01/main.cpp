@@ -20,8 +20,15 @@ int main( void ) {
 		herd[i] = new Cat();
 	for (size_t i = 5; i < 10; i++)
 		herd[i] = new Dog();
-	Cat* cat1 = dynamic_cast<Cat*>(herd[0]);
-	Cat* cat2 = dynamic_cast<Cat*>(herd[1]);
+	// We need to use casting to access the Cat (or Dog) objects.
+	// dynamic_cast would also be an option. But I know that those are cats so
+	// I can use statc.
+	// If I wasn't following the subject so strictly I would implement the
+	// eureka() and mindPalace() members in the base Animal class which would
+	// negate the need for casting.
+	std::cout << "\n";
+	Cat* cat1 = static_cast<Cat*>(herd[0]);
+	Cat* cat2 = static_cast<Cat*>(herd[1]);
 	if (cat1) {
 		cat1->mindMeld()->eureka("I like fish\n");
 		cat1->mindMeld()->eureka("Humans are stoopid\n");
@@ -35,8 +42,10 @@ int main( void ) {
 		std::cout << cat1->mindMeld()->mindPalace(100);
 		std::cout << cat1->mindMeld() << "\n";
 	}
+	std::cout << "\n";
 	if (cat1 && cat2) {
 		*cat2 = *cat1;
+		std::cout << "\n";
 		std::cout << cat2->mindMeld()->mindPalace(0);
 		std::cout << cat2->mindMeld()->mindPalace(1);
 		std::cout << cat2->mindMeld()->mindPalace(2);
@@ -45,6 +54,7 @@ int main( void ) {
 		std::cout << cat2->mindMeld()->mindPalace(100);
 		std::cout << cat2->mindMeld() << "\n";
 	}
+	std::cout << "\n";
 	for (size_t i = 0; i < 10; i++)
 		delete herd[i];
 	return (0);
