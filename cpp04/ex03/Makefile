@@ -16,7 +16,8 @@ NAME		= D+D
 CPP			= c++ -std=c++20
 CFLAGS		= -Wall -Wextra -Werror -g
 
-SRCS		= $(shell find . -name "*.cpp")
+SRCS		= main.cpp AMateria.cpp Ice.cpp Cure.cpp Character.cpp \
+			  MateriaSource.cpp
 
 OBJS		= $(SRCS:.cpp=.o)
 

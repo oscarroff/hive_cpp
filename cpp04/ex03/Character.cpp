@@ -26,8 +26,7 @@ Character::Character( const Character& other) : _name(other._name) {
 Character&	Character::operator=( const Character& other ) {
 	if (this != &other) {
 		this->_name = other._name;
-		for (int i = 0; i < 4; i++)
-		{
+		for (int i = 0; i < 4; i++) {
 			if (this->_items[i])
 				delete this->_items[i];
 			this->_items[i] = other._items[i] ? other._items[i]->clone() : nullptr;
