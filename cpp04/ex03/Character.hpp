@@ -20,11 +20,11 @@ class	AMateria;
 class	Character : public ICharacter {
 private:
 	std::string	_name;
-	// Array of Materia slots, this syntax initialises all pointers to NULL
-	// at declaration
+	// Array of Materia slots, this syntax with curly brackets {} initialises
+	// all pointers to nullptr at declaration.
 	AMateria*	_items[4] = {};
 	// Construction controlled in protected to prevent direct instantiation
-	// without name
+	// without name.
 public:
 	// Constructors & Desctructors
 	Character();

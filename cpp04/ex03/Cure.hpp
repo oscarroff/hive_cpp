@@ -18,8 +18,8 @@ class	Cure : public AMateria {
 public:
 	Cure();
 	Cure( const Cure& other);
-	Cure&	operator=( const Cure& other );
-	~Cure();
+	Cure&	operator=( const Cure& other ) = delete;
+	~Cure() override;
 	void	use(ICharacter& target) override;
 	Cure*	clone() const override; 
 	const std::string&	getType() const; // Returns the materia type

@@ -18,8 +18,8 @@ class	Ice : public AMateria {
 public:
 	Ice();
 	Ice( const Ice& other);
-	Ice&	operator=( const Ice& other );
-	~Ice();
+	Ice&	operator=( const Ice& other ) = delete;
+	~Ice() override;
 	void	use(ICharacter& target) override;
 	Ice*	clone() const override; 
 	const std::string&	getType() const; // Returns the materia type

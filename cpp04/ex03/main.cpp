@@ -36,8 +36,17 @@ int	main(void)
 	me->use(0, *bob);
 	me->use(1, *bob);
 
-	me->unequip(0);
 	me->unequip(1);
+	me->equip(tmp);
+
+	me->use(0, *bob);
+	me->use(1, *bob);
+
+	me->unequip(1);
+	me->unequip(0);
+
+	me->use(0, *bob);
+	me->use(1, *bob);
 
 	delete			future_floor1;
 	delete			future_floor2;

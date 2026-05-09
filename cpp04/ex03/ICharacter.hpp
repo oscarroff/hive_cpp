@@ -21,6 +21,9 @@ class	AMateria;
 class ICharacter
 {
 public:
+	// Curly brackets {} denote an empty function body meaning the virtual
+	// destructor does nothing except default behaviour. This ensures that
+	// derived concrete class destructors are called.
 	virtual ~ICharacter() {};
 	virtual std::string const &getName() const = 0;
 	virtual void equip(AMateria *m) = 0;

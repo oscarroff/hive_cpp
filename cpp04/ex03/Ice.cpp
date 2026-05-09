@@ -14,17 +14,13 @@
 #include <iostream>
 
 Ice::Ice() : AMateria("ice") {};
-Ice::Ice( const Ice& other) : AMateria(other._type) {};
-Ice&	Ice::operator=( const Ice& other ) {
-	if (this != &other) {
-		AMateria::operator=(other);
-	}
-	return *this;
-};
+Ice::Ice( const Ice& other) : AMateria("ice") { (void)other; };
+// Copy assignement declared delete in header as usage makes no sense
 Ice::~Ice() {};
 void	Ice::use(ICharacter& target) {
 	std::cout << "* shoots an ice bolt at " << target.getName() << " *\n";
 };
+// We will use this crucial function for copying new instances.
 Ice*	Ice::clone() const {
 	return new Ice(*this);
 }; 

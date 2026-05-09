@@ -19,6 +19,7 @@
 class	ICharacter;
 
 // AMateria is an abstract class
+// (NOT a pure abstract class though AKA interface)
 // An abstract class contains at least one pure virtual function
 // An abstract class differs from an interface in that it does contain some
 // code but still cannot be instantiated alone and its virtual methods can
@@ -29,7 +30,7 @@ class	ICharacter;
 // least one pure virtual function and serves as a blueprint for derived classes
 // e.g. base Shape, child Triangle
 // The constructors and destructors are declared '= default' which tells the
-// compiler to generate the constructors
+// compiler to generate default constructors
 
 class	AMateria {
 protected:
@@ -48,6 +49,10 @@ public:
 	AMateria( const std::string& type );
 	// Public Member Functions
 	const std::string&	getType() const; // Returns the materia type
+	// Classic solution to how to clone polymorphic objects that is only accesible
+	// via the interface it implements, use clone()!
+	// A more modern solution exists with std::unique_ptr, but we don't do that yet
+	// here. https://www.fluentcpp.com/2017/09/08/make-polymorphic-copy-modern-cpp/
 	virtual AMateria	*clone() const = 0; 
 	virtual void		use(ICharacter& target);
 };

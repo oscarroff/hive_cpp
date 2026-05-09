@@ -17,6 +17,9 @@
 class	IMateriaSource
 {
 public:
+	// Curly brackets {} denote an empty function body meaning the virtual
+	// destructor does nothing except default behaviour. This ensures that
+	// derived concrete class destructors are called.
 	virtual	~IMateriaSource() {};
 	virtual void		learnMateria(AMateria*) = 0;
 	virtual AMateria*	createMateria(std::string const &type) = 0;
