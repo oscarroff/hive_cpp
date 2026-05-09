@@ -16,11 +16,11 @@
 #include <cstring>
 
 // Constructors
-Dog::Dog() : Animal(), _brain(new Brain) {
+Dog::Dog() : AAnimal(), _brain(new Brain) {
 	this->setType("Dog");
 	std::cout << "Default Dog constructor called\n";
 };
-Dog::Dog( const Dog& other ) : Animal(), _brain(new Brain) {
+Dog::Dog( const Dog& other ) : AAnimal(), _brain(new Brain) {
 	this->setType("Dog");
 	*this->_brain = *other._brain;
 	std::cout << "Dog copy constructor called\n";
@@ -28,7 +28,7 @@ Dog::Dog( const Dog& other ) : Animal(), _brain(new Brain) {
 Dog& Dog::operator=( const Dog& other ) {
 	if (this != &other)
 	{
-		this->setType(other.getType());
+		this->setType("Dog");
 		delete this->_brain;
 		this->_brain = new Brain;
 		*this->_brain = *other._brain;
@@ -41,7 +41,7 @@ Dog::~Dog() {
 	std::cout << "Dog destructor called\n";
 };
 void	Dog::makeSound() const {
-	std::cout << "Meow\n";
+	std::cout << "* woof! *\n";
 };
 Brain*	Dog::mindMeld() const {
 	return this->_brain;

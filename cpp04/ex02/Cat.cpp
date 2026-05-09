@@ -16,19 +16,19 @@
 #include <cstring>
 
 // Constructors
-Cat::Cat() : Animal(), _brain(new Brain) {
+Cat::Cat() : AAnimal(), _brain(new Brain) {
 	this->setType("Cat");
 	std::cout << "Default Cat constructor called\n";
 };
-Cat::Cat( const Cat& other ) : Animal(), _brain(new Brain) {
-	this->setType(other.getType());
+Cat::Cat( const Cat& other ) : AAnimal(), _brain(new Brain) {
+	this->setType("Cat");
 	*this->_brain = *other._brain;
 	std::cout << "Cat copy constructor called\n";
 };
 Cat& Cat::operator=( const Cat& other ) {
 	if (this != &other)
 	{
-		this->setType(other.getType());
+		this->setType("Cat");
 		delete this->_brain;
 		this->_brain = new Brain;
 		*this->_brain = *other._brain;
@@ -41,7 +41,7 @@ Cat::~Cat() {
 	std::cout << "Cat destructor called\n";
 };
 void	Cat::makeSound() const {
-	std::cout << "Meow\n";
+	std::cout << "* meow! *\n";
 };
 Brain*	Cat::mindMeld() const {
 	return this->_brain;

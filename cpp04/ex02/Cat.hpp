@@ -12,10 +12,10 @@
 
 #pragma once
 
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 #include "Brain.hpp"
 
-class	Cat : public Animal {
+class	Cat : public AAnimal {
 private:
 	Brain*			_brain;
 public:
@@ -23,7 +23,7 @@ public:
 	Cat();
 	Cat( const Cat& other );
 	Cat& operator=( const Cat& other );
-	~Cat();
+	~Cat() override;
 	// Public Member Functions
 	void	makeSound() const override ;
 	Brain*	mindMeld() const ;

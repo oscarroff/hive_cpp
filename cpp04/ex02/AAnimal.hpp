@@ -14,15 +14,19 @@
 
 #include <string>
 
-class	Animal {
+// Renamed to AAnimal to indicate it is now an abstract class (i.e. is not
+// instantiable
+class	AAnimal {
 protected:
 	std::string	_type;
-	Animal() = default;
-	Animal( const Animal& other ) = default;
-	Animal& operator=( const Animal& other ) = default;
+	// Constructors are declared in protected to prevent instantiation of the
+	// bass class
+	AAnimal() = default;
+	AAnimal( const AAnimal& other ) = default;
+	AAnimal& operator=( const AAnimal& other ) = default;
 public:
 	// Constructors & Destructors
-	virtual ~Animal() = default;
+	virtual ~AAnimal() = default;
 	// Public Member Functions
 	const std::string	getType( void ) const ;
 	void				setType( const std::string& type );

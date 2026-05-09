@@ -10,19 +10,19 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 
 #include <iostream>
 
 // Public Member Functions
-const std::string	Animal::getType( void ) const {
+const std::string	AAnimal::getType( void ) const {
 	if (this->_type.empty())
 		return "Type is undefined!";
 	return this->_type;
 };
-void	Animal::setType( const std::string& type ) {
+void	AAnimal::setType( const std::string& type ) {
 	this->_type = type;
 };
-void	Animal::makeSound() const {
+void	AAnimal::makeSound() const {
 	std::cout << "Animal tries to make sound but can't decide what\n";
 };

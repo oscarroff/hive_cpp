@@ -40,7 +40,7 @@ Cat::~Cat() {
 	std::cout << "Cat destructor called\n";
 };
 void	Cat::makeSound() const {
-	std::cout << "Meow\n";
+	std::cout << "* meow! *\n";
 };
 Brain*	Cat::mindMeld() const {
 	return this->_brain;

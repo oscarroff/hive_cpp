@@ -40,7 +40,7 @@ Dog::~Dog() {
 	std::cout << "Dog destructor called\n";
 };
 void	Dog::makeSound() const {
-	std::cout << "Meow\n";
+	std::cout << "* woof! *\n";
 };
 Brain*	Dog::mindMeld() const {
 	return this->_brain;
