@@ -6,7 +6,7 @@
 /*   By: thblack- <thblack-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/12 11:24:04 by thblack-          #+#    #+#             */
-/*   Updated: 2026/05/12 15:13:29 by thblack-         ###   ########.fr       */
+/*   Updated: 2026/05/12 16:52:03 by thblack-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	main( void )
 		sally.upGrade();
 	}
 	catch (std::exception& e) {
-		std::cout << "Exception: " << e.what();
+		std::cerr << "Exception: " << e.what();
 	}
 	std::cout << "\n" << sally << "\n";
 	std::cout << bob << "\n";
@@ -38,7 +38,7 @@ int	main( void )
 		rowan.downGrade();
 	}
 	catch (std::exception& e) {
-		std::cout << "Exception: " << e.what();
+		std::cerr << "Exception: " << e.what();
 	}
 	std::cout << "\n" << sally << "\n";
 	std::cout << bob << "\n";
@@ -47,14 +47,14 @@ int	main( void )
 		Bureaucrat	lemon("Lemon", 1000);
 	}
 	catch (std::exception& e) {
-		std::cout << "Exception: " << e.what();
+		std::cerr << "Exception: " << e.what();
 	}
 	std::cout << "\n";
 	try {
 		Bureaucrat	pet("Pet", 0);
 	}
 	catch (std::exception& e) {
-		std::cout << "Exception: " << e.what();
+		std::cerr << "Exception: " << e.what();
 	}
 	return 0;
 }
