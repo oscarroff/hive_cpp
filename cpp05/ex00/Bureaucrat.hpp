@@ -40,7 +40,6 @@ public:
 	public:
 		GradeTooHighException( const std::string& name );
 		const char*	what() const noexcept override;
-		// unsigned int	getValue() const;
 	};
 	class	GradeTooLowException : public std::exception {
 	private:
@@ -48,7 +47,6 @@ public:
 	public:
 		GradeTooLowException( const std::string& name );
 		const char*	what() const noexcept override;
-		// unsigned int	getValue() const;
 	};
 };
 

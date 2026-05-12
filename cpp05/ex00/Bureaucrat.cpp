@@ -60,13 +60,8 @@ const char* Bureaucrat::GradeTooLowException::what() const noexcept {
 	return this->_message.c_str();
 };
 
+// Outstream Overload
 std::ostream&	operator<<( std::ostream& out, const Bureaucrat& in ) {
 	out << in.getName() << ", bureaucrat grade " << in.getGrade() << ".";
 	return out;
 };
-// unsigned int Bureaucrat::GradeTooHighException::getValue() const {
-// 	return this->_value;
-// };
-// unsigned int Bureaucrat::GradeTooLowException::getValue() const {
-// 	return this->_value;
-// };
