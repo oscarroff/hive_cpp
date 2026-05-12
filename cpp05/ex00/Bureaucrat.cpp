@@ -16,19 +16,11 @@
 // Constructors & Destructors
 Bureaucrat::Bureaucrat() : _name("Minion"), _grade(0) {};
 Bureaucrat::Bureaucrat( const std::string& name, unsigned int grade ) : _name(name) {
-	try {
-		if (grade < 1)
-			throw GradeTooHighException(this->_grade);
-		if (grade > 150)
-			throw GradeTooLowException(this->_grade);
-		this->_grade = grade;
-	}
-	catch (const GradeTooHighException& e) {
-		std::cout << e.what();
-	}
-	catch (const GradeTooLowException& e) {
-		std::cout << e.what();
-	}
+	if (grade < 1)
+		throw GradeTooHighException(this->_name);
+	if (grade > 150)
+		throw GradeTooLowException(this->_name);
+	this->_grade = grade;
 };
 Bureaucrat::Bureaucrat( const Bureaucrat& other )
 : _name(other.getName()), _grade(other.getGrade()) {};
@@ -44,43 +36,37 @@ Bureaucrat::~Bureaucrat() {};
 const std::string&	Bureaucrat::getName() const { return this->_name; };
 unsigned int		Bureaucrat::getGrade() const { return this->_grade; };
 void				Bureaucrat::upGrade() {
-	try {
-		if (this->_grade <= 1)
-			throw GradeTooHighException(this->_grade);
-		this->_grade--;
-	}
-	catch (const GradeTooHighException& e) {
-		std::cout << e.what();
-	}
+	if (this->_grade <= 1)
+		throw GradeTooHighException(this->_name);
+	this->_grade--;
 };
 void				Bureaucrat::downGrade() {
-	try {
-		if (this->_grade >= 150)
-			throw GradeTooLowException(this->_grade);
-		this->_grade++;
-	}
-	catch (const GradeTooLowException& e) {
-		std::cout << e.what();
-	}
+	if (this->_grade >= 150)
+		throw GradeTooLowException(this->_name);
+	this->_grade++;
 };
 
 // Custom Exceptions
-Bureaucrat::GradeTooHighException::GradeTooHighException( int value ) : _value(value) {};
+Bureaucrat::GradeTooHighException::GradeTooHighException( const std::string& name ) {
+	this->_message = name + "'s grade is too high!\n";
+};
 const char* Bureaucrat::GradeTooHighException::what() const noexcept {
-	return "Grade too high!\n";
+	return this->_message.c_str();
 };
-int Bureaucrat::GradeTooHighException::getValue() const {
-	return this->_value;
+Bureaucrat::GradeTooLowException::GradeTooLowException( const std::string& name ) {
+	this->_message = name + "'s grade is too low!\n";
 };
-Bureaucrat::GradeTooLowException::GradeTooLowException( int value ) : _value(value) {};
 const char* Bureaucrat::GradeTooLowException::what() const noexcept {
-	return "Grade too low!\n";
-};
-int Bureaucrat::GradeTooLowException::getValue() const {
-	return this->_value;
+	return this->_message.c_str();
 };
 
 std::ostream&	operator<<( std::ostream& out, const Bureaucrat& in ) {
-	out << in.getName() << ", bureaucrat grade " << in.getGrade();
+	out << in.getName() << ", bureaucrat grade " << in.getGrade() << ".";
 	return out;
 };
+// unsigned int Bureaucrat::GradeTooHighException::getValue() const {
+// 	return this->_value;
+// };
+// unsigned int Bureaucrat::GradeTooLowException::getValue() const {
+// 	return this->_value;
+// };

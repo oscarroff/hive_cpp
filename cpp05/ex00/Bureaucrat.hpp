@@ -36,18 +36,20 @@ public:
 	// Custom Exceptions
 	class	GradeTooHighException : public std::exception {
 	private:
-		int	_value;
+		std::string	_message;
 	public:
-		GradeTooHighException( int value );
+		GradeTooHighException( const std::string& name );
 		const char*	what() const noexcept override;
-		int	getValue() const;
+		// unsigned int	getValue() const;
 	};
 	class	GradeTooLowException : public std::exception {
 	private:
-		int	_value;
+		std::string	_message;
 	public:
-		GradeTooLowException( int value );
+		GradeTooLowException( const std::string& name );
 		const char*	what() const noexcept override;
-		int	getValue() const;
+		// unsigned int	getValue() const;
 	};
 };
+
+std::ostream&	operator<<( std::ostream& out, const Bureaucrat& in );

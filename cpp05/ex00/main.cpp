@@ -16,8 +16,42 @@
 int	main( void )
 {
 	Bureaucrat	sally("Sally", 1), bob("Bob", 75), rowan("Rowan", 150);
+	std::cout << sally << "\n";
+	std::cout << bob << "\n";
+	std::cout << rowan << "\n\n";
 	try {
+		rowan.upGrade();
+		bob.upGrade();
 		sally.upGrade();
+	}
+	catch (std::exception& e) {
+		std::cout << "Exception: " << e.what();
+	}
+	std::cout << "\n" << sally << "\n";
+	std::cout << bob << "\n";
+	std::cout << rowan << "\n\n";
+	try {
+		sally.downGrade();
+		bob.downGrade();
+		bob.downGrade();
+		rowan.downGrade();
+		rowan.downGrade();
+	}
+	catch (std::exception& e) {
+		std::cout << "Exception: " << e.what();
+	}
+	std::cout << "\n" << sally << "\n";
+	std::cout << bob << "\n";
+	std::cout << rowan << "\n\n";
+	try {
+		Bureaucrat	lemon("Lemon", 1000);
+	}
+	catch (std::exception& e) {
+		std::cout << "Exception: " << e.what();
+	}
+	std::cout << "\n";
+	try {
+		Bureaucrat	pet("Pet", 0);
 	}
 	catch (std::exception& e) {
 		std::cout << "Exception: " << e.what();
