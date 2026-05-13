@@ -24,7 +24,15 @@ ShrubberyCreationForm::ShrubberyCreationForm( const std::string& target )
 
 // Copy constructor
 ShrubberyCreationForm::ShrubberyCreationForm( const ShrubberyCreationForm& other )
-: AForm(other.getName(), 145, 137) {};
+: AForm(other.getName(), 145, 137), _target(other.getTarget()) {};
+
+// Copy assignment constructor
+ShrubberyCreationForm&	ShrubberyCreationForm::operator=( const ShrubberyCreationForm& other ) {
+	if (this != &other) {
+		this->_target = other.getTarget();
+	}
+	return *this;
+};
 
 // Destructor
 ShrubberyCreationForm::~ShrubberyCreationForm() {};

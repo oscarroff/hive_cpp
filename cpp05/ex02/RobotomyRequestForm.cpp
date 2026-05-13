@@ -25,7 +25,15 @@ RobotomyRequestForm::RobotomyRequestForm( const std::string& target )
 
 // Copy constructor
 RobotomyRequestForm::RobotomyRequestForm( const RobotomyRequestForm& other )
-: AForm(other.getName(), 72, 45) {};
+: AForm(other.getName(), 72, 45), _target(other.getTarget()) {};
+
+// Copy assignment constructor
+RobotomyRequestForm&	RobotomyRequestForm::operator=( const RobotomyRequestForm& other ) {
+	if (this != &other) {
+		this->_target = other.getTarget();
+	}
+	return *this;
+};
 
 // Destructor
 RobotomyRequestForm::~RobotomyRequestForm() {};

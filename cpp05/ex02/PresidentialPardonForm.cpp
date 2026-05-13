@@ -24,7 +24,15 @@ PresidentialPardonForm::PresidentialPardonForm( const std::string& target )
 
 // Copy constructor
 PresidentialPardonForm::PresidentialPardonForm( const PresidentialPardonForm& other )
-: AForm(other.getName(), 25, 5) {};
+: AForm(other.getName(), 25, 5), _target(other.getTarget()) {};
+
+// Copy assignment constructor
+PresidentialPardonForm&	PresidentialPardonForm::operator=( const PresidentialPardonForm& other ) {
+	if (this != &other) {
+		this->_target = other.getTarget();
+	}
+	return *this;
+};
 
 // Destructor
 PresidentialPardonForm::~PresidentialPardonForm() {};
