@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.cpp                                           :+:      :+:    :+:   */
+/*   AForm.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thblack- <thblack-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,50 +10,66 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Form.hpp"
+#include "AForm.hpp"
+#include <iostream>
 
 // Constructors & Destructors
-Form::Form() : _name("BlankPaper"), _signed(false), _signGrade(0), _execGrade(0) {};
-Form::Form( const std::string& name, unsigned int signGrade, unsigned int execGrade )
+AForm::AForm() : _name("BlankPaper"), _signed(false), _signGrade(0), _execGrade(0) {};
+AForm::AForm( const std::string& name, unsigned int signGrade, unsigned int execGrade )
 : _name(name), _signed(false), _signGrade(signGrade), _execGrade(execGrade) {};
-Form::Form( const Form& other )
+AForm::AForm( const AForm& other )
 : _name(other._name), _signed(other._signed), _signGrade(other._signGrade), _execGrade(other._execGrade) {};
-Form&			Form::operator=( const Form& other ) {
+AForm&			AForm::operator=( const AForm& other ) {
 	if (this != &other) {
 		this->_signed = other.getSigned();
 	}
 	return *this;
 };
-Form::~Form() {};
+AForm::~AForm() {};
 
 // Getters
-const std::string&	Form::getName() const { return this->_name; };
-bool				Form::getSigned() const { return this->_signed; };
-unsigned int		Form::getSignGrade() const { return this->_signGrade; };
-unsigned int		Form::getExecGrade() const { return this->_execGrade; };
+const std::string&	AForm::getName() const { return this->_name; };
+bool				AForm::getSigned() const { return this->_signed; };
+unsigned int		AForm::getSignGrade() const { return this->_signGrade; };
+unsigned int		AForm::getExecGrade() const { return this->_execGrade; };
 
 // Other Member Functions
-void				Form::beSigned( const Bureaucrat& b ) {
+void				AForm::beSigned( const Bureaucrat& b ) {
 	if (b.getGrade() > this->_signGrade)
 		throw GradeTooLowException(b.getName());
+	this->_signed = true;
 };
 
 // Custom Exceptions
-Form::GradeTooHighException::GradeTooHighException( const std::string& name ) {
+AForm::GradeTooHighException::GradeTooHighException( const std::string& name ) {
 	this->_message = name + "'s grade is too high!";
 };
-const char* Form::GradeTooHighException::what() const noexcept {
+const char* AForm::GradeTooHighException::what() const noexcept {
 	return this->_message.c_str();
 };
-Form::GradeTooLowException::GradeTooLowException( const std::string& name ) {
+AForm::GradeTooLowException::GradeTooLowException( const std::string& name ) {
 	this->_message = name + "'s grade is too low!";
 };
-const char* Form::GradeTooLowException::what() const noexcept {
+const char* AForm::GradeTooLowException::what() const noexcept {
+	return this->_message.c_str();
+};
+AForm::ExecutionFailException::ExecutionFailException( const std::string& message ) {
+	this->_message = message + "\n";
+};
+const char* AForm::ExecutionFailException::what() const noexcept {
 	return this->_message.c_str();
 };
 
+void	AForm::execute( const Bureaucrat& executor ) const {
+	if (!this->getSigned())
+		throw ExecutionFailException("form is unsigned.");
+	if (executor.getGrade() > this->getExecGrade())
+		throw GradeTooLowException(executor.getName());
+	this->doThings();
+};
+
 // Outstream Overload
-std::ostream&	operator<<( std::ostream& out, const Form& in ) {
+std::ostream&	operator<<( std::ostream& out, const AForm& in ) {
 	out << in.getName() << " is " << (in.getSigned() ? "signed" : "unsigned")
 		<< " and requires level " << in.getSignGrade()
 		<< " for signing and level " << in.getExecGrade()

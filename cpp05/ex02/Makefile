@@ -11,8 +11,8 @@
 # **************************************************************************** #
 
 # Project Name
-PROJECT		= Maggots
-NAME		= Maggots
+PROJECT		= 28B
+NAME		= 28B
 
 # Tools
 CPP			= c++
