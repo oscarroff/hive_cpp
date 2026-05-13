@@ -19,7 +19,7 @@ CPP			= c++
 CFLAGS		= -Wall -Wextra -Werror -std=c++20
 
 # Sources
-SRCS		= $(shell find -name "*.cpp")
+SRCS		= main.cpp Bureaucrat.cpp Form.cpp
 
 # Objects
 OBJS		= $(SRCS:.cpp=.o)
