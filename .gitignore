@@ -16,4 +16,5 @@
 *.idx
 *obj/
 *.cache/
+*.o
 evaluations/
