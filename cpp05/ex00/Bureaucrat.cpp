@@ -14,7 +14,7 @@
 #include <iostream>
 
 // Constructors & Destructors
-Bureaucrat::Bureaucrat() : _name("Minion"), _grade(0) {};
+Bureaucrat::Bureaucrat() : _name("Minion"), _grade(150) {};
 Bureaucrat::Bureaucrat( const std::string& name, unsigned int grade ) : _name(name) {
 	if (grade < 1)
 		throw GradeTooHighException(this->_name);
