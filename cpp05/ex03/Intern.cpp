@@ -6,7 +6,7 @@
 /*   By: thblack- <thblack-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/13 10:48:55 by thblack-          #+#    #+#             */
-/*   Updated: 2026/05/15 12:01:30 by thblack-         ###   ########.fr       */
+/*   Updated: 2026/05/15 12:24:45 by thblack-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ AForm*	Intern::makeForm( const std::string& name, const std::string& target ) co
 			break ;
 		};
 		case invalidForm: {
-			std::cerr << "Intern cannot find a form matching that name!\n";
+			std::cerr << "Intern cannot find a form matching the name " << name << "!\n";
 			return nullptr;
 		};
 	}

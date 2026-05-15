@@ -6,7 +6,7 @@
 /*   By: thblack- <thblack-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/12 11:24:04 by thblack-          #+#    #+#             */
-/*   Updated: 2026/05/15 12:23:11 by thblack-         ###   ########.fr       */
+/*   Updated: 2026/05/15 12:26:26 by thblack-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,7 @@ int	main( void ) {
 		fry.signForm(*rrf4);
 		fry.executeForm(*rrf4);
 	}
+	delete rrf1;
+	delete rrf2;
+	delete rrf3;
 };
