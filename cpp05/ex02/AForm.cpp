@@ -14,7 +14,7 @@
 #include <iostream>
 
 // Constructors & Destructors
-AForm::AForm() : _name("BlankPaper"), _signed(false), _signGrade(0), _execGrade(0) {};
+AForm::AForm() : _name("BlankPaper"), _signed(false), _signGrade(150), _execGrade(150) {};
 AForm::AForm( const std::string& name, unsigned int signGrade, unsigned int execGrade )
 : _name(name), _signed(false), _signGrade(signGrade), _execGrade(execGrade) {};
 AForm::AForm( const AForm& other )

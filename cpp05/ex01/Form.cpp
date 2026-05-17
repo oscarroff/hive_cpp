@@ -13,7 +13,7 @@
 #include "Form.hpp"
 
 // Constructors & Destructors
-Form::Form() : _name("BlankPaper"), _signed(false), _signGrade(0), _execGrade(0) {};
+Form::Form() : _name("BlankPaper"), _signed(false), _signGrade(150), _execGrade(150) {};
 Form::Form( const std::string& name, unsigned int signGrade, unsigned int execGrade )
 : _name(name), _signed(false), _signGrade(signGrade), _execGrade(execGrade) {};
 Form::Form( const Form& other )
