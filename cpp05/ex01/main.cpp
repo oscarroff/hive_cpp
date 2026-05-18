@@ -38,7 +38,7 @@ int	main( void )
 		std::cerr << "Exception: " << e.what() << "\n";
 	}
 	try {
-		Form	goldenTicket("Willy Wonka Admit One", 0, 0);
+		Form	goldenTicket("Willy Wonka Admit One", 10, 0);
 	}
 	catch (std::exception& e) {
 		std::cerr << "Exception: " << e.what() << "\n";
