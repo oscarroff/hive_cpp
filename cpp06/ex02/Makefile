@@ -11,21 +11,20 @@
 # **************************************************************************** #
 
 # Project Name
-PROJECT		= Serializer
-NAME		= Serializer
+PROJECT		= RealType
+NAME		= RealType
 
 # Tools
 CPP			= c++
 CFLAGS		= -Wall -Wextra -Werror -std=c++20
 
 # Sources
-# SRC_FILES	=
-# SRCS		= $(addprefix src/, $(SRC_FILES))
-SRCS		= $(shell find -name "*.cpp")
+SRC_FILES	= main.cpp
+SRCS		= $(addprefix src/, $(SRC_FILES))
 
 # Objects & Dependencies
 OBJS		= $(patsubst src/%.cpp, obj/%.o, $(SRCS))
-OBJ_DIRS	= $(sort $(dir $(OBJ)))
+OBJ_DIRS	= $(sort $(dir $(OBJS)))
 DEPS		= $(OBJ:.o=.d)
 
 all: $(NAME)
@@ -36,12 +35,12 @@ $(NAME): $(OBJS)
 $(OBJ_DIRS):
 	mkdir -p $@
 
-%.o: %.cpp
+obj/%.o: src/%.cpp | $(OBJ_DIRS)
 	$(CPP) $(CFLAGS) -Iinc -c $< -o $@
 
 -include $(DEPS)
 
-.SECONDARY: $(OBJ) 
+.SECONDARY: $(OBJS) 
 
 clean:
 	rm -rf obj
@@ -56,4 +55,4 @@ run: all exec
 
 re: fclean all
 
-.PHONY: all clean fcalean re exec run
+.PHONY: all clean fclean re exec run

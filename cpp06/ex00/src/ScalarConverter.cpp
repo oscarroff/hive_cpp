@@ -17,15 +17,6 @@
 #include <cmath> // for std::modf
 #include <iomanip> // for std::setprecision
 
-// Constructors and Destructor
-ScalarConverter::ScalarConverter() {};
-ScalarConverter::ScalarConverter( const ScalarConverter& other ) { (void)other; };
-ScalarConverter&	ScalarConverter::operator=( const ScalarConverter& other ) {
-	(void)other;
-	return *this;
-};
-ScalarConverter::~ScalarConverter() {};
-
 enum	scalarType {
 	CHAR,
 	INT,

@@ -23,10 +23,10 @@ struct	Data {
 class Serializer {
 private:
 	// Constructors & Destructors
-	Serializer();
-	Serializer( const Serializer &other );
-	Serializer	&operator=( const Serializer &other );
-	~Serializer();
+	Serializer() = default;
+	Serializer( const Serializer &other ) = default;
+	Serializer	&operator=( const Serializer &other ) = default;
+	~Serializer() = default;
 public:
 	// Static member function
 	// - can be called without creating an object

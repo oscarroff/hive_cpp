@@ -11,16 +11,17 @@
 # **************************************************************************** #
 
 # Project Name
-PROJECT		= Scalar
-NAME		= Scalar
+PROJECT		= Template
+NAME		= Template
 
 # Tools
 CPP			= c++
 CFLAGS		= -Wall -Wextra -Werror -std=c++20
 
 # Sources
-SRC_FILES	= main.cpp ScalarConverter.cpp
-SRCS		= $(addprefix src/, $(SRC_FILES))
+# SRC_FILES	= 
+# SRCS		= $(addprefix src/, $(SRC_FILES))
+SRCS		= $(shell find -name "*.cpp")
 
 # Objects & Dependencies
 OBJS		= $(patsubst src/%.cpp, obj/%.o, $(SRCS))

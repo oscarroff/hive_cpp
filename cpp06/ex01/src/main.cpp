@@ -24,5 +24,9 @@ int	main( void ) {
 	std::cout << "ptr2: " << ptr2 << "\n";
 	if (ptr1 == ptr2)
 		std::cout << "They are the same!\n";
+	std::cout << "ptr1: " << ptr1->_name
+		<< " likes the number " << ptr1->_x << "\n";
+	std::cout << "ptr2: " << ptr2->_name
+		<< " likes the number " << ptr2->_x << "\n";
 	return 0;
 };

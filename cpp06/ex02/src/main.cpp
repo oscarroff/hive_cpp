@@ -32,6 +32,7 @@ int	main( void ) {
 	Base*	test = generate();
 	identify(test);
 	identify(*test);
+	delete test;
 	return 0;
 };
 
@@ -39,11 +40,13 @@ Base*	generate( void ) {
 	static std::mt19937 eng{std::random_device{}()};
 	static std::uniform_int_distribution<int> dist(0, 2);
 	ABC	abc = static_cast<ABC>(dist(eng));
+	Base*	base;
 	switch (abc) {
-		case ATYPE: return new A();
-		case BTYPE: return new B();
-		case CTYPE: return new C();
+		case ATYPE: base = new A; break;
+		case BTYPE: base = new B; break;
+		case CTYPE: base = new C; break;
 	};
+	return base;
 };
 
 void	identify( Base* p ) {

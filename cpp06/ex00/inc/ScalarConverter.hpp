@@ -29,10 +29,10 @@
 class ScalarConverter {
 private:
     // Constructors & Destructors
-    ScalarConverter();
-    ScalarConverter( const ScalarConverter& other );
-    ScalarConverter &operator=( const ScalarConverter &other );
-    virtual ~ScalarConverter();
+    ScalarConverter() = default;
+    ScalarConverter( const ScalarConverter& other ) = default;
+    ScalarConverter &operator=( const ScalarConverter &other ) = default;
+    ~ScalarConverter() = default;
 public:
     // Static member function
     // - can be called without creating an object
