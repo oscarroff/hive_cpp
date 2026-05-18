@@ -29,9 +29,9 @@
 class ScalarConverter {
 private:
     // Constructors & Destructors
-    ScalarConverter() = delete;
-    ScalarConverter( const ScalarConverter& other ) = delete;
-    ScalarConverter &operator=( const ScalarConverter &other ) = delete;
+    ScalarConverter();
+    ScalarConverter( const ScalarConverter& other );
+    ScalarConverter &operator=( const ScalarConverter &other );
     virtual ~ScalarConverter();
 public:
     // Static member function
