@@ -12,7 +12,7 @@
 
 #include "Form.hpp"
 
-// Constructors & Destructors
+// Constructors
 Form::Form() : _name("BlankPaper"), _signed(false), _signGrade(150), _execGrade(150) {};
 
 // Named and graded constructor
@@ -43,14 +43,12 @@ Form::Form( const std::string& name, unsigned int signGrade, unsigned int execGr
 Form::Form( const Form& other )
 : _name(other._name), _signed(false), _signGrade(other._signGrade), _execGrade(other._execGrade) {};
 
-Form&			Form::operator=( const Form& other ) {
+Form&	Form::operator=( const Form& other ) {
 	if (this != &other) {
 		this->_signed = other.getSigned();
 	}
 	return *this;
 };
-
-Form::~Form() {};
 
 // Getters
 const std::string&	Form::getName() const { return this->_name; };

@@ -14,7 +14,7 @@
 #include <exception>
 #include <iostream>
 
-// Constructors & Destructors
+// Constructors
 Bureaucrat::Bureaucrat() : _name("Minion"), _grade(150) {};
 
 Bureaucrat::Bureaucrat( const std::string& name, unsigned int grade ) : _name(name) {
@@ -34,8 +34,6 @@ Bureaucrat&			Bureaucrat::operator=( const Bureaucrat& other ) {
 	}
 	return *this;
 };
-
-Bureaucrat::~Bureaucrat() {};
 
 // Setters & Getters
 const std::string&	Bureaucrat::getName() const { return this->_name; };

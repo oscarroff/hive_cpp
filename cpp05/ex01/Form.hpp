@@ -31,7 +31,7 @@ public:
 	Form( const std::string& name, unsigned int signGrade, unsigned int execGrade );
 	Form( const Form& other );
 	Form& operator=( const Form& other );
-	~Form();
+	~Form() = default;
 
 	// Getters
 	const std::string&	getName() const;

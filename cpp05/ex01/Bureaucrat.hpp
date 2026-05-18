@@ -29,7 +29,7 @@ public:
 	Bureaucrat( const std::string& name, unsigned int grade );
 	Bureaucrat( const Bureaucrat& other );
 	Bureaucrat& operator=( const Bureaucrat& other );
-	~Bureaucrat();
+	~Bureaucrat() = default;
 
 	// Setters & Getters
 	const std::string&	getName() const;

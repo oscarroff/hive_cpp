@@ -34,9 +34,6 @@ ShrubberyCreationForm&	ShrubberyCreationForm::operator=( const ShrubberyCreation
 	return *this;
 };
 
-// Destructor
-ShrubberyCreationForm::~ShrubberyCreationForm() {};
-
 // Member Functions
 const std::string&	ShrubberyCreationForm::getTarget() const {
 	return this->_target;

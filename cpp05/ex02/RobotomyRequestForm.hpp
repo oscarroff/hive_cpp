@@ -23,7 +23,7 @@ public:
 	RobotomyRequestForm(const std::string &target);
 	RobotomyRequestForm(const RobotomyRequestForm &other);
 	RobotomyRequestForm &operator=(const RobotomyRequestForm &other);
-	~RobotomyRequestForm();
+	~RobotomyRequestForm() = default;
 
 	const std::string&	getTarget() const;
 	void				doThings() const override;
