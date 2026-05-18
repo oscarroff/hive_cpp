@@ -16,21 +16,6 @@
 #include "PresidentialPardonForm.hpp"
 #include <iostream>
 
-// Default constructor
-Intern::Intern() {};
-
-// Copy constructor
-Intern::Intern( const Intern& other ) { (void)other; };
-
-// Copy assignment constructor
-Intern& Intern::operator=( const Intern& other ) {
-    (void)other;
-    return (*this);
-}
-
-// Destructor
-Intern::~Intern() {};
-
 enum	Forms {
 	shrubberyForm,
 	robotomyForm,

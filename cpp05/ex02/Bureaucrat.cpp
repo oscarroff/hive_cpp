@@ -16,6 +16,7 @@
 
 // Constructors & Destructors
 Bureaucrat::Bureaucrat() : _name("Minion"), _grade(150) {};
+
 Bureaucrat::Bureaucrat( const std::string& name, unsigned int grade ) : _name(name) {
 	if (grade < 1)
 		throw GradeTooHighException(this->_name);
@@ -23,14 +24,17 @@ Bureaucrat::Bureaucrat( const std::string& name, unsigned int grade ) : _name(na
 		throw GradeTooLowException(this->_name);
 	this->_grade = grade;
 };
+
 Bureaucrat::Bureaucrat( const Bureaucrat& other )
 : _name(other.getName()), _grade(other.getGrade()) {};
+
 Bureaucrat&			Bureaucrat::operator=( const Bureaucrat& other ) {
 	if (this != &other) {
 		this->_grade = other.getGrade();
 	}
 	return *this;
 };
+
 Bureaucrat::~Bureaucrat() {};
 
 // Setters & Getters

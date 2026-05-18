@@ -18,10 +18,10 @@ class Intern {
 private:
 public:
     // Constructors & Destructors
-    Intern();
-    Intern( const Intern& other );
-    Intern &operator=( const Intern &other );
-    ~Intern();
+    Intern() = default;
+    Intern( const Intern& other ) = default;
+    Intern &operator=( const Intern &other ) = default;
+    ~Intern() = default;
 
 	// Member Functions
 	AForm*	makeForm( const std::string& name, const std::string& target ) const;
