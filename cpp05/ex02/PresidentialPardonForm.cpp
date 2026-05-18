@@ -11,8 +11,7 @@
 /* ************************************************************************** */
 
 #include "PresidentialPardonForm.hpp"
-#include <string>
-#include <bits/stdc++.h>
+#include <iostream>
 
 // Default constructor
 PresidentialPardonForm::PresidentialPardonForm()

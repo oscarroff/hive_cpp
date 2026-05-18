@@ -6,7 +6,7 @@
 /*   By: thblack- <thblack-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/12 11:12:51 by thblack-          #+#    #+#             */
-/*   Updated: 2026/05/15 12:19:44 by thblack-         ###   ########.fr       */
+/*   Updated: 2026/05/12 17:19:35 by thblack-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <exception>
 #include <iostream>
 
-// Constructors & Destructors
+// Constructors
 Bureaucrat::Bureaucrat() : _name("Minion"), _grade(150) {};
 
 Bureaucrat::Bureaucrat( const std::string& name, unsigned int grade ) : _name(name) {
@@ -34,8 +34,6 @@ Bureaucrat&			Bureaucrat::operator=( const Bureaucrat& other ) {
 	}
 	return *this;
 };
-
-Bureaucrat::~Bureaucrat() {};
 
 // Setters & Getters
 const std::string&	Bureaucrat::getName() const { return this->_name; };

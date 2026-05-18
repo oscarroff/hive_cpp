@@ -31,7 +31,7 @@ public:
 	AForm( const std::string& name, unsigned int signGrade, unsigned int execGrade );
 	AForm( const AForm& other );
 	AForm& operator=( const AForm& other );
-	virtual ~AForm();
+	virtual ~AForm() = default;
 
 	// Getters
 	const std::string&	getName() const;

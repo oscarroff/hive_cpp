@@ -13,7 +13,7 @@
 #include "AForm.hpp"
 #include <iostream>
 
-// Constructors & Destructors
+// Constructors
 AForm::AForm() : _name("BlankPaper"), _signed(false), _signGrade(150), _execGrade(150) {};
 
 AForm::AForm( const std::string& name, unsigned int signGrade, unsigned int execGrade )
@@ -42,8 +42,6 @@ AForm&			AForm::operator=( const AForm& other ) {
 	}
 	return *this;
 };
-
-AForm::~AForm() {};
 
 // Getters
 const std::string&	AForm::getName() const { return this->_name; };

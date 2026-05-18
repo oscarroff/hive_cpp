@@ -11,8 +11,7 @@
 /* ************************************************************************** */
 
 #include "RobotomyRequestForm.hpp"
-#include <string>
-#include <bits/stdc++.h>
+#include <iostream>
 #include <random>
 
 // Default constructor

@@ -34,9 +34,6 @@ RobotomyRequestForm&	RobotomyRequestForm::operator=( const RobotomyRequestForm& 
 	return *this;
 };
 
-// Destructor
-RobotomyRequestForm::~RobotomyRequestForm() {};
-
 // Member Functions
 const std::string&	RobotomyRequestForm::getTarget() const {
 	return this->_target;

@@ -33,9 +33,6 @@ PresidentialPardonForm&	PresidentialPardonForm::operator=( const PresidentialPar
 	return *this;
 };
 
-// Destructor
-PresidentialPardonForm::~PresidentialPardonForm() {};
-
 // Member Functions
 const std::string&	PresidentialPardonForm::getTarget() const {
 	return this->_target;
