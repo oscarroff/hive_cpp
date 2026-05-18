@@ -21,13 +21,28 @@ int	main( void )
 	std::cout << rowan << "\n\n";
 
 	Form	form("Parking Ticket", 50, 1);
-	std::cout << form;
+	std::cout << form << "\n";
 
 	std::cout << "\n";
 
 	rowan.signForm(form);
 	bob.signForm(form);
 	sally.signForm(form);
+
+	std::cout << "\n";
+
+	try {
+		Form	toiletPaper("Toilet Paper", 1000, 42000);
+	}
+	catch (std::exception& e) {
+		std::cerr << "Exception: " << e.what() << "\n";
+	}
+	try {
+		Form	goldenTicket("Willy Wonka Admit One", 0, 0);
+	}
+	catch (std::exception& e) {
+		std::cerr << "Exception: " << e.what() << "\n";
+	}
 
 	return 0;
 }

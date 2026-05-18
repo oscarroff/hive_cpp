@@ -11,8 +11,7 @@
 /* ************************************************************************** */
 
 #include "PresidentialPardonForm.hpp"
-#include <string>
-#include <bits/stdc++.h>
+#include <iostream>
 
 // Default constructor
 PresidentialPardonForm::PresidentialPardonForm()
@@ -44,5 +43,5 @@ const std::string&	PresidentialPardonForm::getTarget() const {
 
 void	PresidentialPardonForm::doThings() const {
 	// Informs that <target> has been pardoned by Zaphod Beeblebrox.
-	std::cout << this->getTarget() << " has been pardoned by Big Z, Worst Dressed Sentient Being in the Known Universe and one hoopy frood, President Zaphod Beebkebrox!\n";
+	std::cout << this->getTarget() << " has been pardoned by Big Z, Worst Dressed Sentient Being in the Known Universe and one hoopy frood, President Zaphod Beeblebrox!\n";
 };

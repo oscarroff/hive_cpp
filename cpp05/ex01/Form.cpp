@@ -14,16 +14,42 @@
 
 // Constructors & Destructors
 Form::Form() : _name("BlankPaper"), _signed(false), _signGrade(150), _execGrade(150) {};
+
+// Named and graded constructor
+// Contains a lambda expression e.g. [val]() {...}
+// In this case the lambda is called immediately with () making it an immediately
+// invoked lambda expression. It is basically a mini function. Steps:
+// 1. [val] we capture val from the surrounding scope
+// 2. () we define the parameters (in this case none)
+// 3. {...} the body containing logic and exception
+// 4. () at the end calls the lambda immediately
 Form::Form( const std::string& name, unsigned int signGrade, unsigned int execGrade )
-: _name(name), _signed(false), _signGrade(signGrade), _execGrade(execGrade) {};
+: _name(name), _signed(false),
+	_signGrade([signGrade, name]() {
+		if (signGrade < 1)
+			throw GradeTooHighException(name + "'s sign");
+		if (signGrade > 150)
+			throw GradeTooLowException(name + "'s sign");
+		return signGrade;
+	}()),
+	_execGrade([execGrade, name]() {
+		if (execGrade < 1)
+			throw GradeTooHighException(name + "'s execution");
+		if (execGrade > 150)
+			throw GradeTooLowException(name + "'s execution");
+		return execGrade;
+	}()) {};
+
 Form::Form( const Form& other )
-: _name(other._name), _signed(other._signed), _signGrade(other._signGrade), _execGrade(other._execGrade) {};
+: _name(other._name), _signed(false), _signGrade(other._signGrade), _execGrade(other._execGrade) {};
+
 Form&			Form::operator=( const Form& other ) {
 	if (this != &other) {
 		this->_signed = other.getSigned();
 	}
 	return *this;
 };
+
 Form::~Form() {};
 
 // Getters
@@ -36,17 +62,18 @@ unsigned int		Form::getExecGrade() const { return this->_execGrade; };
 void				Form::beSigned( const Bureaucrat& b ) {
 	if (b.getGrade() > this->_signGrade)
 		throw GradeTooLowException(b.getName());
+	this->_signed = true;
 };
 
 // Custom Exceptions
 Form::GradeTooHighException::GradeTooHighException( const std::string& name ) {
-	this->_message = name + "'s grade is too high!";
+	this->_message = name + " grade is too high!";
 };
 const char* Form::GradeTooHighException::what() const noexcept {
 	return this->_message.c_str();
 };
 Form::GradeTooLowException::GradeTooLowException( const std::string& name ) {
-	this->_message = name + "'s grade is too low!";
+	this->_message = name + " grade is too low!";
 };
 const char* Form::GradeTooLowException::what() const noexcept {
 	return this->_message.c_str();
@@ -57,6 +84,6 @@ std::ostream&	operator<<( std::ostream& out, const Form& in ) {
 	out << in.getName() << " is " << (in.getSigned() ? "signed" : "unsigned")
 		<< " and requires level " << in.getSignGrade()
 		<< " for signing and level " << in.getExecGrade()
-		<< " for execution.\n";
+		<< " for execution.";
 	return out;
 };

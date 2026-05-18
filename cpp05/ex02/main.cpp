@@ -26,20 +26,20 @@ int	main( void )
 	std::cout << "\n=== SHRUBBERY TESTS ===\n";
 
 	AForm*	shrub = new ShrubberyCreationForm("mistyWood");
-	std::cout << *shrub;
+	std::cout << *shrub << "\n";
 
 	std::cout << "\n";
 
 	rowan.signForm(*shrub);
 
 	std::cout << "\n";
-	std::cout << *shrub;
+	std::cout << *shrub << "\n";
 	std::cout << "\n";
 
 	bob.signForm(*shrub);
 
 	std::cout << "\n";
-	std::cout << *shrub;
+	std::cout << *shrub << "\n";
 	std::cout << "\n";
 
 	rowan.executeForm(*shrub);
@@ -56,19 +56,19 @@ int	main( void )
 	rowan.signForm(*robo);
 
 	std::cout << "\n";
-	std::cout << *robo;
+	std::cout << *robo << "\n";
 	std::cout << "\n";
 
 	bob.signForm(*robo);
 
 	std::cout << "\n";
-	std::cout << *robo;
+	std::cout << *robo << "\n";
 	std::cout << "\n";
 
 	sally.signForm(*robo);
 
 	std::cout << "\n";
-	std::cout << *robo;
+	std::cout << *robo << "\n";
 	std::cout << "\n";
 
 	rowan.executeForm(*robo);
@@ -86,19 +86,19 @@ int	main( void )
 	rowan.signForm(*pardon);
 
 	std::cout << "\n";
-	std::cout << *pardon;
+	std::cout << *pardon << "\n";
 	std::cout << "\n";
 
 	bob.signForm(*pardon);
 
 	std::cout << "\n";
-	std::cout << *pardon;
+	std::cout << *pardon << "\n";
 	std::cout << "\n";
 
 	sally.signForm(*pardon);
 
 	std::cout << "\n";
-	std::cout << *pardon;
+	std::cout << *pardon << "\n";
 	std::cout << "\n";
 
 	rowan.executeForm(*pardon);
