@@ -19,8 +19,8 @@ class	Array;
 
 // Constructors & Destructors
 template <typename T>
-Array<T>::Array() : _size(1) {
-	this->_array = new T[1]();
+Array<T>::Array() : _size(0) {
+	this->_array = new T[0]();
 };
 
 template <typename T>
@@ -76,4 +76,4 @@ const T&	Array<T>::operator[]( size_t index ) const {
 };
 
 template <typename T>
-size_t		Array<T>::size() { return this->_size; };
+size_t		Array<T>::size() const { return this->_size; };

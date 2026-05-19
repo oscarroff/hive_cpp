@@ -29,5 +29,5 @@ public:
 	// Public Member Functions
 	T&			operator[]( size_t index );
 	const T&	operator[]( size_t index ) const;
-	size_t		size();
+	size_t		size() const;
 };

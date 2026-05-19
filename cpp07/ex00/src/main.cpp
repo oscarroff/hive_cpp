@@ -13,6 +13,10 @@
 #include "whatever.hpp"
 #include <iostream>
 
+// Calling swap(), min() and max() via ::func() bypasses any local functions
+// of the same name and specifies a global one, in this case functions declared
+// in the *.hpp file.
+
 int	main(void)
 {
 	int	a = 2;

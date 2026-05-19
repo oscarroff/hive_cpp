@@ -17,8 +17,7 @@
 int	main( void ) {
 	std::cout << "=== Construction & size() ===\n";
 	Array<int>	array1;
-	std::cout << "array1 size: " << array1.size() << "\n"
-		<< "array1[0]: " << array1[0] << "\n";
+	std::cout << "array1 size: " << array1.size() << "\n";
 	std::cout << "\n";
 
 	std::cout << "=== Initial Length Construction & Subscript [] Operator ===\n";
@@ -43,21 +42,21 @@ int	main( void ) {
 	std::cout << "\n";
 
 	std::cout << "=== Assignment Operator ===\n";
-	array1[0] = 42;
-	std::cout << "array1[0]: " << array1[0] << "\n";
-	std::cout << "\n";
 	Array<int>	array4(2);
 	array4[0] = 420000;
 	array4[1] = 420;
-	std::cout << "array4 pre copy assignment\n";
 	std::cout << "array4 size: " << array4.size() << "\n"
 		<< "array4[0]: " << array4[0] << "\n"
 		<< "array4[1]: " << array4[1] << "\n";
 	std::cout << "\n";
-	array4 = array1;
-	std::cout << "array4 post copy assignment\n";
-	std::cout << "array4 size: " << array4.size() << "\n"
-		<< "array4[0]: " << array4[0] << "\n";
+	std::cout << "array1 pre copy assignment\n";
+	std::cout << "array1 size: " << array1.size() << "\n";
+	std::cout << "\n";
+	array1 = array4;
+	std::cout << "array1 post copy assignment\n";
+	std::cout << "array1 size: " << array1.size() << "\n"
+		<< "array1[0]: " << array1[0] << "\n"
+		<< "array1[1]: " << array1[1] << "\n";
 	std::cout << "\n";
 
 	std::cout << "=== std::exception ===\n";
