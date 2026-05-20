@@ -100,7 +100,7 @@ static bool	isFloat( const std::string& literal ) {
 
 	if (literal == "-inff" || literal == "+inff" || literal == "nanf")
 		return true;
-	if (literal.at(literal.length() - 1) != 'f')
+	if (literal.back() != 'f')
 		return false;
 	for (size_t	i = literal.at(0) == '-' ? 1 : 0; i < literal.length() - 1; i++) {
 		if (!std::isdigit(literal.at(i)) && literal.at(i) != '.')
@@ -120,6 +120,8 @@ static bool	isDouble( const std::string& literal ) {
 
 	if (literal == "-inf" || literal == "+inf" || literal == "nan")
 		return true;
+	if (literal.back() == 'f' || literal.find('.', 0) == std::string::npos)
+		return false;
 	for (size_t	i = literal.at(0) == '-' ? 1 : 0; i < literal.length(); i++) {
 		if (!std::isdigit(literal.at(i)) && literal.at(i) != '.')
 			return false;
