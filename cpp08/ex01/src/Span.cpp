@@ -96,32 +96,31 @@ unsigned int	Span::longestSpan() const {
 	return (unsigned int)range;
 };
 
-// For the shortest span this is a brute force implementation. A more
-// efficient option would be to sort, such as with std::sort or a custom
-// sorting algorithm, and then find the clostest two adjacent numbers. This
-// felt out of scope for this project however.
+// For the shortest span we make use of the STL algorithm std::sort which works
+// with arryas, vectors and deques. The alogrithm is implemented using the
+// Introsort which is a hybrid technique which switches between methods
+// depending on input. E.g. if quick sort shows excessive recursion then it may
+// switch to Heap Sort.
+//
+// To use std::sort() to find the shortest span we copy the array into a vector
+// then sort then scan the sorted vector for the smallest difference between
+// two consecutive values.
 unsigned int	Span::shortestSpan() const {
 	if (this->_size <= 1)
 		throw SpanException("not enough numbers to form a span");
 	std::vector<int>	vector_copy(this->_array, this->_array + this->_size);
 	std::sort(vector_copy.begin(), vector_copy.end());
 	unsigned int	minimum = UINT_MAX;
-	
-	long	res = UINT_MAX;
-	long	current;
+	unsigned int	diff;
 	for (size_t i = 0; i < this->_size - 1;) {
-		for (size_t j = i + 1; j < this->_size;) {
-			current = labs(static_cast<long>(this->_array[i])
-				- static_cast<long>(this->_array[j]));
-			if (current < res)
-				res = current;
-			++j;
-		}
+		diff = static_cast<unsigned int>(vector_copy[i + 1] - vector_copy[i]);
+		if (diff < minimum)
+			minimum = diff;
 		++i;
 	}
-	if (res == UINT_MAX)
+	if (minimum == UINT_MAX)
 		throw SpanException("no span found");
-	return (unsigned int)res;
+	return minimum;
 };
 
 void		Span::addRange( const size_t position, int first, int last ) {

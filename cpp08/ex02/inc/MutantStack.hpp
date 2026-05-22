@@ -15,6 +15,23 @@
 #include <stack>
 #include <deque>
 
+/*
+* We are creating a mutant version of stack that can be used with iterators.
+* The functionality actually already exists in the codebase as std::stack
+* inherits from std::deque which itself uses iterators. But the std::stack
+* child template class does not give access to them. So to get back iterator
+* functionality we need to reveal the base class.
+*
+* This is done in two stages:
+* 1.	We create aliases for the data types (iterator, const it, reverse it
+*		etc.) via a template typename that can access the std::deque class.
+* 2.	We then create member functions in the mutant child class that act as
+*		wrappers for the std::deque member functions that return iterators
+*		such as begin(), rend() etc.
+*		These are accessible via the Container c that is inherited from the
+*		std::deque's protected member variables.
+*/
+
 template <typename T, typename C = std::deque<T> >
 class   MutantStack : public std::stack<T, C> {
 private:

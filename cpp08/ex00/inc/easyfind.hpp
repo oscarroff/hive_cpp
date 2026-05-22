@@ -19,6 +19,12 @@
  * E.g. arrays and vectors, not linked lists
  *
  * easyfind() overloaded to allow for const and non-const input
+ *
+ * This template function is a wrapper for the STL algorithm function find()
+ * that simplifies usage. Instead of specifying the scope of the search with
+ * begin() and end() iterator functions, the easyfind() wrapper allows the user
+ * to just input the needle and haystack variables so long as the needle is an
+ * integer.
 */
 
 template <typename T>
