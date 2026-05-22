@@ -11,9 +11,11 @@
 /* ************************************************************************** */
 
 #include "Span.hpp"
-#include <climits>
-#include <cmath>
-#include <iostream>
+#include <climits> // for INT_MAX, UINT_MAX etc.
+#include <cmath> // for labs()
+#include <iostream> // for std::cout
+#include <vector> // for std::vector
+#include <algorithm> // for sort()
 
 // Default constructor
 Span::Span() : _size(0), _capacity(0) {
@@ -101,6 +103,10 @@ unsigned int	Span::longestSpan() const {
 unsigned int	Span::shortestSpan() const {
 	if (this->_size <= 1)
 		throw SpanException("not enough numbers to form a span");
+	std::vector<int>	vector_copy(this->_array, this->_array + this->_size);
+	std::sort(vector_copy.begin(), vector_copy.end());
+	unsigned int	minimum = UINT_MAX;
+	
 	long	res = UINT_MAX;
 	long	current;
 	for (size_t i = 0; i < this->_size - 1;) {

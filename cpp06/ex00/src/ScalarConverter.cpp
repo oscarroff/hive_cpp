@@ -166,7 +166,7 @@ static void	convertInt( const std::string& literal ) {
 
 static void	literalInt( int num ) {
 	std::cout << "char: ";
-	if (!std::isprint(num))
+	if (num < 32 || num > 126)
 		std::cout << "non displayable\n";
 	else
 		std::cout << "'" << static_cast<char>(num) << "'\n";
@@ -188,6 +188,9 @@ static void	convertFloat( const std::string& literal ) {
 	}
 	catch (const std::out_of_range& e) {
 		std::cout << "float conversion fail: out of range\n";
+	}
+	catch (const std::invalid_argument& e) {
+		std::cout << "float conversion fail: invalid argument\n";
 	}
 };
 
@@ -257,6 +260,9 @@ static void	convertDouble( const std::string& literal ) {
 	}
 	catch (const std::out_of_range& e) {
 		std::cerr << "double conversion fail: out of range\n";
+	}
+	catch (const std::invalid_argument& e) {
+		std::cout << "double conversion fail: invalid argument\n";
 	}
 };
 
