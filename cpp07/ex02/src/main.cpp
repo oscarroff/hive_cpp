@@ -38,7 +38,7 @@ int	main( void ) {
 		<< "array3[2]: " << array3[2] << "\n";
 	std::cout << "\n";
 	std::cout << "array2[0] address: " << &array2[0] << "\n";
-	std::cout << "array3[0] address: " << &array2[0] << "\n";
+	std::cout << "array3[0] address: " << &array3[0] << "\n";
 	std::cout << "\n";
 
 	std::cout << "=== Assignment Operator ===\n";

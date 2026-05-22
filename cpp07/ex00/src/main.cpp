@@ -45,8 +45,8 @@ int	main(void)
 	int f = 42;
 	std::cout << "e address = " << &e << "\n";
 	std::cout << "f address = " << &f << "\n";
-	std::cout << "min( d, e ) address = " << &::min(e, f) << "\n";
-	std::cout << "max( d, e ) address = " << &::max(e, f) << "\n";
+	std::cout << "min( e, f ) address = " << &::min(e, f) << "\n";
+	std::cout << "max( e, f ) address = " << &::max(e, f) << "\n";
 
 	return (0);
 }

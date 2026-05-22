@@ -19,9 +19,8 @@ CPP			= c++
 CFLAGS		= -Wall -Wextra -Werror -std=c++20
 
 # Sources
-# SRC_FILES	= 
-# SRCS		= $(addprefix src/, $(SRC_FILES))
-SRCS		= $(shell find -name "*.cpp")
+SRC_FILES	= main.cpp
+SRCS		= $(addprefix src/, $(SRC_FILES))
 
 # Objects & Dependencies
 OBJS		= $(patsubst src/%.cpp, obj/%.o, $(SRCS))

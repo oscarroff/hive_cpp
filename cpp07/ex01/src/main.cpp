@@ -18,6 +18,7 @@ int	main(void)
 	int			array1[5] = {6, 42, 9, 20, -123};
 	float		array2[3] = {4.2f, 3.4e5f, 9.7e-10f};
 	std::string	array3[2] = {"I like... birds", "Don't care about the rocket launch"};
+	const int	array4[5] = {6, 42, 9, 20, -123};
 
 	std::cout << "Printing\n";
 	std::cout << "array1:\n";
@@ -39,5 +40,10 @@ int	main(void)
 	std::cout << "array2:\n";
 	iter(array2, 3, decrement<float>);
 	iter(array2, 3, printArray<float>);
+
+	std::cout << "\n";
+	std::cout << "\n";
+	std::cout << "Const Array\n";
+	iter(array4, 5, printArray<const int>);
 	return (0);
 }
