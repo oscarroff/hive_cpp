@@ -11,13 +11,13 @@
 /* ************************************************************************** */
 
 #include "easyfind.tpp"
-#include <iostream>
-#include <array>
-#include <vector>
-#include <deque>
+#include <iostream> // for std::cout
+#include <array> // for std::array
+#include <vector> // for std::vector
+#include <deque> // for std::deque
 
 int	main(void) {
-	std::cout << "=== array tests ===\n";
+	std::cout << "=== vector tests ===\n";
 	std::vector<int>	vec1 = {1, 2, 3, 4};
 	auto	it1 = easyfind(vec1, 2);
 	if (it1 != vec1.end())
@@ -64,5 +64,22 @@ int	main(void) {
 	else
 		std::cout << "42 was not found!\n";
 	std::cout << "\n";
+
+	std::cout << "=== const vector tests ===\n";
+	const std::vector<int>	vec4 = {1, 2, 3, 4};
+	auto	it4 = easyfind(vec4, 2);
+	if (it4 != vec4.end())
+		std::cout << "2 was found at index: "
+			<< std::distance(vec4.begin(), it4) << "\n";
+	else
+		std::cout << "2 was not found!\n";
+	it4 = easyfind(vec4, 42);
+	if (it4 != vec4.end())
+		std::cout << "42 was found at index: "
+			<< std::distance(vec4.begin(), it4) << "\n";
+	else
+		std::cout << "42 was not found!\n";
+	std::cout << "\n";
+
 	return (0);
 }

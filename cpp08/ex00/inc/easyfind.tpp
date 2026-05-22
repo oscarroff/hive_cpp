@@ -14,11 +14,11 @@
 #include <algorithm>
 
 template <typename T>
-typename T::const_iterator	easyfind( const T& haystack, const int needle ) {
+typename T::iterator	easyfind( T& haystack, int needle ) {
 	return std::find(haystack.begin(), haystack.end(), needle);
 };
 
 template <typename T>
-typename T::iterator	easyfind( T& haystack, int needle ) {
+typename T::const_iterator	easyfind( const T& haystack, const int needle ) {
 	return std::find(haystack.begin(), haystack.end(), needle);
 };

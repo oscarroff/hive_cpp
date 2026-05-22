@@ -17,10 +17,12 @@
  * Find the 1st occurence of the 2nd parameter in the 1st parameter
  * We handle only sequential containers as the 1st parameter
  * E.g. arrays and vectors, not linked lists
+ *
+ * easyfind() overloaded to allow for const and non-const input
 */
 
 template <typename T>
-typename T::iterator	easyfind( T& t, const int );
+typename T::iterator	easyfind( T& t, int );
 
 template <typename T>
-typename T::const_iterator	easyfind( const T& t, int );
+typename T::const_iterator	easyfind( const T& t, const int );
