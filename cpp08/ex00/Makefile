@@ -19,13 +19,13 @@ CPP			= c++
 CFLAGS		= -Wall -Wextra -Werror -std=c++20
 
 # Sources
-SRC_FILES	= main.cpp
+SRC_FILES	= main.cpp Span.cpp
 SRCS		= $(addprefix src/, $(SRC_FILES))
 
 # Objects & Dependencies
 OBJS		= $(patsubst src/%.cpp, obj/%.o, $(SRCS))
 OBJ_DIRS	= $(sort $(dir $(OBJS)))
-DEPS		= $(OBJ:.o=.d)
+DEPS		= $(OBJS:.o=.d)
 
 all: $(NAME)
 
@@ -36,7 +36,7 @@ $(OBJ_DIRS):
 	mkdir -p $@
 
 obj/%.o: src/%.cpp | $(OBJ_DIRS)
-	$(CPP) $(CFLAGS) -Iinc -c $< -o $@
+	$(CPP) $(CFLAGS) -Iinc -c $< -o $@ -MMD -MP
 
 -include $(DEPS)
 
