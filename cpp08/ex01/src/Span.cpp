@@ -35,6 +35,12 @@ Span::Span( const Span& other ) : _size(other._size), _capacity(other._capacity)
 	}
 };
 
+/*
+ * Another implementation of the copy assignment could be to use the std::move()
+ * function. But this requires more reading:
+ * https://www.modernescpp.com/index.php/c-core-guidelines-copy-and-move-rules/
+*/
+
 // Copy assignment operator
 Span& Span::operator=( const Span& other ) {
 	if (this != &other) {
