@@ -19,7 +19,7 @@ CPP			= c++
 CFLAGS		= -Wall -Wextra -Werror -std=c++20
 
 # Sources
-SRC_FILES	= main.cpp
+SRC_FILES	= main.cpp BitcoinExchange.cpp
 SRCS		= $(addprefix src/, $(SRC_FILES))
 
 # Objects & Dependencies

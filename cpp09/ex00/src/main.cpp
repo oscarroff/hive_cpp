@@ -12,8 +12,17 @@
 
 #include "BitcoinExchange.hpp"
 #include <iostream>
+#include <bits/stdc++.h>
 
-int	main(void) {
+int	main(int argv, char **argc) {
 	std::cout << "I am working!\n";
+	if (argv != 2) {
+		std::cout << "Usage: ./BitcoinExchange [path_to_input_file]\n";
+		return 0;
+	}
+	(void)argc;
+	BitcoinExchange	exchange("data.csv");
+	for (auto x: exchange.getMap())
+		std::cout << x.first << " " << x.second << "\n";
 	return 0;
 };
