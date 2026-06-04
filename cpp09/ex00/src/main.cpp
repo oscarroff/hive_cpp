@@ -24,5 +24,6 @@ int	main(int argv, char **argc) {
 	BitcoinExchange	exchange("data.csv");
 	for (auto x: exchange.getMap())
 		std::cout << x.first << " " << x.second << "\n";
+	std::cout << "getValue: " << exchange.getValue("2022-03-29") << "\n";
 	return 0;
 };
