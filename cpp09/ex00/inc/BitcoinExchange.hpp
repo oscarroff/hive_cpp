@@ -20,7 +20,8 @@
 // DECIMAL_FACTOR
 // We want to preserve accuracy for 2 decimal places, thus ints holding the
 // value of the bitcoin are handled as: stored value = original value * 10^2
-#define DECIMAL_FACTOR 100
+#define DECIMAL_FACTOR 1000
+#define DATE_SEPARATOR '-'
 
 using ymd = std::chrono::year_month_day;
 
@@ -35,7 +36,7 @@ public:
 	BitcoinExchange &operator=(const BitcoinExchange &other);
 	~BitcoinExchange();
 	// Public member functions
-	std::map<ymd, int> &getMap();
+	std::map<ymd, int> &getDatabase();
 	void loadCSV(const char *path);
 	int	getValue( const std::string& dateString ) const;
 
@@ -48,3 +49,5 @@ public:
 		const char *what() const noexcept override;
 	};
 };
+
+std::ostream&	operator<<( std::ostream& out, const ymd& date );

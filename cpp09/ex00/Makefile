@@ -15,8 +15,8 @@ PROJECT		= Bitcoin
 NAME		= Bitcoin
 
 # Tools
-CPP			= c++
-CFLAGS		= -Wall -Wextra -Werror -std=c++20
+CPP			= g++
+CFLAGS		= -Wall -Wextra -Werror -std=c++20 -g
 
 # Sources
 SRC_FILES	= main.cpp BitcoinExchange.cpp
