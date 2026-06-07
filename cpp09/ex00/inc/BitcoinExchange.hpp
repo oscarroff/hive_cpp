@@ -28,13 +28,16 @@ struct Power<B, 0> {
 	static constexpr int	value = 1;
 };
 
+// Struct for the fixed point type
+struct	fixed;
+
 using ymd = std::chrono::year_month_day;
 
 class BitcoinExchange {
 private:
-	std::map<ymd, long> _database;
-	std::optional<long>	parseValue( const std::string& numString ) const;
-	std::optional<ymd>	parseDate( const std::string& dateString, char separator ) const;
+	std::map<ymd, fixed>	_database;
+	std::optional<fixed>	parseValue( const std::string& numString ) const;
+	std::optional<ymd>		parseDate( const std::string& dateString, char delimiter ) const;
 public:
 	// Constructors & destructors
 	BitcoinExchange() = default;
@@ -43,30 +46,23 @@ public:
 	BitcoinExchange &operator=(const BitcoinExchange &other);
 	~BitcoinExchange();
 	// Public member functions
-	std::map<ymd, long> &getDatabase();
-	void	loadDatabase(const char *path);
-	void	evaluateInput( const char* path );
-	std::optional<int>	getExchangeRate( const ymd& date ) const;
+	std::map<ymd, fixed>	&getDatabase();
+	void					loadDatabase(const char *path);
+	void					evaluateInput( const char* path );
+	std::optional<fixed>	getExchangeRate( const ymd& date ) const;
 
 	// Static Member Variables
 	// We want to preserve accuracy for 3 decimal places, thus ints holding the
 	// value of the bitcoin are handled as: stored value = original value * 10^3
-	static constexpr int	decimalExponent = 3;
-	static constexpr int	decimalFactor = Power<10, decimalExponent>::value;
-	static constexpr float	decimalReverseFactor = 1.0 / decimalFactor;
+	static constexpr int			decimalExponent = 3;
+	static constexpr int			decimalFactor = Power<10, decimalExponent>::value;
+	static constexpr long			bitcoinMax = 1000 * decimalFactor;
 	// Separator to be used when writing the date e.g. 2026-05-31
-	static constexpr char	dateSeparator = '-';
+	static constexpr char			dateDelimiter = '-';
+	static constexpr char			databaseSeparator = ',';
+	static constexpr const char*	inputSeparator = " | ";
 	static constexpr const char*	numberChars = "0123456789+-";
 	static constexpr const char*	floatChars = "0123456789+-.";
-
-	// Custom Exceptions
-	class ParseFail : public std::exception {
-	private:
-		std::string _message;
-	public:
-		ParseFail(const std::string &name);
-		const char *what() const noexcept override;
-	};
 };
 
 std::ostream&	operator<<( std::ostream& out, const ymd& date );

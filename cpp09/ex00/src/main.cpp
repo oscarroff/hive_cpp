@@ -16,15 +16,16 @@
 
 int	main(int argv, char **argc) {
 	if (argv != 2) {
-		std::cerr << "Error: could not open file\n"
+		std::cerr << "Error: could not open input file\n"
 		<< "Usage: ./BitcoinExchange [path_to_input_file]\n";
 		return 1;
 	}
-
-	BitcoinExchange	exchange("data.csv");
-	exchange.evaluateInput(argc[1]);
-	// (void)argc;
-	// for (auto x: exchange.getDatabase())
-	// 	std::cout << x.first << " " << x.second << "\n";
+	try {
+		BitcoinExchange	exchange("data.csv");
+		exchange.evaluateInput(argc[1]);
+	}
+	catch (std::exception& e) {
+		std::cerr << "Error: " << e.what() << "\n";
+	}
 	return 0;
 };

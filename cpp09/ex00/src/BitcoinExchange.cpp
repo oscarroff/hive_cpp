@@ -12,10 +12,20 @@
 
 #include "BitcoinExchange.hpp"
 #include <bits/stdc++.h> // for std::ifstream
-#include <climits>
-#include <optional>
+#include <sstream>
 
+// Forward overload declarations
 std::ostream&	operator<<( std::ostream& out, const ymd& date );
+std::ostream&	operator<<( std::ostream& out, const fixed& f );
+
+// Struct for the fixed point type
+struct	fixed {
+	long	n;
+	fixed(long v = 0) : n(v) {}
+	operator long() const { return n; }
+};
+
+// ========== OCF ==========
 
 // Copy constructor
 BitcoinExchange::BitcoinExchange( const BitcoinExchange& other )
@@ -36,18 +46,20 @@ BitcoinExchange::BitcoinExchange( const char* path ) {;
 	loadDatabase(path);
 };
 
-// Public member functions
-std::map<ymd, long>&	BitcoinExchange::getDatabase() {
+// ========== Public member functions ==========
+
+// Getter for the bitcoin database
+std::map<ymd, fixed>&	BitcoinExchange::getDatabase() {
 	return this->_database;
 };
 
 // Parse a date with a given separator char into a std::chrono::year_month_day value
-std::optional<ymd>	BitcoinExchange::parseDate( const std::string& dateString, char separator ) const {
+std::optional<ymd>	BitcoinExchange::parseDate( const std::string& dateString, char delimiter ) const {
 	int		year, month, day;
 	char	s1, s2;
 	std::stringstream	ss(dateString);
 	if (!(ss >> year >> s1 >> month >> s2 >> day) ||
-		s1 != separator || s2 != separator)
+		s1 != delimiter || s2 != delimiter)
 		return std::nullopt;
 	auto y = std::chrono::year(year);
 	auto m = std::chrono::month(month);
@@ -64,14 +76,15 @@ std::optional<ymd>	BitcoinExchange::parseDate( const std::string& dateString, ch
 // 3 decimal places, stored as an int
 // Using the more modern std::from_chars which has better performance and easier
 // error handling that std::stoi
-std::optional<long>	BitcoinExchange::parseValue( const std::string& numString ) const {
+std::optional<fixed>	BitcoinExchange::parseValue( const std::string& numString ) const {
 	if (!numString.find(floatChars))
 		return std::nullopt;
 
+	fixed	result;
 	long	value;
 	auto res = std::from_chars(numString.data(),
 		numString.data() + numString.find_first_not_of(numberChars), value);
-	if (res.ec != std::errc() || value > INT_MAX || value < INT_MIN)
+	if (res.ec != std::errc())
 		return std::nullopt;
 	value *= decimalFactor;
 
@@ -87,85 +100,104 @@ std::optional<long>	BitcoinExchange::parseValue( const std::string& numString ) 
 	fraction *= std::pow(10, decimalExponent - fractionString.size() + 1);
 
 	value += fraction;
-	return value;
+	result.n = value;
+	return result;
 }
 
-std::optional<int>	BitcoinExchange::getExchangeRate( const ymd& date ) const {
-	for (auto it = this->_database.begin(); it != this->_database.end(); ++it) {
+// Getter for the exchange rate, returns if a match or if there is an earlier date
+std::optional<fixed>	BitcoinExchange::getExchangeRate( const ymd& date ) const {
+	auto it = this->_database.begin();
+	while (it != this->_database.end()) {
 		if (it->first == date)
 			return it->second;
-		else if (it->first > date)
-			return it - 1;
+		else if (it->first > date) {
+			--it;
+			return it->second;
+		}
+		++it;
 	}
-	// auto	it = this->_database.find(date);
-	// if (it != this->_database.end())
-	// 	return it->second;
+	--it;
+	if (date > it->first)
+		return it->second;
 	return std::nullopt;
 }
 
+// Helper function for throwing an error and closing the file stream
 static void	throwAndFree( const char* message, std::ifstream& file ) {
 	file.close();
 	throw std::runtime_error(message);
 };
 
+// Load a database file e.g. 'data.csv' into the database map of the object
+// Is called by a specialist constructor overload
 void    BitcoinExchange::loadDatabase( const char* path ) {
 	std::ifstream	file(path);
 	if (!file.is_open())
 		throw std::runtime_error("could not open database file");
 
 	std::string	line;
-	std::optional<ymd>	date;
-	std::optional<long>	bcValue;
+	size_t		position;
+	std::optional<ymd>		date;
+	std::optional<fixed>	bitcoin;
 	std::getline(file, line);
 	if (line != "date,exchange_rate")
 		throwAndFree("invalid header", file);
 
 	while (std::getline(file, line)) {
-		date = parseDate(line.substr(0, 10), dateSeparator);
+		position = line.find_first_of(databaseSeparator);
+		date = parseDate(line.substr(0, position), dateDelimiter);
 		if (!date.has_value())
 			throwAndFree("invalid date", file);
-		bcValue = parseValue(line.substr(11));
-		if (!bcValue.has_value())
+		bitcoin = parseValue(line.substr(11));
+		if (!bitcoin.has_value())
 			throwAndFree("invalid value", file);
-		this->_database.insert({date.value(), static_cast<int>(bcValue.value())});
+		this->_database.insert({date.value(), bitcoin.value()});
 	}
 	file.close();
 };
 
+// Takes in a path to an input file, parses the data and checks for
+// values in the database
 void	BitcoinExchange::evaluateInput( const char* path ) {
 	std::ifstream	file(path);
 	if (!file.is_open())
 		throw std::runtime_error("could not open input file");
 
 	std::string	line;
+	size_t	position;
+	size_t	separatorLength = std::strlen(inputSeparator);
 	std::optional<ymd>	date;
-	std::optional<long>	bcValue;
-	std::optional<long> exchangeRate;
-	long	bcMax = 1000 * decimalFactor;
+	std::optional<fixed>	bitcoin, exchangeRate;
+	fixed	result;
 	std::getline(file, line);
 	if (line != "date | value")
 		throwAndFree("invalid header", file);
 
 	while (std::getline(file, line)) {
-		date = parseDate(line.substr(0, 10), dateSeparator);
+		position = line.find_first_of(' ');
+		if (position == std::string::npos
+			|| line.substr(position).length() < separatorLength + 1
+			|| line.substr(position, separatorLength) != inputSeparator
+			|| !line.find(floatChars, position + separatorLength, 1)
+			|| line.find_first_not_of(floatChars, position + separatorLength) != std::string::npos) {
+			std::cerr << "Error: bad input => " << line << "\n";
+			continue;
+		}
+		date = parseDate(line.substr(0, position), dateDelimiter);
 		if (!date.has_value()) {
 			std::cerr << "Error: invalid date\n";
 			continue;
 		}
-		if (line.substr(10, 3) != " | ") {
-			std::cerr << "Error: bad input => " << line << "\n";
-			continue;
-		}
-		bcValue = parseValue(line.substr(13));
-		if (!bcValue.has_value()) {
+		bitcoin = parseValue(line.substr(position + separatorLength));
+		if (!bitcoin.has_value()) {
 			std::cerr << "Error: invalid value\n";
 			continue;
 		}
-		if (bcValue.value() < 0) {
+		if (bitcoin.value().n < 0) {
 			std::cerr << "Error: not a positive number\n";
 			continue;
 		}
-		if (bcValue.value() > bcMax) { 
+		if (bitcoin.value().n > bitcoinMax) { 
 			std::cerr << "Error: too large a number\n";
 			continue;
 		}
@@ -174,29 +206,34 @@ void	BitcoinExchange::evaluateInput( const char* path ) {
 			std::cerr << "Error: no exchange rate data\n";
 			continue;
 		}
+		result.n = bitcoin.value().n * exchangeRate.value().n / decimalFactor;
 		std::cout << date.value() << " => "
-			<< bcValue.value() * decimalReverseFactor << " = "
-			<< bcValue.value() * getExchangeRate(date.value())
-			* decimalReverseFactor * decimalReverseFactor << "\n";
+			<< bitcoin.value() << " = "
+			<< result << "\n";
 	}
 	file.close();
 };
 
-// Custom exceptions
-BitcoinExchange::ParseFail::ParseFail(const std::string &name) {
-	(void)name;
-};
+// ========== Non-member functions ==========
 
-const char* BitcoinExchange::ParseFail::what() const noexcept {
-	return this->_message.c_str();
-};
-
-// Non-member functions
+// Overload for cout << for displaying dates with the static member variable delimeter
 std::ostream&	operator<<( std::ostream& out, const ymd& date ) {
-	out << static_cast<int>(date.year()) << BitcoinExchange::dateSeparator
+	out << static_cast<int>(date.year()) << BitcoinExchange::dateDelimiter
 	<< std::setw(2) << std::setfill('0')
-	<< static_cast<unsigned int>(date.month()) << BitcoinExchange::dateSeparator
+	<< static_cast<unsigned int>(date.month()) << BitcoinExchange::dateDelimiter
 	<< std::setw(2) << std::setfill('0')
 	<< static_cast<unsigned int>(date.day());
+	return out;
+};
+
+// Overload for cout << for displaying the custom fixed point type
+std::ostream&	operator<<( std::ostream& out, const fixed& f ) {
+	if (f.n % BitcoinExchange::decimalFactor < 1)
+		return out << f.n / BitcoinExchange::decimalFactor;
+	std::string	os = std::to_string(f.n / BitcoinExchange::decimalFactor)
+	+ '.' + std::to_string(f.n % BitcoinExchange::decimalFactor);
+	while (!os.empty() && os.back() == '0')
+		os.pop_back();
+	out << os;
 	return out;
 };
