@@ -6,7 +6,7 @@
 #    By: thblack- <thblack-@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/09 11:30:32 by thblack-          #+#    #+#              #
-#    Updated: 2026/05/15 15:13:02 by thblack-         ###   ########.fr        #
+#    Updated: 2026/06/08 13:15:13 by thblack-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ NAME		= RPN
 
 # Tools
 CPP			= g++
-CFLAGS		= -Wall -Wextra -Werror -std=c++20 -g
+CFLAGS		= -Wall -Wextra -Werror -std=c++20
 
 # Sources
 SRC_FILES	= main.cpp RPN.cpp
