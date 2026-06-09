@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
+#include <algorithm>
 #include <charconv> // for std::from_chars
 #include <cstring> // for std::strlen
 #include <stdexcept> // for std::runtime_error
@@ -32,15 +33,21 @@ T	PmergeMe<T>::loadData( char** args ) {
 };
 
 template <typename T>
+static void	sortPairRange( T& in, size_t position, size_t pairSize ) {
+	auto	first1 = std::next(in.begin(), position);
+	auto	last1 = std::next(in.begin(), position + pairSize - 1);
+	auto	first2 = std::next(in.begin(), position + pairSize);
+	std::swap_ranges(first1, last1, first2); 
+};
+
+template <typename T>
 T	PmergeMe<T>::mergeInsertSort( const T& in ) {
 	T		res(in);
-	size_t	recursionLevel = 1;
-	while (res.size() / recursionLevel > 1) {
-		for (auto it = res.begin(); it != res.end(); ++it) {
-			if (*std::next(it, recursionLevel - 1) > *std::next(it, (recursionLevel * 2) - 1))
-				std::swap_ranges(it, std::next(it, recursionLevel - 1), std::next(it, recursionLevel)); 
-		}
-		recursionLevel *= 2;
+	size_t	pairSize = 2;
+	while (res.size() / pairSize > 0) {
+		for (size_t i = 0; res.size() - i >= pairSize; i += pairSize) 
+			sortPairRange(res, i, pairSize);
+		pairSize *= 2;
 	}
 	return res;
 };
