@@ -24,12 +24,12 @@ int	main(int argv, char **argc) {
 	list	lstInput, lstOutput;
 	try {
 		vecInput = PmergeMe<vector>::loadData(argc + 1);
-		vecOutput = PmergeMe<vector>::mergeInsertSort(vecInput);
+		vecOutput = PmergeMe<vector>::fordJohnsonAlgo(vecInput);
 		std::cout << "VECTOR\n";
 		std::cout << "Before: " << vecInput << "\n";
 		std::cout << "After: " << vecOutput << "\n";
 		lstInput = PmergeMe<list>::loadData(argc + 1);
-		lstOutput = PmergeMe<list>::mergeInsertSort(lstInput);
+		lstOutput = PmergeMe<list>::fordJohnsonAlgo(lstInput);
 		std::cout << "LIST\n";
 		std::cout << "Before: " << lstInput << "\n";
 		std::cout << "After: " << lstOutput << "\n";

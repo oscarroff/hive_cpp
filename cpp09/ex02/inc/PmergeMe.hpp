@@ -17,6 +17,15 @@
 
 using vector = std::vector<unsigned int>;
 using list = std::list<unsigned int>;
+template <typename T>
+using chain = std::vector<typename T::iterator>;
+
+// template <typename T>
+// struct element {
+// 	T::iterator	it;
+// 	size_t		pos;
+// 	bool		main;
+// };
 
 template <typename T>
 class PmergeMe {
@@ -28,7 +37,7 @@ public:
 	~PmergeMe() = delete;
 
 	static T	loadData( char** args );
-	static T	mergeInsertSort( const T& in );
+	static T	fordJohnsonAlgo( const T& in );
 
 	// static vector	loadVectorData( char** args );
 	// static list		loadListData( char** args );
