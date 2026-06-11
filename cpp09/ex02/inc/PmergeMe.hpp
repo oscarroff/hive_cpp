@@ -37,6 +37,7 @@ public:
 	~PmergeMe() = delete;
 
 	static T	loadData( char** args );
+	static bool	isSort( T& data );
 	static T	fordJohnsonAlgo( const T& in );
 
 	// static vector	loadVectorData( char** args );

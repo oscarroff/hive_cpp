@@ -12,6 +12,7 @@
 
 #include "PmergeMe.hpp"
 #include "PmergeMe.cpp"
+#include <cstdlib>
 #include <iostream> // for std::cout
 
 int	main(int argv, char **argc) {
@@ -24,7 +25,10 @@ int	main(int argv, char **argc) {
 	list	lstInput, lstOutput;
 	try {
 		vecInput = PmergeMe<vector>::loadData(argc + 1);
-		vecOutput = PmergeMe<vector>::fordJohnsonAlgo(vecInput);
+		if (!PmergeMe<vector>::isSort(vecInput))
+			vecOutput = PmergeMe<vector>::fordJohnsonAlgo(vecInput);
+		else
+			vecOutput = vecInput;
 		std::cout << "VECTOR\n";
 		std::cout << "Before: " << vecInput << "\n";
 		std::cout << "After: " << vecOutput << "\n";
@@ -39,5 +43,5 @@ int	main(int argv, char **argc) {
 	catch (std::exception& e) {
 		std::cerr << e.what() << "\n";
 	}
-	std::cout << "I am working!\n";
+	return EXIT_SUCCESS;
 };

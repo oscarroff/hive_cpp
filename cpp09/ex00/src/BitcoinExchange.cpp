@@ -12,6 +12,7 @@
 
 #include "BitcoinExchange.hpp"
 #include <bits/stdc++.h> // for std::ifstream
+#include <charconv>
 #include <sstream>
 
 // Forward overload declarations
@@ -84,6 +85,8 @@ std::optional<fixed>	BitcoinExchange::parseValue( const std::string& numString )
 	long	value;
 	auto res = std::from_chars(numString.data(),
 		numString.data() + numString.find_first_not_of(numberChars), value);
+	// std::from_chars_result res = std::from_chars(numString.data(),
+	// 	numString.data() + numString.find_first_not_of(numberChars), value);
 	if (res.ec != std::errc())
 		return std::nullopt;
 	value *= decimalFactor;

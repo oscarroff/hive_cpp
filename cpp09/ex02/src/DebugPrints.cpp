@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PmergeMe.cpp                                       :+:      :+:    :+:   */
+/*   DebugPrints.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thblack- <thblack-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/13 10:48:55 by thblack-          #+#    #+#             */
-/*   Updated: 2026/06/11 16:51:16 by thblack-         ###   ########.fr       */
+/*   Updated: 2026/06/11 16:02:52 by thblack-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,8 @@
 #include <cstring> // for std::strlen
 #include <stdexcept> // for std::runtime_error
 #include <iostream>
-#include <cmath>
 
 // Steady clock to measure durations
-// for testing: ./PmergeMe `shuf -i 1-1000 -n 3000 | tr "\n" " "`
 
 template <typename T>
 T	PmergeMe<T>::loadData( char** args ) {
@@ -70,7 +68,11 @@ static void	buildChains( T& main, T& pend, size_t elementSize ) {
 	bool	pendToggle = true;
 	size_t	i = 2 * elementSize;
 	while (i + elementSize - 1 < main.size()) {
+		// std::cout << "i: " << i << " value: " << *std::next(main.begin(), i) << " toggle: " << pendToggle << "\n";
 		if (pendToggle == true) {
+			// Why minus pend.size()?
+			// auto	elementBegin = std::next(main.begin(), i - pend.size());
+			// auto	elementEnd = std::next(main.begin(), i + elementSize - pend.size());
 			auto	elementBegin = std::next(main.begin(), i);
 			auto	elementEnd = std::next(main.begin(), i + elementSize);
 			pend.insert(pend.end(), elementBegin, elementEnd);
@@ -89,28 +91,34 @@ static size_t	roundToScale( size_t value, size_t scale ) {
 // Finds position in main for position in pend of elementSize
 // 1. lower and upper limits are gradually narrowed until position found
 // 2. insert() and erase() called on data to move range of data
-// 3. return the updated sorted count
 template <typename T>
-static void	resolveInsertion( T& main, T& pend, size_t i, size_t treeSize, size_t elementSize ) {
+static void	resolveInsertion( T& main, T& pend,
+							 size_t i, size_t jacobsPrevious, size_t elementSize ) {
 	auto	lower = std::next(main.begin(), elementSize - 1);
-	auto	upper = std::next(main.begin(), (treeSize * elementSize) - 1);
+	auto	upper = std::next(main.begin(), (((jacobsPrevious * 2) + i) * elementSize) - 1);
 	auto	middle = std::next(lower, roundToScale(std::distance(lower, upper) / 2, elementSize));
 	auto	pendBegin = std::next(pend.begin(), i * elementSize);
 	auto	pendCompValue = std::next(pendBegin, elementSize - 1);
 	auto	pendEnd = std::next(pendBegin, elementSize);
 	while (1) {
-		std::cout << "mainSize: " << main.size() << "\n";
-		std::cout << "pendSize: " << pend.size() << "\n";
+	// for (size_t j = 0; j < 10; ++j) {
 		std::cout << "lower " << std::distance(main.begin(), lower) << "\n";
 		std::cout << "middle " << std::distance(main.begin(), middle) << "\n";
 		std::cout << "upper " << std::distance(main.begin(), upper) << "\n";
 		if (lower == upper) {
+			// std::cout << "mainSize: " << main.size() << "\n";
+			// std::cout << "pendSize: " << pend.size() << "\n";
+			// std::cout << "pendB " << std::distance(pend.begin(), pendBegin) << " " << *pendBegin << "\n";
+			// std::cout << "pendC " << std::distance(pend.begin(), pendCompValue) << " " << *pendCompValue << "\n";
+			// std::cout << "pendE " << std::distance(pend.begin(), pendEnd) << " " << *pendEnd << "\n";
 			if (*pendCompValue < *lower)
 				main.insert(std::next(lower, 1 - elementSize), pendBegin, pendEnd);
 			else
 				main.insert(std::next(lower, 1), pendBegin, pendEnd);
+			// pend.erase(pendBegin, pendEnd);
 			pend.erase(pendBegin, pendEnd);
-			return;
+			// data.erase(iters[1][i], std::next(iters[1][i], elementSize - 1));
+			break;
 		}
 		if (*pendCompValue < *middle) {
 			if (lower == middle)
@@ -123,6 +131,8 @@ static void	resolveInsertion( T& main, T& pend, size_t i, size_t treeSize, size_
 		if (lower != upper)
 			middle = std::next(lower, roundToScale(std::distance(lower, upper) / 2, elementSize));
 	}
+	// std::cout << "mainSize: " << main.size() << "\n";
+	// std::cout << "pendSize: " << pend.size() << "\n";
 };
 
 // Function calculates next value of Jacobsthal sequence
@@ -147,11 +157,14 @@ static void	mergeInsert( T& main, T& pend, size_t elementSize ) {
 	size_t	iMax = pend.size() / elementSize - 1;
 	if (i > iMax)
 		i = iMax;
+	// for (size_t j = 0; j < 1; ++j) {
 	while (!pend.empty()) {
 		// Passing jacobsPrevious here in effect passes the number that is already
 		// sorted, we start from 3 (index 2) becuase the first 2 elements, b1 and a1
 		// are always in the main
-		resolveInsertion(main, pend, i, std::pow(2, jacobsN - 1) - 1, elementSize);
+		// std::cout << "pend.size(): " << pend.size() << "\n";
+		resolveInsertion(main, pend, i, jacobsPrevious, elementSize);
+		// std::cout << "pend.size(): " << pend.size() << "Done resolveInsertion()\n";
 		if (i > 0)
 			--i;
 		else {
@@ -163,14 +176,6 @@ static void	mergeInsert( T& main, T& pend, size_t elementSize ) {
 		}
 	}
 };
-
-static size_t	maxElementSize( size_t dataSize ) {
-	size_t	thirdSize = dataSize / 3;
-	size_t	max = 2;
-	while (max <= thirdSize)
-		max *= 2;
-	return max / 2;
-}
 
 // Main algorithm
 // 1. calls sortPairRange() to do the initial sort of pairs up to max size of
@@ -191,12 +196,9 @@ T	PmergeMe<T>::fordJohnsonAlgo( const T& data ) {
 	if (main.size() < 3 || isSort(main))
 		return main;
 	T	pend;
-	size_t	elementSize = maxElementSize(main.size());
-	std::cout << "Before chains\n";
-	std::cout << "main\n";
-	for (auto it = main.begin(); it != main.end(); it = std::next(it)) {
-		std::cout << "i: " << *it << "\n";
-	}
+	size_t	elementSize = pairSize;
+	while (main.size() / elementSize < 3)
+		elementSize /= 2;
 	while (elementSize > 0) {
 		std::cout << "PAIR SIZE LEVEL: " << elementSize << "\n";
 		buildChains(main, pend, elementSize);
