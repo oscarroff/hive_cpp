@@ -11,12 +11,10 @@
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
-#include <algorithm>
 #include <charconv> // for std::from_chars
 #include <cstring> // for std::strlen
 #include <stdexcept> // for std::runtime_error
-#include <iostream>
-#include <cmath>
+#include <cmath> // for pow()
 
 // Steady clock to measure durations
 // for testing: ./PmergeMe `shuf -i 1-1000 -n 3000 | tr "\n" " "`
@@ -224,122 +222,3 @@ std::ostream&	operator<<( std::ostream& out, const list& in ) {
 	out << str;
 	return out;
 };
-
-// template <typename T>
-// vector	PmergeMe<T>::loadVectorData( char** args ) {
-// 	unsigned int			value;
-// 	std::from_chars_result	flag;
-// 	vector					result;
-// 	while (*args != nullptr) {
-// 		flag = std::from_chars(*args, *args + std::strlen(*args), value);
-// 		if (flag.ec != std::errc())
-// 			throw std::runtime_error("integer conversion fail");
-// 		result.push_back(value);
-// 		args++;
-// 	}
-// 	return result;
-// };
-//
-// template <typename T>
-// list	PmergeMe<T>::loadListData( char** args ) {
-// 	unsigned int			value;
-// 	std::from_chars_result	flag;
-// 	list					result;
-// 	while (*args != nullptr) {
-// 		flag = std::from_chars(*args, *args + std::strlen(*args), value);
-// 		if (flag.ec != std::errc())
-// 			throw std::runtime_error("integer conversion fail");
-// 		result.push_back(value);
-// 		args++;
-// 	}
-// 	return result;
-// };
-
-// Print for iters
-// std::cout << "main\n";
-// for (size_t i = 0; i < iters[0].size(); ++i) {
-// 	std::cout << "i: " << std::distance(result.begin(), iters[0][i]) << "\n";
-// }
-// std::cout << "pend\n";
-// for (size_t i = 0; i < iters[1].size(); ++i) {
-// 	std::cout << "i: " << std::distance(result.begin(), iters[1][i]) << "\n";
-// }
-
-// Old mergeInsert
-// template <typename T>
-// static void	mergeInsert( T& data, chain<T>* iters, size_t elementSize ) {
-// 	if (data.size() < 3) 
-// 		return;
-// 	size_t	jacobsPrevious = 1, jacobsCurrent = 3, jacobsN = 3;
-// 	size_t	i = jacobsCurrent - 1;
-// 	while (1) {
-// 		if (i > jacobsPrevious - 1) {
-// 			if (i < iters[1].size())
-// 				resolveInsertion(data, iters, i, elementSize, jacobsPrevious - 1);
-// 			--i;
-// 			continue;
-// 		}
-// 		else {
-// 			nextJacobsthal(jacobsPrevious, jacobsCurrent, jacobsN);
-// 			if (jacobsPrevious >= iters[1].size())
-// 				break;
-// 			i = jacobsCurrent - 1;
-// 		}
-// 	}
-// };
-
-// Old buildChains()
-// template <typename T>
-// static chain<T>	*buildChains( T& data, size_t elementSize ) {
-// 	chain<T>	*iters = new chain<T>[2];
-// 	auto it = data.begin();
-// 	iters[0].push_back(it);
-// 	iters[1].push_back(it);
-// 	it = std::next(it, elementSize);
-// 	bool	mainPendToggle = true;
-// 	while (1) {
-// 		if (mainPendToggle == true)
-// 			iters[0].push_back(it);
-// 		else
-// 			iters[1].push_back(it);
-// 		if (abs(std::distance(it, data.end())) <= elementSize)
-// 			break;
-// 		mainPendToggle = !mainPendToggle;
-// 		it = std::next(it, elementSize);
-// 	}
-// 	return iters;
-// };
-
-// static size_t	nJacobsthal( size_t nth ) {
-// 	size_t	n2 = 1, n1 = 1, n0 = 3, temp;
-// 	while (nth > n0) {
-// 		temp = n0;
-// 		n0 = n2 * 2 + n1;
-// 		n2 = n1;
-// 		n1 = temp;
-// 	}
-// 	return n0;
-// };
-
-// Old resolveInsertion
-// template <typename T>
-// static void	resolveInsertion( T& data, chain<T>* iters,
-// 							 size_t i, size_t elementSize, size_t sortedPend ) {
-// 	size_t	lower = 0, upper = i - 1, middle;
-// 	while (1) {
-// 		if (lower == upper) {
-// 			if (iters[1][i] > iters[0][lower])
-// 				data.insert(iters[0][lower + 1], iters[1][i], std::next(iters[1][i], elementSize - 1));
-// 			else
-// 				data.insert(iters[0][lower], iters[1][i], std::next(iters[1][i], elementSize - 1));
-// 			data.erase(iters[1][i], std::next(iters[1][i], elementSize - 1));
-// 			break;
-// 		}
-// 		middle = (upper - lower) / 2;
-// 		if (iters[1][i] > iters[0][middle / 2])
-// 			lower = middle + 1;
-// 		else
-// 			upper = middle - 1;
-// 	}
-// 	(void)sortedPend;
-// };
