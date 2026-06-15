@@ -15,6 +15,8 @@
 #include <stdexcept> // for std::runtime_error
 #include <limits.h> // for INT_MAX and INT_MIN
 
+// Division by 0
+
 std::deque<int>	RPN::parseInput( const char *in ) {
 	std::string	str(in);
 	// Early throws

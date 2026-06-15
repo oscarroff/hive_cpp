@@ -20,13 +20,6 @@ using list = std::list<unsigned int>;
 template <typename T>
 using chain = std::vector<typename T::iterator>;
 
-// template <typename T>
-// struct element {
-// 	T::iterator	it;
-// 	size_t		pos;
-// 	bool		main;
-// };
-
 template <typename T>
 class PmergeMe {
 public:
@@ -39,7 +32,4 @@ public:
 	static T	loadData( char** args );
 	static bool	isSort( T& data );
 	static T	fordJohnsonAlgo( const T& in );
-
-	// static vector	loadVectorData( char** args );
-	// static list		loadListData( char** args );
 };
