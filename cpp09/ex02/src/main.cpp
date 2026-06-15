@@ -32,11 +32,13 @@ int	main(int argv, char **argc) {
 		std::cout << "VECTOR\n";
 		std::cout << "Before: " << vecInput << "\n";
 		std::cout << "After: " << vecOutput << "\n";
+		std::cout << "Result is" << (PmergeMe<vector>::isSort(vecOutput) ? " " : " not ") << "sorted!\n";
 		lstInput = PmergeMe<list>::loadData(argc + 1);
 		lstOutput = PmergeMe<list>::fordJohnsonAlgo(lstInput);
 		std::cout << "LIST\n";
 		std::cout << "Before: " << lstInput << "\n";
 		std::cout << "After: " << lstOutput << "\n";
+		std::cout << "Result is" << (PmergeMe<list>::isSort(lstOutput) ? " " : " not ") << "sorted!\n";
 		// vecInput = PmergeMe::loadVectorData(argc + 1);
 		// lstInput = PmergeMe::loadListData(argc + 1);
 	}

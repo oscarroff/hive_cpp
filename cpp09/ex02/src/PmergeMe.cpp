@@ -94,24 +94,11 @@ template <typename T>
 static void	resolveInsertion( T& main, T& pend, size_t i, size_t treeSize, size_t elementSize ) {
 	auto	lower = std::next(main.begin(), elementSize - 1);
 	auto	upper = std::next(main.begin(), (treeSize * elementSize) - 1);
-	auto	middle = std::next(lower, roundToScale(std::distance(lower, upper) / 2, elementSize));
 	auto	pendBegin = std::next(pend.begin(), i * elementSize);
 	auto	pendCompValue = std::next(pendBegin, elementSize - 1);
 	auto	pendEnd = std::next(pendBegin, elementSize);
-	while (1) {
-		std::cout << "mainSize: " << main.size() << "\n";
-		std::cout << "pendSize: " << pend.size() << "\n";
-		std::cout << "lower " << std::distance(main.begin(), lower) << "\n";
-		std::cout << "middle " << std::distance(main.begin(), middle) << "\n";
-		std::cout << "upper " << std::distance(main.begin(), upper) << "\n";
-		if (lower == upper) {
-			if (*pendCompValue < *lower)
-				main.insert(std::next(lower, 1 - elementSize), pendBegin, pendEnd);
-			else
-				main.insert(std::next(lower, 1), pendBegin, pendEnd);
-			pend.erase(pendBegin, pendEnd);
-			return;
-		}
+	while (lower != upper) {
+		auto middle = std::next(lower, roundToScale(std::distance(lower, upper) / 2, elementSize));
 		if (*pendCompValue < *middle) {
 			if (lower == middle)
 				upper = lower;
@@ -120,21 +107,34 @@ static void	resolveInsertion( T& main, T& pend, size_t i, size_t treeSize, size_
 		}
 		else
 			lower = std::next(middle, elementSize);
-		if (lower != upper)
-			middle = std::next(lower, roundToScale(std::distance(lower, upper) / 2, elementSize));
 	}
+	if (*pendCompValue < *lower)
+		main.insert(std::next(lower, 1 - elementSize), pendBegin, pendEnd);
+	else
+		main.insert(std::next(lower, 1), pendBegin, pendEnd);
+	pend.erase(pendBegin, pendEnd);
 };
 
 // Function calculates next value of Jacobsthal sequence
 // Jn+1 = 2Jn + (-1)^n
 static void	nextJacobsthal( size_t& previousValue, size_t& currentValue, size_t& currentN) {
 	size_t	temp = currentValue;
-	currentValue = 2 * currentValue + currentN % 2 ? -1 : 1;
+	currentValue = 2 * currentValue + ((currentN % 2) ? -1 : 1);
 	previousValue = temp;
 	++currentN;
 };
 
+static size_t	fetchTreeSize( size_t jN, size_t jC, size_t jP, size_t pS, size_t eS ) {
+	size_t	maxTreeSize = pow(2, jN - 1) - 1;
+	size_t	treeSize = maxTreeSize - jC + jP
+		+ (pS / eS);
+	if (treeSize > maxTreeSize)
+		treeSize = maxTreeSize;
+	return treeSize;
+};
+
 // Merge insertion loop
+// N.B. j stands for Jacobsthal number
 // 1. keeps track of Jacobsthal sequence
 // 2. jumps forward to next nth of sequence
 // 3. finds nth value in the pend
@@ -142,24 +142,26 @@ static void	nextJacobsthal( size_t& previousValue, size_t& currentValue, size_t&
 // 5. exits when the range between n-1 and n of Jacobsthal fall outside pend size
 template <typename T>
 static void	mergeInsert( T& main, T& pend, size_t elementSize ) {
-	size_t	jacobsPrevious = 1, jacobsCurrent = 3, jacobsN = 3;
-	size_t	i = (jacobsCurrent - jacobsPrevious) * elementSize - 1;
+	size_t	jPrevious = 1, jCurrent = 3, jN = 3, treeSize;
+	size_t	i = jCurrent - jPrevious - 1;
 	size_t	iMax = pend.size() / elementSize - 1;
+
 	if (i > iMax)
 		i = iMax;
+	treeSize = fetchTreeSize(jN, jCurrent,
+						  jPrevious, pend.size(), elementSize);
 	while (!pend.empty()) {
-		// Passing jacobsPrevious here in effect passes the number that is already
-		// sorted, we start from 3 (index 2) becuase the first 2 elements, b1 and a1
-		// are always in the main
-		resolveInsertion(main, pend, i, std::pow(2, jacobsN - 1) - 1, elementSize);
+		resolveInsertion(main, pend, i, treeSize, elementSize);
 		if (i > 0)
 			--i;
 		else {
-			nextJacobsthal(jacobsPrevious, jacobsCurrent, jacobsN);
-			i = (jacobsCurrent - jacobsPrevious) * elementSize - 1;
+			nextJacobsthal(jPrevious, jCurrent, jN);
+			i = jCurrent - jPrevious - 1;
 			iMax = pend.size() / elementSize - 1;
 			if (i > iMax)
 				i = iMax;
+			treeSize = fetchTreeSize(jN, jCurrent,
+							jPrevious, pend.size(), elementSize);
 		}
 	}
 };
@@ -192,33 +194,9 @@ T	PmergeMe<T>::fordJohnsonAlgo( const T& data ) {
 		return main;
 	T	pend;
 	size_t	elementSize = maxElementSize(main.size());
-	std::cout << "Before chains\n";
-	std::cout << "main\n";
-	for (auto it = main.begin(); it != main.end(); it = std::next(it)) {
-		std::cout << "i: " << *it << "\n";
-	}
 	while (elementSize > 0) {
-		std::cout << "PAIR SIZE LEVEL: " << elementSize << "\n";
 		buildChains(main, pend, elementSize);
-		std::cout << "Before sort\n";
-		std::cout << "main\n";
-		for (auto it = main.begin(); it != main.end(); it = std::next(it)) {
-			std::cout << "i: " << *it << "\n";
-		}
-		std::cout << "pend\n";
-		for (auto it = pend.begin(); it != pend.end(); it = std::next(it)) {
-			std::cout << "i: " << *it << "\n";
-		}
 		mergeInsert(main, pend, elementSize);
-		std::cout << "After sort\n";
-		std::cout << "main\n";
-		for (auto it = main.begin(); it != main.end(); it = std::next(it)) {
-			std::cout << "i: " << *it << "\n";
-		}
-		std::cout << "pend\n";
-		for (auto it = pend.begin(); it != pend.end(); it = std::next(it)) {
-			std::cout << "i: " << *it << "\n";
-		}
 		if (isSort(main))
 			return main;
 		elementSize /= 2;
