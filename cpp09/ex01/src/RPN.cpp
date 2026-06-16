@@ -77,8 +77,11 @@ int	RPN::calculate( std::deque<int>& equation ) {
 			left -= right;
 		else if (operation == '*')
 			left *= right;
-		else if (operation == '/')
+		else if (operation == '/') {
+			if (right == 0)
+				throw std::runtime_error("division by zero");
 			left /= right;
+		}
 		if (left > INT_MAX)
 			throw std::runtime_error("integer too big");
 		if (left < INT_MIN)
