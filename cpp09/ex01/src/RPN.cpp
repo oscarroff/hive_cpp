@@ -15,8 +15,6 @@
 #include <stdexcept> // for std::runtime_error
 #include <limits.h> // for INT_MAX and INT_MIN
 
-// Division by 0
-
 std::deque<int>	RPN::parseInput( const char *in ) {
 	std::string	str(in);
 	// Early throws
@@ -71,16 +69,24 @@ int	RPN::calculate( std::deque<int>& equation ) {
 		equation.pop_front();
 		operation = equation.front();
 		equation.pop_front();
-		if (operation == '+')
-			left += right;
-		else if (operation == '-')
-			left -= right;
-		else if (operation == '*')
-			left *= right;
-		else if (operation == '/') {
-			if (right == 0)
-				throw std::runtime_error("division by zero");
-			left /= right;
+		switch (operation) {
+			case '+': {
+				left += right;
+				break;
+			}
+			case '-': {
+				left -= right;
+				break;
+			}
+			case '*': {
+				left *= right;
+				break;
+			}
+			case '/': {
+				if (right == 0)
+					throw std::runtime_error("division by zero");
+				left /= right;
+			}
 		}
 		if (left > INT_MAX)
 			throw std::runtime_error("integer too big");
