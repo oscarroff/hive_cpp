@@ -13,6 +13,7 @@
 #include "BitcoinExchange.hpp"
 #include <bits/stdc++.h> // for std::ifstream
 #include <charconv>
+#include <climits>
 #include <sstream>
 
 // Forward overload declarations
@@ -159,6 +160,31 @@ void    BitcoinExchange::loadDatabase( const char* path ) {
 	file.close();
 };
 
+// Safe multiplication by manually checking for overflow in each case
+// i.e. left & right large, left & right small, or left & right opposite signs
+static bool	safeMultiply( long& result, long left, long right ) {
+	result = 0;
+	if (left == 0 || right == 0)
+		return false;
+	if (left > 0 && right > 0) {
+		if (left > LLONG_MAX / right)
+			return false;
+	} else if (left < 0 && right < 0) {
+		if (left < LLONG_MAX / right)
+		return false;
+	} else {
+		if (left < 0 && right > 0) {
+			if (left < LLONG_MAX / right)
+				return false;
+		} else {
+			if (right < LLONG_MAX / left)
+				return false;
+		}
+	}
+	result = left * right;
+	return true;
+}
+
 // Takes in a path to an input file, parses the data and checks for
 // values in the database
 void	BitcoinExchange::evaluateInput( const char* path ) {
@@ -169,7 +195,7 @@ void	BitcoinExchange::evaluateInput( const char* path ) {
 	std::string	line;
 	size_t	position;
 	size_t	separatorLength = std::strlen(inputSeparator);
-	std::optional<ymd>	date;
+	std::optional<ymd>		date;
 	std::optional<fixed>	bitcoin, exchangeRate;
 	fixed	result;
 	std::getline(file, line);
@@ -209,7 +235,11 @@ void	BitcoinExchange::evaluateInput( const char* path ) {
 			std::cerr << "Error: no exchange rate data\n";
 			continue;
 		}
-		result.n = bitcoin.value().n * exchangeRate.value().n / decimalFactor;
+		if (!safeMultiply(result.n, bitcoin.value().n, exchangeRate.value().n)) {
+			std::cerr << "Error: too large a number\n";
+			continue;
+		}
+		result.n /= decimalFactor;
 		std::cout << date.value() << " => "
 			<< bitcoin.value() << " = "
 			<< result << "\n";
