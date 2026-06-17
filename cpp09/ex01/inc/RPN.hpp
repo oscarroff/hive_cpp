@@ -12,8 +12,6 @@
 
 #pragma once
 
-#include <deque>
-
 class RPN {
 public:
 	// Constructors & destructors
@@ -22,11 +20,9 @@ public:
 	RPN &operator=(const RPN &other) = delete;
 	~RPN() = delete;
 
-	static std::deque<int>	parseInput( const char* in );
-	static int	calculate( std::deque<int>& equation );
+	static int	calculate( const char* expression );
 
 	static constexpr const char*	digitChars = "0123456789";
-	static constexpr const char*	opChars = "+-/*";
-	static constexpr const char*	numChars = "0123456789+-*/ ";
+	static constexpr const char*	numChars = "0123456789+-*/";
 	static constexpr int			atoiASCII = 48;
 };

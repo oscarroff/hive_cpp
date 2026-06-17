@@ -11,95 +11,78 @@
 /* ************************************************************************** */
 
 #include "RPN.hpp"
-#include <cstring> // for std::strchr
+#include <cstring>   // for std::strchr
+#include <limits.h>  // for INT_MAX and INT_MIN
 #include <stdexcept> // for std::runtime_error
-#include <limits.h> // for INT_MAX and INT_MIN
+#include <stack> // for std::stack
 
-// std::deque<int>	RPN::parseInput( const char *in ) {
-// 	std::string	str(in);
-// 	// Early throws
-// 	if (str.length() == 0)
-// 		throw std::runtime_error("no input");
-// 	if (str.find_first_not_of(numChars) != std::string::npos)
-// 		throw std::runtime_error("invalid char");
-// 	if (!std::strchr(digitChars, str[str.find_first_not_of(' ')]))
-// 		throw std::runtime_error("invalid order");
-//
-// 	// Fill stack
-// 	std::deque<int>	result;
-// 	size_t	precedenceLevel = 0;
-// 	bool	spaceToggle = true;
-// 	auto it = str.begin();
-// 	while (*it == ' ')
-// 		++it;
-// 	result.push_back(*it++);
-// 	while (it != str.end()) {
-// 		if (*it == ' ') {
-// 			spaceToggle = false;
-// 			++it;
-// 			continue;
-// 		}
-// 		// Throw invalid order
-// 		if (spaceToggle == true && (std::strchr(digitChars, *it) || std::strchr(opChars, *it)))
-// 			throw std::runtime_error("unexpected instruction, only single-char instructions allowed");
-// 		if (precedenceLevel == 0 && !std::strchr(digitChars, *it))
-// 			throw std::runtime_error("unexpected operator");
-// 		// else if (numToggle == false && !std::strchr(opChars, *it))
-// 		// 	throw std::runtime_error("unexpected digit");
-// 		if (std::strchr(digitChars, *it))
-// 			++precedenceLevel;
-// 		else if (std::strchr(opChars, *it))
-// 			--precedenceLevel;
-// 		result.push_back(*it);
-// 		// numToggle = !numToggle;
-// 		spaceToggle = true;
-// 		++it;
-// 	}
-// 	if (result.size() < 3)
-// 		throw std::runtime_error("not enough instructions to calculate");
-// 	else if (result.size() % 2 != 1)
-// 		throw std::runtime_error("invalid syntax");
-// 	else if (precedenceLevel != 0)
-// 		throw std::runtime_error("not enough operators to calculate");
-// 	return result;
-// };
-//
-// int	RPN::calculate( std::deque<int>& equation ) {
-// 	long	left;
-// 	int		right;
-// 	char	operation;
-// 	left = equation.front() - atoiASCII;
-// 	equation.pop_front();
-// 	while (equation.size() > 1) {
-// 		right = equation.front() - atoiASCII;
-// 		equation.pop_front();
-// 		operation = equation.front();
-// 		equation.pop_front();
-// 		switch (operation) {
-// 			case '+': {
-// 				left += right;
-// 				break;
-// 			}
-// 			case '-': {
-// 				left -= right;
-// 				break;
-// 			}
-// 			case '*': {
-// 				left *= right;
-// 				break;
-// 			}
-// 			case '/': {
-// 				if (right == 0)
-// 					throw std::runtime_error("division by zero");
-// 				left /= right;
-// 			}
-// 		}
-// 		if (left > INT_MAX)
-// 			throw std::runtime_error("integer too big");
-// 		if (left < INT_MIN)
-// 			throw std::runtime_error("integer too small");
-// 	}
-// 	if (equation.size() > 0)
-// 		throw std::runtime_error("invalid syntax at calculation stage");
-// 	return static_cast<int>(left);
-// };
+// Forward declarations
+static void	parseOperator( std::stack<int>& stack, char operation );
+static void	parseArgument( std::stack<int>& stack, char argument );
+
+int	RPN::calculate( const char *expression ) {
+	std::stack<int>	stack;
+	bool	spaceToggle = false;
+
+	while (*expression == ' ')
+		++expression;
+	if (*expression == '\0')
+		throw std::runtime_error("not enough instructions");
+	while (*expression) {
+		if (std::strchr(numChars, *expression)) {
+			if (spaceToggle == true)
+				throw std::runtime_error("invalid syntax, single characters only");
+			parseArgument(stack, *expression);
+			++expression;
+		}
+		else if (*expression == ' ')
+			while (*expression == ' ')
+				++expression;
+		else
+			throw std::runtime_error("invalid character");
+		spaceToggle = !spaceToggle;
+	}
+	if (stack.size() > 1)
+		throw std::runtime_error("invalid syntax, not enough operators");
+	return stack.top();
+};
+
+static void	parseArgument( std::stack<int>& stack, char argument ) {
+	if (std::strchr(RPN::digitChars, argument))
+		stack.push(argument - RPN::atoiASCII);
+	else if (stack.size() < 2)
+		throw std::runtime_error("invalid syntax, too many operators");
+	else
+		parseOperator(stack, argument);
+};
+
+static void	parseOperator( std::stack<int>& stack, char operation ) {
+	int		right = stack.top();
+	stack.pop();
+	long	left = static_cast<long>(stack.top());
+	stack.pop();
+	switch (operation) {
+		case '+': {
+			left += right;
+			break ;
+		}
+		case '-': {
+			left -= right;
+			break ;
+		}
+		case '*': {
+			left *= right;
+			break ;
+		}
+		case '/': {
+			if (right == 0)
+				throw std::runtime_error("division by zero");
+			left /= right;
+		}
+	}
+	if (left > INT_MAX)
+		throw std::runtime_error("integer too big");
+	if (left < INT_MIN)
+		throw std::runtime_error("integer too small");
+	stack.push(static_cast<int>(left));
+}

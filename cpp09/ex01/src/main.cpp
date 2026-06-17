@@ -11,17 +11,19 @@
 /* ************************************************************************** */
 
 #include "RPN.hpp"
-#include <iostream> // for std::cout
+#include <iostream> // for std::cout && std::cerr
 
-int	main(int argv, char **argc) {
-	if (argv != 2) {
-		std::cerr << "Error: no input\n"
-		<< "Example usage: ./RPN \"1 1 +\"\n";
+int	main(int argc, char **argv) {
+	if (argc != 2) {
+		if (argc < 2)
+			std::cerr << "Error: no input\n";
+		else
+			std::cerr << "Error: too many arguments, expects single string input\n";
+		std::cerr << "Example usage: ./RPN \"1 1 +\"\n";
 		return EXIT_FAILURE;
 	}
 	try {
-		std::deque<int>	equation = RPN::parseInput(argc[1]);
-		int	result = RPN::calculate(equation);
+		int	result = RPN::calculate(argv[1]);
 		std::cout << result << "\n";
 	}
 	catch (std::exception& e) {

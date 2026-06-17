@@ -16,7 +16,7 @@ NAME		= PmergeMe
 
 # Tools
 CPP			= g++
-CFLAGS		= -Wall -Wextra -Werror -std=c++20 -g
+CFLAGS		= -Wall -Wextra -Werror -std=c++20
 
 # Sources
 SRC_FILES	= main.cpp
