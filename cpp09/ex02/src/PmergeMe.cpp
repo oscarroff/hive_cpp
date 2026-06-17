@@ -28,6 +28,8 @@ T	PmergeMe<T>::loadData( char** args ) {
 		flag = std::from_chars(*args, *args + std::strlen(*args), value);
 		if (flag.ec != std::errc())
 			throw std::runtime_error("integer conversion fail");
+		if (*flag.ptr != '\0')
+			throw std::runtime_error("invalid input");
 		result.push_back(value);
 		args++;
 	}
