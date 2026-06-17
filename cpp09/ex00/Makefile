@@ -12,7 +12,7 @@
 
 # Project Name
 PROJECT		= Bitcoin
-NAME		= Bitcoin
+NAME		= btc
 
 # Tools
 CPP			= g++
