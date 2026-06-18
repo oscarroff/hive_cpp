@@ -111,6 +111,8 @@ std::optional<fixed>	BitcoinExchange::parseValue( const std::string& numString )
 // Getter for the exchange rate, returns if a match or if there is an earlier date
 std::optional<fixed>	BitcoinExchange::getExchangeRate( const ymd& date ) const {
 	auto it = this->_database.begin();
+	if (date < it->first)
+		return std::nullopt;
 	while (it != this->_database.end()) {
 		if (it->first == date)
 			return it->second;
@@ -165,7 +167,7 @@ void    BitcoinExchange::loadDatabase( const char* path ) {
 static bool	safeMultiply( long& result, long left, long right ) {
 	result = 0;
 	if (left == 0 || right == 0)
-		return false;
+		return true;
 	if (left > 0 && right > 0) {
 		if (left > LLONG_MAX / right)
 			return false;
