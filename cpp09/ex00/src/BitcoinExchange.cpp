@@ -12,9 +12,7 @@
 
 #include "BitcoinExchange.hpp"
 #include <bits/stdc++.h> // for std::ifstream
-#include <charconv>
-#include <climits>
-#include <sstream>
+#include <cstring>   // for std::strchr
 
 // Forward overload declarations
 std::ostream&	operator<<( std::ostream& out, const ymd& date );
@@ -56,16 +54,21 @@ std::map<ymd, fixed>&	BitcoinExchange::getDatabase() {
 };
 
 // Parse a date with a given separator char into a std::chrono::year_month_day value
-std::optional<ymd>	BitcoinExchange::parseDate( const std::string& dateString, char delimiter ) const {
+std::optional<ymd>	BitcoinExchange::parseDate( const std::string& input, char delimiter ) const {
+	std::string	dateChars = digitChars;
+	dateChars.push_back(delimiter);
+	std::string	dateString = input.substr(0, input.find_first_not_of(dateChars));
 	int		year, month, day;
 	char	s1, s2;
 	std::stringstream	ss(dateString);
 	if (!(ss >> year >> s1 >> month >> s2 >> day) ||
-		s1 != delimiter || s2 != delimiter)
+		s1 != delimiter || s2 != delimiter || year < INT16_MIN || year > INT16_MAX)
 		return std::nullopt;
 	auto y = std::chrono::year(year);
 	auto m = std::chrono::month(month);
 	auto d = std::chrono::day(day);
+	if (!y.ok() || !m.ok() || !d.ok())
+		return std::nullopt;
 	auto	ymd = y / m / d;
 	if (!ymd.ok())
 		return std::nullopt;
@@ -86,23 +89,23 @@ std::optional<fixed>	BitcoinExchange::parseValue( const std::string& numString )
 	long	value;
 	auto res = std::from_chars(numString.data(),
 		numString.data() + numString.find_first_not_of(numberChars), value);
-	// std::from_chars_result res = std::from_chars(numString.data(),
-	// 	numString.data() + numString.find_first_not_of(numberChars), value);
 	if (res.ec != std::errc())
 		return std::nullopt;
 	value *= decimalFactor;
-
-	std::string	fractionString(res.ptr, numString.data() + numString.size());
-	if (fractionString.empty() || fractionString[0] != '.' || !fractionString[1])
+	if (!*res.ptr || (*res.ptr == '.' && !res.ptr[1]))
 		return value;
-
+	std::string	fractionString(res.ptr + 1, numString.data() + numString.size());
 	int	fraction = 0;
-	res = std::from_chars(fractionString.data() + 1,
-		fractionString.data() + fractionString.size(), fraction);
-	if (res.ec != std::errc())
-		return std::nullopt;
-	fraction *= std::pow(10, decimalExponent - fractionString.size() + 1);
-
+	size_t	i = 0;
+	while (i < decimalExponent && i < fractionString.size()) {
+		if (fractionString[i] < '0' || fractionString[i] > '9')
+			return std::nullopt;
+		fraction *= 10;
+		fraction += fractionString[i] - '0';
+		++i;
+	}
+	if (i < decimalExponent)
+		fraction *= std::pow(10, decimalExponent - i);
 	value += fraction;
 	result.n = value;
 	return result;
@@ -265,8 +268,11 @@ std::ostream&	operator<<( std::ostream& out, const ymd& date ) {
 std::ostream&	operator<<( std::ostream& out, const fixed& f ) {
 	if (f.n % BitcoinExchange::decimalFactor < 1)
 		return out << f.n / BitcoinExchange::decimalFactor;
+	std::stringstream	fraction;
+	fraction << std::setfill('0') << std::setw(BitcoinExchange::decimalExponent)
+		<< std::to_string(f.n % BitcoinExchange::decimalFactor);
 	std::string	os = std::to_string(f.n / BitcoinExchange::decimalFactor)
-	+ '.' + std::to_string(f.n % BitcoinExchange::decimalFactor);
+	+ '.' + fraction.str();
 	while (!os.empty() && os.back() == '0')
 		os.pop_back();
 	out << os;

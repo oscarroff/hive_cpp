@@ -54,13 +54,21 @@ public:
 	// Static Member Variables
 	// We want to preserve accuracy for 3 decimal places, thus ints holding the
 	// value of the bitcoin are handled as: stored value = original value * 10^3
+	// Suggested range for this variable is 0-5 depending on application
+
+	// ========== decimalExponent ==========
+	// adjust for fixed point accuracy
 	static constexpr int			decimalExponent = 3;
+	// all other values below will scale to this value
+	// =====================================
+
 	static constexpr int			decimalFactor = Power<10, decimalExponent>::value;
 	static constexpr long			bitcoinMax = 1000 * decimalFactor;
 	// Separator to be used when writing the date e.g. 2026-05-31
 	static constexpr char			dateDelimiter = '-';
 	static constexpr char			databaseSeparator = ',';
 	static constexpr const char*	inputSeparator = " | ";
+	static constexpr const char*	digitChars = "0123456789";
 	static constexpr const char*	numberChars = "0123456789+-";
 	static constexpr const char*	floatChars = "0123456789+-.";
 };
