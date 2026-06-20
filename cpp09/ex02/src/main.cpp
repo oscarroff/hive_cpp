@@ -24,13 +24,13 @@ int	main(int argv, char **argc) {
 	vector	vecInput, vecOutput;
 	list	lstInput, lstOutput;
 	try {
-		vecInput = PmergeMe<vector>::loadData(argc + 1);
 		auto	vecStart = std::chrono::steady_clock::now();
+		vecInput = PmergeMe<vector>::loadData(argc + 1);
 		vecOutput = PmergeMe<vector>::fordJohnsonAlgo(vecInput);
 		auto	vecEnd = std::chrono::steady_clock::now();
 
-		lstInput = PmergeMe<list>::loadData(argc + 1);
 		auto	lstStart = std::chrono::steady_clock::now();
+		lstInput = PmergeMe<list>::loadData(argc + 1);
 		lstOutput = PmergeMe<list>::fordJohnsonAlgo(lstInput);
 		auto	lstEnd = std::chrono::steady_clock::now();
 		std::cout << "Before: " << vecInput << "\n";

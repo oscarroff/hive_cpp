@@ -55,7 +55,7 @@ std::map<ymd, fixed>&	BitcoinExchange::getDatabase() {
 
 // Parse a date with a given separator char into a std::chrono::year_month_day value
 std::optional<ymd>	BitcoinExchange::parseDate( const std::string& input, char delimiter ) const {
-	std::string	dateChars = digitChars;
+	std::string	dateChars = ymdChars;
 	dateChars.push_back(delimiter);
 	std::string	dateString = input.substr(0, input.find_first_not_of(dateChars));
 	int		year, month, day;

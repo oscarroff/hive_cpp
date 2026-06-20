@@ -69,6 +69,7 @@ public:
 	static constexpr char			databaseSeparator = ',';
 	static constexpr const char*	inputSeparator = " | ";
 	static constexpr const char*	digitChars = "0123456789";
+	static constexpr const char*	ymdChars = "0123456789-";
 	static constexpr const char*	numberChars = "0123456789+-";
 	static constexpr const char*	floatChars = "0123456789+-.";
 };
